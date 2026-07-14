@@ -1,0 +1,138 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   AUTO-GENERATED — do not edit directly.
+   Run `npm run tokens` (scripts/generate-tokens-css.mjs) to regenerate this
+   file from src/tokens/*.js after changing a token value there.
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Spacing — src/tokens/spacing.js */
+  --spacing-none: 0px;
+  --spacing-xxs: 2px;
+  --spacing-xs: 4px;
+  --spacing-s: 6px;
+  --spacing-sm: 8px;
+  --spacing-m: 10px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-xxl: 24px;
+  --spacing-section-xs: 32px;
+  --spacing-section-sm: 40px;
+  --spacing-section-md: 44px;
+  --spacing-section-lg: 48px;
+  --spacing-section-xl: 80px;
+  --spacing-section-xxl: 96px;
+
+  /* Border radius — src/tokens/radius.js */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 100px;
+
+  /* Shadow — src/tokens/shadow.js */
+  --shadow-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  --shadow-md: 0px 2px 4px -2px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.1);
+  --shadow-lg: 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08);
+  --shadow-xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+  --shadow-focus: 0 0 0 4px rgba(0, 42, 168, 0.6);
+
+  /* Typography — src/tokens/typography.js (line-heights reuse --spacing-*) */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+
+  /* Colour — src/tokens/colors.js */
+  --color-brand-primary: #050505;
+  --color-brand-secondary: #EDE9E3;
+  --color-brand-secondary-border: #6B6B6B;
+  --color-brand-highlight: #EF7038;
+  --color-text-primary: #050505;
+  --color-text-secondary: #525252;
+  --color-text-invert: #FFFFFF;
+  --color-text-disabled: #9E9E9E;
+  --color-text-placeholder: #858585;
+  --color-text-highlight: #002AA8;
+  --color-border-ui-active: #050505;
+  --color-border-ui-inactive: #9E9E9E;
+  --color-border-ui-hover: #1F1F1F;
+  --color-border-ui-disabled: #D1D1D1;
+  --color-border-layout: #D1D1D1;
+  --color-border-invert: #FFFFFF;
+  --color-core-bg-primary: #050505;
+  --color-core-bg-primary-hover: #383838;
+  --color-core-bg-primary-selected: #FFFFFF;
+  --color-core-bg-primary-selected-hover: #383838;
+  --color-core-bg-primary-disabled: #EBEBEB;
+  --color-core-bg-secondary: #FFFFFF;
+  --color-core-bg-secondary-hover: #F9F8F6;
+  --color-core-bg-secondary-selected: #EDE9E3;
+  --color-core-bg-secondary-selected-hover: #383838;
+  --color-core-bg-secondary-disabled: #EBEBEB;
+  --color-core-bg-tertiary: #EBEBEB;
+  --color-core-bg-tertiary-hover: #D1D1D1;
+  --color-core-bg-tertiary-selected: #383838;
+  --color-core-bg-tertiary-selected-hover: #D1D1D1;
+  --color-core-bg-tertiary-disabled: #EBEBEB;
+  --color-beige-bg-primary: #F9F8F6;
+  --color-beige-bg-primary-hover: #EDE9E3;
+  --color-beige-bg-primary-selected: #D2C6B7;
+  --color-beige-bg-primary-selected-hover: #EDE9E3;
+  --color-beige-bg-secondary: #EDE9E3;
+  --color-beige-bg-secondary-hover: #E5DED5;
+  --color-beige-bg-secondary-selected: #D2C6B7;
+  --color-beige-bg-secondary-selected-hover: #E5DED5;
+  --color-alert-message: #3393BA;
+  --color-alert-message-stressed: #00678A;
+  --color-alert-message-selected: #9ED9EE;
+  --color-alert-message-selected-hover: #67BCDD;
+  --color-alert-message-background: #DCF0F7;
+  --color-alert-positive: #519E42;
+  --color-alert-positive-stressed: #35692B;
+  --color-alert-positive-selected: #B7DEB0;
+  --color-alert-positive-selected-hover: #9AD090;
+  --color-alert-positive-background: #E5F3E2;
+  --color-alert-negative: #CF3321;
+  --color-alert-negative-stressed: #912417;
+  --color-alert-negative-selected: #F3B7AF;
+  --color-alert-negative-selected-hover: #EB8B7F;
+  --color-alert-negative-background: #FCEFED;
+  --color-alert-warning: #DD7F03;
+  --color-alert-warning-stressed: #AB6202;
+  --color-alert-warning-selected: #FED29A;
+  --color-alert-warning-selected-hover: #FDBA63;
+  --color-alert-warning-background: #FFF4E6;
+
+  /* Layout grid — src/tokens/grid.js */
+  --grid-desktop-xl-min-width: 1728px;
+  --grid-desktop-xl-columns: 12;
+  --grid-desktop-xl-column-width: 112px;
+  --grid-desktop-xl-gutter: 24px;
+  --grid-desktop-xl-margin: 100px;
+  --grid-desktop-min-width: 1440px;
+  --grid-desktop-columns: 12;
+  --grid-desktop-column-width: 84px;
+  --grid-desktop-gutter: 29px;
+  --grid-desktop-margin: 96px;
+  --grid-tablet-min-width: 1194px;
+  --grid-tablet-columns: 12;
+  --grid-tablet-column-width: 72px;
+  --grid-tablet-gutter: 20px;
+  --grid-tablet-margin: 96px;
+  --grid-tablet-portrait-min-width: 834px;
+  --grid-tablet-portrait-columns: 12;
+  --grid-tablet-portrait-column-width: 48px;
+  --grid-tablet-portrait-gutter: 14px;
+  --grid-tablet-portrait-margin: 93px;
+}
