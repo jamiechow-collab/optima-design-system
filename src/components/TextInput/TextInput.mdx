@@ -1,0 +1,87 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as TextInputStories from './TextInput.stories';
+import {
+  AnatomyExample,
+  ApplicationsExample,
+  TypesExample,
+  StatesExample,
+} from './TextInputDocHelpers';
+
+<Meta of={TextInputStories} />
+
+<Title>Input</Title>
+<Subtitle>
+  A text input includes a label and a text field users can type text into. They typically appear
+  in forms and dialogs.
+</Subtitle>
+
+<Canvas of={TextInputStories.Default} />
+<Controls of={TextInputStories.Default} />
+
+## Overview
+
+Text inputs let users enter and edit a single line of free text. Pair the field with a clear label
+so users know what's expected, and use placeholder text, helper text, and icons to guide them
+through filling it in correctly.
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+A text input is made up of a field title, an optional tooltip, a field container (with optional
+leading icon, leading/trailing prefix chips, trailing icon), and optional helper or validation
+text underneath.
+
+- Always use placeholder text in the input field.
+- Icons can be used to message alerts as well. Pair them with error messages to provide redundant
+  alerts.
+- Character or word counters should be used if there is a character or word limit. The limit
+  should be described in the helper text so users know it up front.
+
+## Applications
+
+The field container supports a leading icon, a trailing icon, and a leading or trailing prefix
+chip (e.g. a currency or unit symbol) — use any combination depending on what helps users fill in
+the field correctly.
+
+<Unstyled>
+  <ApplicationsExample />
+</Unstyled>
+
+## Types
+
+There are three validation types. Always use Default — only switch to Error validation when
+feedback needs to be shown for a failed validation. Success validation's use case is still TBD.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## States
+
+All types of text field have an Empty and a Filled state. Empty is when there is no entry, Filled
+is when an entry has been submitted. Within each, the field can be Default, Hover, Active,
+Focused, Disabled, or (once filled) Read only.
+
+**Active** — triggered by clicking into the field with a mouse; the caret appears and the border
+darkens, with no focus ring. **Focused** — triggered by moving focus with the keyboard (e.g.
+**Tab**); the border darkens and a focus ring appears, so keyboard users can always see where
+focus is.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Users press the field container to start typing. When they click elsewhere on the
+interface, the input field goes back to its default state.
+
+**Keyboard** — Users can press **Tab** to bring focus to the text input.
+
+**Enter** or **Space** opens any associated actions added to the input, such as a password
+visibility toggle. **Esc** closes any associated actions added to the input.
+
+**Opt + up/down arrows** relocates the caret to the start or end of the input content.

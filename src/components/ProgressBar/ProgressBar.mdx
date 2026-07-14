@@ -1,0 +1,40 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ProgressBarStories from './ProgressBar.stories';
+import { AnatomyExample, ValuesExample } from './ProgressBarDocHelpers';
+
+<Meta of={ProgressBarStories} />
+
+<Title>Progress Bar</Title>
+<Subtitle>
+  A progress bar visually represents task completion, filling horizontally based on percentage.
+</Subtitle>
+
+<Canvas of={ProgressBarStories.Default} />
+<Controls of={ProgressBarStories.Default} />
+
+## Overview
+
+Progress bars communicate how far along a task or process is, without requiring the user to take
+any action. They're display-only — there's no hover, focus, or disabled state.
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+A progress bar is made up of an optional field title with tooltip, and a track — an optional
+leading or trailing "n%" label, and the bar itself (a filled pill that grows from empty to full
+width as `value` increases from 0 to 100).
+
+- The field title and tooltip are optional.
+- The leading and trailing percentage labels are both optional and independent — use whichever
+  reads best in context.
+- Always pass an accessible name — either a visible `label`, or an `aria-label` when the bar has
+  no visible title.
+
+## Values
+
+<Unstyled>
+  <ValuesExample />
+</Unstyled>

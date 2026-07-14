@@ -1,0 +1,49 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as SidebarStories from './Sidebar.stories';
+import { AnatomyExample, NavItemStatesExample } from './SidebarDocHelpers';
+
+<Meta of={SidebarStories} />
+
+<Title>Sidebar</Title>
+<Subtitle>Main navigation of the application.</Subtitle>
+
+<Canvas of={SidebarStories.Default} />
+
+## Overview
+
+The sidebar is a fixed-width vertical navigation rail — 80px wide, anchored to the side of the
+screen for the lifetime of the session. It houses the app logo, a primary action, the main
+navigation items, and an optional footer slot (e.g. a settings or collapse trigger).
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+A sidebar is made up of:
+
+- A **logo** slot at the top.
+- An optional **action button** (a 40×40 square, e.g. "create new") shown above the nav items.
+- One or more **nav items** — each a 40×40 icon box with a caption underneath.
+- An optional **footer** slot at the bottom (e.g. a menu or collapse toggle).
+
+Only one nav item should be marked `active` at a time, reflecting the current page.
+
+## Nav item states
+
+Each nav item has five states: Default, Hover, Active (the current page), Focused, and Active
+Focused. The action button ("Key") sits above the nav list and is always the same high-contrast
+style, regardless of navigation state.
+
+<Unstyled>
+  <NavItemStatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Clicking a nav item's icon or label navigates to that page. Clicking the action
+button triggers its associated action (e.g. opening a "create new" flow).
+
+**Keyboard** — Users can press **Tab** to move focus between the action button and each nav item
+in order, and press **Enter** or **Space** to activate the focused item.

@@ -1,0 +1,144 @@
+/* ─────────────────────────────────────────────
+   Tooltip — design tokens: src/tokens/colors.js, typography.js
+   Hover/focus only, never contains interactive content (see Toggletip for
+   the click-triggered, interactive equivalent).
+   Both types: max-width 200px (text wraps at 184px once padding is
+   subtracted) — for readability, long text always wraps rather than
+   overflowing or forcing the bubble wider.
+   Label only: px8 py4 (spacing/sm, spacing/xs), Caption/medium
+   With title: px8 py6 (spacing/sm, spacing/s), gap4, Caption/medium title
+   (not semibold), Caption/regular description
+   Radius/sm 4, shadow-md
+   Primary variant: bg core-bg/primary #050505, text/invert white
+   Secondary variant: bg core-bg/secondary white, title text/primary #050505,
+   description text/secondary #525252 (Label only text/primary too)
+   8px gap between the trigger and the tooltip on every placement
+   ───────────────────────────────────────────── */
+
+.ds-tooltip__wrapper {
+  position: relative;
+  display: inline-block;
+  /* Without this, a wrapper placed as a direct grid/flex child stretches to
+     fill its cell/track by default, which throws off the placement/align
+     centering below (it would center against the stretched wrapper, not the
+     trigger). This keeps the wrapper hugging the trigger in any context. */
+  width: fit-content;
+}
+
+.ds-tooltip {
+  position: absolute;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 200px;
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px); /* spacing/xs spacing/sm */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  box-shadow: var(--shadow-md, 0 4px 4px rgba(16, 24, 40, 0.1), 0 2px 2px rgba(16, 24, 40, 0.06)); /* shadow-md */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
+}
+
+.ds-tooltip--rich {
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  padding-top: var(--spacing-s, 6px); /* spacing/s */
+  padding-bottom: var(--spacing-s, 6px);
+}
+
+.ds-tooltip--primary {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+.ds-tooltip--secondary {
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+}
+
+.ds-tooltip__label {
+  width: 100%;
+  font-weight: var(--font-weight-medium, 500);
+  text-align: center;
+}
+
+.ds-tooltip--primary .ds-tooltip__label {
+  color: var(--color-text-invert, #fff); /* text/invert */
+}
+
+.ds-tooltip--secondary .ds-tooltip__label {
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-tooltip__title {
+  width: 100%;
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-tooltip__description {
+  width: 100%;
+  font-weight: var(--font-weight-regular, 400);
+}
+
+.ds-tooltip--primary .ds-tooltip__title,
+.ds-tooltip--primary .ds-tooltip__description {
+  color: var(--color-text-invert, #fff); /* text/invert */
+}
+
+.ds-tooltip--secondary .ds-tooltip__title {
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-tooltip--secondary .ds-tooltip__description {
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+/* ── Placement ──────────────────────────────────── */
+
+.ds-tooltip--top {
+  bottom: calc(100% + var(--spacing-sm, 8px));
+}
+
+.ds-tooltip--bottom {
+  top: calc(100% + var(--spacing-sm, 8px));
+}
+
+.ds-tooltip--left {
+  right: calc(100% + var(--spacing-sm, 8px));
+}
+
+.ds-tooltip--right {
+  left: calc(100% + var(--spacing-sm, 8px));
+}
+
+/* ── Alignment (top/bottom align horizontally, left/right vertically) ── */
+
+.ds-tooltip--top.ds-tooltip--align-center,
+.ds-tooltip--bottom.ds-tooltip--align-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ds-tooltip--top.ds-tooltip--align-start,
+.ds-tooltip--bottom.ds-tooltip--align-start {
+  left: 0;
+}
+
+.ds-tooltip--top.ds-tooltip--align-end,
+.ds-tooltip--bottom.ds-tooltip--align-end {
+  right: 0;
+}
+
+.ds-tooltip--left.ds-tooltip--align-center,
+.ds-tooltip--right.ds-tooltip--align-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ds-tooltip--left.ds-tooltip--align-start,
+.ds-tooltip--right.ds-tooltip--align-start {
+  top: 0;
+}
+
+.ds-tooltip--left.ds-tooltip--align-end,
+.ds-tooltip--right.ds-tooltip--align-end {
+  bottom: 0;
+}

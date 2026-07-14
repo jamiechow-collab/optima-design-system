@@ -1,0 +1,43 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as SpinnerStories from './Spinner.stories';
+import { SizesExample, TypesExample, InButtonExample } from './SpinnerDocHelpers';
+
+<Meta of={SpinnerStories} />
+
+<Title>Spinners</Title>
+<Subtitle>Circular loader indicates to user waiting state.</Subtitle>
+
+<Canvas of={SpinnerStories.Default} />
+<Controls of={SpinnerStories.Default} />
+
+## Overview
+
+The spinner is a small, continuously rotating indicator that tells users something is loading —
+use it wherever a wait state has no determinate progress to show (see [Progress
+Bar](?path=/docs/components-progress-bar--docs) for a determinate alternative).
+
+## Sizes
+
+There are six sizes. xs (16px) is the default and most commonly used, e.g. inside a Button.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Types
+
+There are two types — Primary is a dark arc for light backgrounds, Secondary is a white arc for
+dark or coloured backgrounds.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Application: inside a Button
+
+`Button`'s `loading` prop swaps its leading icon for a `Spinner`, automatically picking Primary or
+Secondary to match the button's variant.
+
+<Unstyled>
+  <InButtonExample />
+</Unstyled>

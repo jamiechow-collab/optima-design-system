@@ -1,0 +1,51 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as InlineButtonStories from './InlineButton.stories';
+import { VariantsExample, PositionExample } from './MenuButtonDocHelpers';
+
+<Meta of={InlineButtonStories} />
+
+<Title>Inline Button</Title>
+<Subtitle>
+  Menu Buttons are triggers that can open or close a menu.
+</Subtitle>
+
+<Canvas of={InlineButtonStories.Default} />
+<Controls of={InlineButtonStories.Default} />
+
+## Overview
+
+Inline Button is a minimal, text-only trigger with a trailing chevron — it sits flush with
+surrounding content rather than looking like a standalone button. The chevron points down when
+closed and flips to point up while the menu is open.
+
+## Variants
+
+There are different ways to trigger a menu, which includes a Filter Button, Inline Button, Icon
+Button, and Avatar Button.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Position
+
+By default, the menu triggered and appears below and aligned to the left of the trigger.
+
+Only when space on the interface is limited, then the menu appears below and aligned to the
+right. Following that, the menu can appear above and aligned to the left, or above and aligned to
+the right.
+
+<Unstyled>
+  <PositionExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can trigger a button by clicking anywhere within the Menu Button container.
+
+**Keyboard**
+
+Users can trigger a menu dropdown by pressing **Enter** or **Space** while the Menu Button has
+focus.

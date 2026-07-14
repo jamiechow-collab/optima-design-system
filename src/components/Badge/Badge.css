@@ -1,0 +1,77 @@
+/* ─────────────────────────────────────────────
+   Badge — design tokens: src/tokens/colors.js, typography.js
+   Caption/medium 12/16 · pill shape (Radius/full)
+   Variants (bg / text): info core-bg/tertiary #EBEBEB / text/primary #050505
+   message sea-blue-20 #DCF0F7 / stressed #00678A
+   positive green-20 #E5F3E2 / stressed #35692B
+   negative red-20 #FCEFED / stressed #912417
+   warning amber-20 #FFF4E6 / stressed #AB6202
+   ───────────────────────────────────────────── */
+
+.ds-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxs, 2px) var(--spacing-sm, 8px);
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-badge--md { height: 24px; }
+.ds-badge--lg { height: 28px; }
+
+.ds-badge__content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs, 2px);
+}
+
+.ds-badge--md .ds-badge__content,
+.ds-badge--lg .ds-badge__content {
+  gap: var(--spacing-xs, 4px);
+}
+
+/* With icon — the content gets an extra 4px before the label, so the icon
+   ends up sitting closer to the pill's trailing edge than the label is to
+   the leading edge */
+.ds-badge--with-icon .ds-badge__content {
+  padding-left: var(--spacing-xs, 4px);
+}
+
+.ds-badge__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-badge__icon svg { width: 12px; height: 12px; }
+
+/* ── Variants ─────────────────────────────────── */
+
+.ds-badge--info {
+  background: var(--color-core-bg-tertiary, #ebebeb);
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-badge--message {
+  background: var(--color-alert-message-background, #dcf0f7);
+  color: var(--color-alert-message-stressed, #00678a);
+}
+
+.ds-badge--positive {
+  background: var(--color-alert-positive-background, #e5f3e2);
+  color: var(--color-alert-positive-stressed, #35692b);
+}
+
+.ds-badge--negative {
+  background: var(--color-alert-negative-background, #fcefed);
+  color: var(--color-alert-negative-stressed, #912417);
+}
+
+.ds-badge--warning {
+  background: var(--color-alert-warning-background, #fff4e6);
+  color: var(--color-alert-warning-stressed, #ab6202);
+}

@@ -1,0 +1,9 @@
+/* ─────────────────────────────────────────────
+   Icon — renders currentColor, inherits text color
+   ───────────────────────────────────────────── */
+
+.ds-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  color: inherit;
+}

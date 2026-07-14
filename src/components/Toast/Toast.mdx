@@ -1,0 +1,73 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './Toast.stories';
+import { OverviewExample, VariantsExample, TypesExample, AnatomyExample } from './ToastDocHelpers';
+
+<Meta of={ToastStories} />
+
+<Title>Toast</Title>
+<Subtitle>
+  A toast notification is a message object that presents timely information, including
+  confirmation of actions, alerts, and errors.
+</Subtitle>
+
+<Canvas of={ToastStories.Message} />
+<Controls of={ToastStories.Message} />
+
+## Overview
+
+Toast notifications are non-modal, time-based window elements used to display short messages;
+they usually appear at the top of the screen and disappear after a few seconds.
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+## Variants
+
+There are three variants for Toast notification.
+
+1. Message is a Toast notification with single line message.
+2. With details provide users more description about the notification.
+3. With timestamps provide users more context about when the notification is triggered.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Types
+
+There are four types of Toast Notification for Message Variants, which tell users about
+confirmation, positive message, error message, or warning message.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There is only one size for Toast Notification.
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+**Leading icon (optional)**
+
+Leading icon provide more context to describe the message.
+
+**Action Button (optional)**
+
+Action Button only needed if there are other actions users can perform after the incident, such
+as "See Details", "Learn More".
+
+**Close Button (optional)**
+
+Close Button is optional if the notification needs to be static to draw users' attention.
+
+If it is just a nudge for users and the notification does not need to be persistent on the
+interface, a Close Button is not needed.
+
+The Toast Notification will stay for 3 seconds if it is just a nudge and does not need users to
+take any actions.

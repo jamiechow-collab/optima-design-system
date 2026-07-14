@@ -1,0 +1,121 @@
+/* ─────────────────────────────────────────────
+   Toggle — design tokens: src/tokens/colors.js, typography.js
+   Sizes: sm track 36×20, thumb 16 (default) · md track 44×24, thumb 20 —
+   2px inset (spacing/xxs) on every side, gap 12px (spacing/md) to the label
+   States (off): bg core-bg/tertiary #EBEBEB, thumb white with shadow-sm ·
+   focus adds a ring · disabled bg stays #EBEBEB, thumb loses its shadow
+   States (on): bg core-bg/primary #050505, thumb slides to the far side ·
+   disabled (on or off): bg core-bg/primary-disabled #EBEBEB — disabled
+   always reads as off-grey regardless of checked state
+   Label: Text sm/Medium 14/20, -0.2px tracking, text/primary — text/disabled
+   when disabled
+   ───────────────────────────────────────────── */
+
+.ds-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px); /* spacing/md */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  cursor: pointer;
+}
+
+.ds-toggle.is-disabled {
+  cursor: not-allowed;
+}
+
+.ds-toggle__box {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ds-toggle__input {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: var(--radius-full, 100px); /* radius/full */
+  background: var(--color-core-bg-tertiary, #ebebeb); /* core-bg/tertiary */
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-toggle--sm .ds-toggle__input {
+  width: 36px;
+  height: 20px;
+}
+
+.ds-toggle--md .ds-toggle__input {
+  width: 44px;
+  height: 24px;
+}
+
+.ds-toggle__thumb {
+  position: absolute;
+  top: var(--spacing-xxs, 2px);
+  left: var(--spacing-xxs, 2px);
+  border-radius: 50%;
+  background: var(--color-core-bg-secondary, #fff);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.1)); /* shadow-sm */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  pointer-events: none;
+}
+
+.ds-toggle--sm .ds-toggle__thumb {
+  width: 16px;
+  height: 16px;
+}
+
+.ds-toggle--md .ds-toggle__thumb {
+  width: 20px;
+  height: 20px;
+}
+
+.ds-toggle__input:checked {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+.ds-toggle--sm .ds-toggle__input:checked ~ .ds-toggle__thumb {
+  transform: translateX(16px);
+}
+
+.ds-toggle--md .ds-toggle__input:checked ~ .ds-toggle__thumb {
+  transform: translateX(20px);
+}
+
+/* ── Focus — system focus ring ───────────────── */
+
+.ds-toggle__input:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+/* Demo-only equivalent of :focus-visible, so the guideline can show every state at once */
+.ds-toggle.is-focused .ds-toggle__input {
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+/* ── Disabled — always reads as grey, whether on or off ───────────── */
+
+.ds-toggle__input:disabled {
+  background: var(--color-core-bg-primary-disabled, #ebebeb); /* core-bg/primary-disabled */
+  cursor: not-allowed;
+}
+
+.ds-toggle__input:disabled ~ .ds-toggle__thumb {
+  box-shadow: none;
+}
+
+/* ── Label ────────────────────────────────────── */
+
+.ds-toggle__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-toggle.is-disabled .ds-toggle__label {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+}

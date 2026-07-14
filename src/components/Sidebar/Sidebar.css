@@ -1,0 +1,62 @@
+/* ─────────────────────────────────────────────
+   Sidebar — design tokens: src/tokens/colors.js, typography.js
+   Width 80px · bg beige-bg/secondary #EDE9E3 · py24 px8
+   (spacing/2xl, spacing/sm) · gap40 between logo/items/footer
+   (spacing/section-sm) · gap32 between action button and nav list
+   (spacing/section-xs) · gap16 between nav items (spacing/lg)
+   ───────────────────────────────────────────── */
+
+.ds-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-section-sm, 40px); /* spacing/section-sm */
+  box-sizing: border-box;
+  width: 80px;
+  height: 100%;
+  padding: var(--spacing-xxl, 24px) var(--spacing-sm, 8px); /* spacing/2xl spacing/sm */
+  background: var(--color-beige-bg-secondary, #ede9e3); /* beige-bg/secondary */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-sidebar__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-sidebar__items {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-section-xs, 32px); /* spacing/section-xs */
+  width: 100%;
+  overflow-y: auto;
+}
+
+.ds-sidebar__action {
+  flex-shrink: 0;
+}
+
+.ds-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg, 16px); /* spacing/lg */
+}
+
+.ds-sidebar__footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-sidebar__footer svg {
+  width: 24px;
+  height: 24px;
+}

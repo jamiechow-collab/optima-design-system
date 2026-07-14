@@ -1,0 +1,54 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as AvatarButtonStories from './AvatarButton.stories';
+import { VariantsExample, PositionExample } from './MenuButtonDocHelpers';
+
+<Meta of={AvatarButtonStories} />
+
+<Title>Avatar Button</Title>
+<Subtitle>
+  Menu Buttons are triggers that can open or close a menu.
+</Subtitle>
+
+<Canvas of={AvatarButtonStories.Default} />
+<Controls of={AvatarButtonStories.Default} />
+
+## Overview
+
+Avatar Button uses our existing Avatar component as a trigger — most commonly the account menu in
+a top navigation bar (profile, settings, log out).
+
+## Variants
+
+There are different ways to trigger a menu, which includes a Filter Button, Inline Button, Icon
+Button, and Avatar Button.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes: sm 32px, md 44px, lg 48px — matching Avatar's own size scale.
+
+## Position
+
+By default, the menu triggered and appears below and aligned to the left of the trigger.
+
+Only when space on the interface is limited, then the menu appears below and aligned to the
+right. Following that, the menu can appear above and aligned to the left, or above and aligned to
+the right.
+
+<Unstyled>
+  <PositionExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can trigger a button by clicking anywhere within the Menu Button container.
+
+**Keyboard**
+
+Users can trigger a menu dropdown by pressing **Enter** or **Space** while the Menu Button has
+focus.

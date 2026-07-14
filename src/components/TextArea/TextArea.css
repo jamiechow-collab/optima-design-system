@@ -1,0 +1,223 @@
+/* ─────────────────────────────────────────────
+   Text Area — design tokens: src/tokens/colors.js, typography.js
+   Field: min-h128 · Radius/md 8 · px16 py12 (spacing/lg, spacing/md)
+   Vertical rhythm between title/field/helper/validation: gap4 (spacing/xs)
+   Default border ui-inactive #9E9E9E · hover/active/focused border
+   ui-active #050505 · disabled bg core-bg/secondary-disabled #EBEBEB
+   border ui-disabled #D1D1D1, text/placeholder #858585 (unlike TextInput,
+   TextArea keeps its filled text at placeholder-grey when disabled) ·
+   read-only bg core-bg/secondary-hover #F9F8F6, border ui-disabled #D1D1D1
+   (kept, not borderless), text/primary #050505
+   Keyboard focus into a filled field selects its value (native .select()),
+   matching the Filled-focused spec's highlighted text
+   Validation: error border/text alert/negative #CF3321, ring #F3B7AF ·
+   success border/text alert/positive #448537, ring #B7DEB0 ·
+   default focus ring rgba(0,42,168,0.6)
+   Label: Body/regular 14/20 text/primary · Helper text: Body/regular 14/20
+   text/placeholder #858585
+   ───────────────────────────────────────────── */
+
+.ds-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  width: 100%;
+}
+
+/* ── Label ──────────────────────────────────────── */
+
+.ds-textarea__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  width: fit-content;
+}
+
+.ds-textarea__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-textarea__tooltip {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+/* ── Field ──────────────────────────────────────── */
+
+/* Wraps the textarea only for positioning the dragger icon — it has no border
+   or padding of its own, so it always matches the textarea's rendered box
+   (including after a native resize drag). */
+.ds-textarea__field {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ds-textarea__dragger {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  display: flex;
+  color: var(--color-border-ui-inactive, #9e9e9e); /* border/ui-inactive */
+  pointer-events: none; /* decorative — the native resize hotspot sits beneath it */
+}
+
+.ds-textarea__dragger-icon {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+/* Border/background/padding live on the textarea itself (not this wrapper) so
+   the browser's native resize hotspot stays flush with the field's own corner. */
+.ds-textarea__input {
+  display: block; /* avoids the baseline gap a default inline-block textarea leaves below itself */
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 128px;
+  padding: var(--spacing-md, 12px) var(--spacing-lg, 16px); /* spacing/md spacing/lg */
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  border: 1px solid var(--color-border-ui-inactive, #9e9e9e); /* border/ui-inactive */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  outline: none;
+  font-family: inherit;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  resize: vertical;
+  transition: border-color 0.15s ease, border-width 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.ds-textarea__input--no-resize {
+  resize: none;
+}
+
+/* Hide the browser's own resize glyph — the custom .ds-textarea__dragger icon
+   replaces it so it can sit at the exact 6px inset the spec calls for. Resize
+   functionality is unaffected; this only hides WebKit/Blink's visual triangle. */
+.ds-textarea__input::-webkit-resizer {
+  display: none;
+}
+
+.ds-textarea__input::placeholder {
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* ── Hover / Active / Focused — border darkens, focus adds a ring ── */
+
+.ds-textarea:not(.is-disabled):not(.is-readonly) .ds-textarea__input:hover,
+.ds-textarea.is-hover .ds-textarea__input,
+.ds-textarea.is-active .ds-textarea__input {
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+}
+
+.ds-textarea.is-active .ds-textarea__input {
+  border-width: 1.5px;
+}
+
+.ds-textarea.is-focused .ds-textarea__input {
+  border-color: var(--color-border-ui-active, #050505);
+  border-width: 1.5px;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+/* ── Error validation ─────────────────────────── */
+
+.ds-textarea--error .ds-textarea__input {
+  border-color: var(--color-alert-negative, #cf3321); /* alert/negative */
+}
+
+.ds-textarea--error.is-active .ds-textarea__input {
+  border-width: 1.5px;
+}
+
+.ds-textarea--error.is-focused .ds-textarea__input {
+  border-width: 1.5px;
+  box-shadow: 0 0 0 4px var(--color-alert-negative-selected, #f3b7af); /* alert/negative-selected */
+}
+
+/* ── Success validation ───────────────────────── */
+
+.ds-textarea--success .ds-textarea__input {
+  border-color: var(--color-alert-positive, #448537); /* alert/positive */
+}
+
+.ds-textarea--success.is-active .ds-textarea__input {
+  border-width: 1.5px;
+}
+
+.ds-textarea--success.is-focused .ds-textarea__input {
+  border-width: 1.5px;
+  box-shadow: 0 0 0 4px var(--color-alert-positive-selected, #b7deb0); /* alert/positive-selected */
+}
+
+/* ── Disabled — greys out, no interaction ─────── */
+
+.ds-textarea.is-disabled .ds-textarea__input {
+  background: var(--color-core-bg-secondary-disabled, #ebebeb); /* core-bg/secondary-disabled */
+  border-color: var(--color-border-ui-disabled, #d1d1d1); /* border/ui-disabled */
+}
+
+.ds-textarea__input:disabled {
+  color: var(--color-text-placeholder, #858585); /* text/placeholder — TextArea keeps filled text this shade when disabled */
+  cursor: not-allowed;
+}
+
+.ds-textarea__input:disabled::placeholder {
+  color: var(--color-text-placeholder, #858585);
+}
+
+/* ── Read-only — muted bg, kept border, secondary text ────────────── */
+
+.ds-textarea.is-readonly .ds-textarea__input {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+  border-color: var(--color-border-ui-disabled, #d1d1d1); /* border/ui-disabled */
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+/* ── Helper / validation row ───────────────────── */
+
+.ds-textarea__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm, 8px);
+  width: 100%;
+  color: var(--color-text-placeholder, #858585); /* text/placeholder — default helper colour */
+}
+
+.ds-textarea--error .ds-textarea__message--validation {
+  color: var(--color-alert-negative, #cf3321); /* alert/negative */
+}
+
+.ds-textarea--success .ds-textarea__message--validation {
+  color: var(--color-alert-positive, #448537); /* alert/positive */
+}
+
+.ds-textarea__helper,
+.ds-textarea__validation {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: inherit;
+}
+
+.ds-textarea__counter {
+  flex-shrink: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  white-space: nowrap;
+  color: inherit;
+}

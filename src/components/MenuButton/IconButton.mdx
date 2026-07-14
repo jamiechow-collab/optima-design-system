@@ -1,0 +1,54 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as IconButtonStories from './IconButton.stories';
+import { VariantsExample, PositionExample } from './MenuButtonDocHelpers';
+
+<Meta of={IconButtonStories} />
+
+<Title>Icon Button</Title>
+<Subtitle>
+  Menu Buttons are triggers that can open or close a menu.
+</Subtitle>
+
+<Canvas of={IconButtonStories.Default} />
+<Controls of={IconButtonStories.Default} />
+
+## Overview
+
+Icon Button is a plain icon-only trigger — it's our existing ghost, icon-only Button, most often
+used for overflow ("more options") menus where a text label isn't needed.
+
+## Variants
+
+There are different ways to trigger a menu, which includes a Filter Button, Inline Button, Icon
+Button, and Avatar Button.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes: sm 40px, md 44px, lg 48px — matching Button's icon-only scale.
+
+## Position
+
+By default, the menu triggered and appears below and aligned to the left of the trigger.
+
+Only when space on the interface is limited, then the menu appears below and aligned to the
+right. Following that, the menu can appear above and aligned to the left, or above and aligned to
+the right.
+
+<Unstyled>
+  <PositionExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can trigger a button by clicking anywhere within the Menu Button container.
+
+**Keyboard**
+
+Users can trigger a menu dropdown by pressing **Enter** or **Space** while the Menu Button has
+focus.

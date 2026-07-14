@@ -1,0 +1,64 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+import { OverviewExample, TypesExample, SizesExample, StatesExample } from './CheckboxDocHelpers';
+
+<Meta of={CheckboxStories} />
+
+<Title>Checkbox</Title>
+<Subtitle>
+  Checkboxes let users select one or more items from a list, or turn an item on or off.
+</Subtitle>
+
+<Canvas of={CheckboxStories.Default} />
+<Controls of={CheckboxStories.Default} />
+
+## Overview
+
+Checkboxes are used for multiple choices, not for mutually exclusive choices. Each checkbox works
+independently from other checkboxes in the list, therefore checking an additional box does not
+affect any other selections.
+
+Examples of usage includes forms, filtering, terms & conditions.
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+## Types
+
+There are three types of checkbox which result in different users' interactions.
+
+Indeterminate state is when a checkbox is neither fully checked nor unchecked.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are two sizes. Small checkbox is the default one which is most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Checkbox has four states: default, hover, focused, and disabled.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can trigger an item by clicking the checkbox input directly or by clicking the checkbox
+label. Having both regions interactive creates a more accessible click target. The only hover
+effect when the mouse is placed over the target is a pointer shape change.
+
+**Keyboard**
+
+Users can navigate to and between checkbox inputs by pressing **Tab** or **Shift-Tab**. Users can
+trigger a state change by pressing **Space** while the checkbox input has focus.

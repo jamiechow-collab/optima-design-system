@@ -1,0 +1,64 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as PaginationStories from './Pagination.stories';
+import { AnatomyExample, TypesExample, StatesExample } from './PaginationDocHelpers';
+
+<Meta of={PaginationStories} />
+
+<Title>Pagination</Title>
+<Subtitle>
+  Pagination lets users navigate between pages of content, either by jumping directly to a page
+  number or by moving one page at a time.
+</Subtitle>
+
+<Canvas of={PaginationStories.Default} />
+<Controls of={PaginationStories.Default} />
+
+## Overview
+
+```tsx
+<Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+<Pagination compact currentPage={page} totalPages={10} onPageChange={setPage} />
+```
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+Pagination is made up of a **Previous** button, a row of **page number** buttons (collapsing to an
+ellipsis when there are too many pages to show at once), and a **Next** button.
+
+- The current page is always shown with a filled, high-contrast background.
+- The first and last page numbers are always visible — only the middle pages collapse behind an
+  ellipsis as the current page moves away from either end.
+- Previous disables on page 1; Next disables on the last page.
+
+## Types
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+**Desktop** — the full numbered row, for wide layouts where every page number can be shown or
+collapsed with an ellipsis.
+
+**Compact (mobile)** — a condensed "Page X of Y" label between two icon-only Previous/Next
+buttons, for narrow layouts where a full number row won't fit.
+
+## States
+
+Each page number button has Default, Hover, Pressed, Active (the current page), Focused, and
+Disabled states. Previous/Next follow the same states as a secondary [Button](?path=/docs/components-buttons-standard-buttons--docs).
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — clicking a page number jumps directly to that page. Clicking Previous/Next moves one
+page at a time; both disable automatically at the first/last page.
+
+**Keyboard** — **Tab** moves focus between Previous, each visible page number, and Next. **Enter**
+or **Space** activates the focused control.

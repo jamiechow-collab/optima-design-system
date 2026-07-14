@@ -1,0 +1,56 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './Avatar.stories';
+import { TypesExample, SizesExample, StatesExample, StatusExample } from './AvatarDocHelpers';
+
+<Meta of={AvatarStories} />
+
+<Title />
+<Subtitle>
+  A small UI component that represents a user or profile, often displayed as an image, initials,
+  or an icon, commonly used in chat, profiles, and dashboards.
+</Subtitle>
+
+<Canvas of={AvatarStories.Default} />
+<Controls of={AvatarStories.Default} />
+
+## Types
+
+There are three types of avatar: With image, With initials, Without image.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are six sizes: xs (24px), sm (32px), md (44px), lg (48px), xl (56px), 2xl (64px).
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Default, Disabled (60% opacity), and Focused (4px focus ring).
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Status
+
+We provide status dot to indicate if the users is online, busy, or away.
+
+<Unstyled>
+  <StatusExample />
+</Unstyled>
+
+## Variants
+
+Avatar group, to show a group of users.
+
+<Canvas of={AvatarStories.Group} />
+
+Avatar with details, when more context is needed to provide alongside with the avatar.
+
+<Canvas of={AvatarStories.WithDetails} />

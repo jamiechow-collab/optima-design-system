@@ -1,0 +1,110 @@
+/* ─────────────────────────────────────────────
+   Pagination — design tokens: src/tokens/colors.js, typography.js
+   Previous/Next: reuses Button (secondary, sm) — border/layout #D1D1D1,
+   bg white, hover core-bg/secondary-hover #F9F8F6, pressed
+   core-bg/secondary-selected #EDE9E3
+   Page number: 40x40, radius/md 8, Text sm/Medium 14/20 (-0.2px tracking)
+   Default bg white, text/primary #050505 · Hover bg #F9F8F6 · Pressed
+   bg #EDE9E3 · Active (current page) bg core-bg/primary #050505,
+   text/invert white · Disabled text/disabled #9E9E9E · Focused bg #EDE9E3
+   + ring rgba(0,42,168,0.6)
+   Numbers gap: 2px (spacing/xxs). Row gap: 24px between Previous/numbers/Next
+   Compact (mobile): icon-only Prev/Next + "Page X of Y" label
+   ───────────────────────────────────────────── */
+
+.ds-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxl, 24px);
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-pagination__numbers {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs, 2px); /* spacing/xxs */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-pagination__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  font-family: inherit;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  cursor: pointer;
+}
+
+.ds-pagination__number:hover:not(:disabled):not(.is-active) {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-pagination__number:active:not(:disabled):not(.is-active) {
+  background: var(--color-core-bg-secondary-selected, #ede9e3); /* core-bg/secondary-selected */
+}
+
+.ds-pagination__number:focus-visible {
+  outline: none;
+  background: var(--color-core-bg-secondary-selected, #ede9e3);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-pagination__number.is-active {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  color: var(--color-text-invert, #fff); /* text/invert */
+  cursor: default;
+}
+
+.ds-pagination__number.is-active:focus-visible {
+  background: var(--color-core-bg-primary, #050505);
+}
+
+.ds-pagination__number:disabled {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}
+
+.ds-pagination__ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: -0.2px;
+  list-style: none;
+  user-select: none;
+}
+
+.ds-pagination__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+}
+
+.ds-pagination.is-disabled .ds-pagination__number {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}
+
+.ds-pagination.is-disabled .ds-pagination__number.is-active {
+  color: var(--color-text-invert, #fff);
+}

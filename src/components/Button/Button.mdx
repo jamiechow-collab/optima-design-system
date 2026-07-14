@@ -1,0 +1,107 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+import {
+  VariantsExample,
+  TypesExample,
+  SizesExample,
+  StatesExample,
+  EmphasisExample,
+} from './ButtonDocHelpers';
+
+<Meta of={ButtonStories} />
+
+<Title>Standard Buttons</Title>
+<Subtitle>
+  Buttons are used to initialize an action. Button labels express what action will occur when the
+  user interacts with it.
+</Subtitle>
+
+<Canvas of={ButtonStories.Primary} />
+<Controls of={ButtonStories.Primary} />
+
+## Overview
+
+Buttons are clickable elements that are used to trigger actions. They communicate calls to action
+to the user and allow users to interact with pages in a variety of ways. Button labels express
+what action will occur when the user interacts with it.
+
+**When to use** — Use buttons to communicate actions users can take and to allow users to interact
+with the page. Each page should have only one primary button. Any remaining calls to action should
+be represented as lower emphasis buttons.
+
+**When not to use** — Do not use buttons as navigational elements. Instead, use links when the
+desired action is to take the user to a new page.
+
+## Variants
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+**Primary Button** — For the principal call to action on the page. Primary buttons should only
+appear once per screen (not including the application header, modal dialog, or side panel).
+
+**Secondary Button** — For secondary actions on each page. Secondary buttons can only be used in
+conjunction with a primary button. As part of a pair, the secondary button's function is to
+perform the negative action of the set, such as "Cancel" or "Back". Do not use a secondary button
+in isolation and do not use a secondary button for a positive action.
+
+**Tertiary Button** — For element with the lowest visual prominence, typically used for
+supplementary or low-priority actions like "Cancel," "Skip," or "View More".
+
+**Ghost Button** — A transparent background button that features a thin outline and plain, centred
+text, but no solid background fill. It derives its name from its hollow, phantom-like appearance.
+They are typically placed alongside a primary, solid-coloured Call to Action (CTA) button to guide
+users toward secondary actions.
+
+**Text Button** — Consists only of a clickable text label without bounding boxes, filled
+backgrounds, or heavy drop shadows.
+
+**Disruptive Button** — For destructive or irreversible actions, such as deleting data.
+
+## Types
+
+There are four types of Buttons: With label only, With leading icon, With trailing icon, Icon only.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes. Small Button is the default one which most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Emphasis
+
+The most important thing is to establish a visual hierarchy between the buttons in your UI. Keep
+these best practices in mind.
+
+**A single, high-emphasis button** — As a general rule, a layout should contain a single
+high-emphasis button that makes it clear that other buttons have less importance in the hierarchy.
+This high-emphasis button commands the most attention.
+
+**Multiple button emphasis** — A high-emphasis button can be accompanied by medium- and
+low-emphasis buttons that perform less important actions. Keep in mind that you should only group
+together calls to action that have a relationship to one another.
+
+<Unstyled>
+  <EmphasisExample />
+</Unstyled>
+
+## States
+
+Buttons have five states: Default, Hover, Pressed, Focused, and Disabled.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Users can trigger a button by clicking anywhere within the button container.
+
+**Keyboard** — Users can trigger a button by pressing Enter or Space while the button has focus.

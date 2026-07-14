@@ -1,0 +1,63 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as RadioButtonStories from './RadioButton.stories';
+import { OverviewExample, TypesExample, SizesExample, StatesExample } from './RadioButtonDocHelpers';
+
+<Meta of={RadioButtonStories} />
+
+<Title>Radio Button</Title>
+<Subtitle>
+  Radio buttons let users select a single option from a list of mutually exclusive choices.
+</Subtitle>
+
+<Canvas of={RadioButtonStories.Default} />
+<Controls of={RadioButtonStories.Default} />
+
+## Overview
+
+Radio buttons are used for mutually exclusive choices, not multiple selections — unlike a
+checkbox, selecting one radio button in a group automatically deselects any other option in that
+same group. Give every radio button in a group the same `name` so the browser enforces this.
+
+Examples of usage include forms, settings, and single-choice questions.
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+## Types
+
+There are two types of radio button.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are two sizes. Small is the default one which is most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Radio button has four states: default, hover, focused, and disabled.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can select an option by clicking the radio input directly or by clicking its label. Having
+both regions interactive creates a more accessible click target. Clicking an already-selected
+option deselects it, unlike a native radio button — clearing the answer is always possible.
+
+**Keyboard**
+
+Users can navigate to a radio group by pressing **Tab**, then move focus between options within
+the group with the **Arrow keys**. Moving focus never selects an option by itself — only
+**Space** or **Enter** selects (or deselects, if already selected) the currently focused option.

@@ -1,0 +1,33 @@
+/* ─────────────────────────────────────────────
+   Spinner — design tokens: src/tokens/colors.js
+   Sizes: xs 16 (default) · sm 20 · md 28 · lg 36 · xl 40 · 2xl 48
+   Single currentColor arc + a low-opacity currentColor track, so the same
+   markup works in either variant by just switching `color` — primary is
+   core-bg/primary #050505 for light backgrounds, secondary is white for
+   dark/coloured backgrounds (e.g. inside a primary or disruptive Button).
+   ───────────────────────────────────────────── */
+
+.ds-spinner {
+  flex-shrink: 0;
+  animation: ds-spinner-spin 0.8s linear infinite;
+}
+
+.ds-spinner--primary {
+  color: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+.ds-spinner--secondary {
+  color: var(--color-text-invert, #fff);
+}
+
+@keyframes ds-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-spinner {
+    animation-duration: 1.6s;
+  }
+}

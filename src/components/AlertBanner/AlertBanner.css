@@ -1,0 +1,186 @@
+/* ─────────────────────────────────────────────
+   Alert Banner — design tokens: src/tokens/colors.js
+   Types (bg / border / text+stressed):
+   default  core-bg/tertiary #EBEBEB / text/secondary #525252 / text/primary #050505
+   message  sea-blue-20 #DCF0F7 / #3393BA / stressed #00678A
+   positive green-20 #E5F3E2 / #448537 / stressed #35692B
+   negative red-20 #FCEFED / #CF3321 / stressed #912417
+   warning  amber-20 #FFF4E6 / #DD7F03 / stressed #AB6202
+   Text styles: message/title Label/medium 14/20 (Label/semibold with a
+   description), description Body/regular 14/20.
+   ───────────────────────────────────────────── */
+
+.ds-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px);
+  box-sizing: border-box;
+  padding: var(--spacing-md, 12px) var(--spacing-lg, 16px);
+  border: 0.5px solid;
+  border-radius: var(--radius-md, 8px); /* Radius/md */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+/* With description / actions — larger padding, top-aligned */
+.ds-alert-banner--stacked {
+  align-items: flex-start;
+  padding: var(--spacing-lg, 16px);
+}
+
+/* ── Types ────────────────────────────────────── */
+
+.ds-alert-banner--default {
+  background: var(--color-core-bg-tertiary, #ebebeb);
+  border-color: var(--color-text-secondary, #525252);
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-alert-banner--message {
+  background: var(--color-alert-message-background, #dcf0f7);
+  border-color: var(--color-alert-message, #3393ba);
+  color: var(--color-alert-message-stressed, #00678a);
+}
+
+.ds-alert-banner--positive {
+  background: var(--color-alert-positive-background, #e5f3e2);
+  border-color: var(--color-alert-positive, #448537);
+  color: var(--color-alert-positive-stressed, #35692b);
+}
+
+.ds-alert-banner--negative {
+  background: var(--color-alert-negative-background, #fcefed);
+  border-color: var(--color-alert-negative, #cf3321);
+  color: var(--color-alert-negative-stressed, #912417);
+}
+
+.ds-alert-banner--warning {
+  background: var(--color-alert-warning-background, #fff4e6);
+  border-color: var(--color-alert-warning, #dd7f03);
+  color: var(--color-alert-warning-stressed, #ab6202);
+}
+
+/* ── Leading icon with background ──────────────
+   xs — 24px circle, 16px icon (message-only row height)
+   With a description: 32px circle, 20px icon      */
+
+.ds-alert-banner__icon-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  color: var(--color-text-invert, #fff);
+  flex-shrink: 0;
+}
+
+.ds-alert-banner__icon-bubble svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ds-alert-banner--stacked .ds-alert-banner__icon-bubble {
+  width: 32px;
+  height: 32px;
+}
+
+.ds-alert-banner--stacked .ds-alert-banner__icon-bubble svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ds-alert-banner--message .ds-alert-banner__icon-bubble { background: var(--color-alert-message, #3393ba); }
+.ds-alert-banner--positive .ds-alert-banner__icon-bubble { background: var(--color-alert-positive, #448537); }
+.ds-alert-banner--negative .ds-alert-banner__icon-bubble { background: var(--color-alert-negative, #cf3321); }
+.ds-alert-banner--warning .ds-alert-banner__icon-bubble { background: var(--color-alert-warning, #dd7f03); }
+
+/* ── Text content — fills the container width ── */
+
+.ds-alert-banner__body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Message / title — Label/medium 14/20; Label/semibold with a description */
+.ds-alert-banner__title {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-alert-banner--stacked .ds-alert-banner__title {
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/* Description — Body/regular 14/20, 4px below the title */
+.ds-alert-banner__description {
+  margin: var(--spacing-xs, 4px) 0 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+}
+
+/* ── Action buttons — in the same row as the text, to the right ──
+   16px from the text (12px flex gap + 4px), 8px apart, centred     */
+
+.ds-alert-banner__actions {
+  display: flex;
+  gap: var(--spacing-sm, 8px);
+  align-self: center;
+  margin-left: var(--spacing-xs, 4px);
+  flex-shrink: 0;
+}
+
+/* Buttons take the alert colour of their banner type:
+   primary — solid stressed colour; secondary — transparent,
+   border + label in the stressed colour                     */
+
+.ds-alert-banner .ds-alert-banner__actions .ds-button.ds-button--primary {
+  background: var(--color-core-bg-primary, #050505);
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-alert-banner .ds-alert-banner__actions .ds-button.ds-button--secondary {
+  background: transparent;
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-alert-banner--message .ds-alert-banner__actions .ds-button.ds-button--primary { background: var(--color-alert-message-stressed, #00678a); }
+.ds-alert-banner--message .ds-alert-banner__actions .ds-button.ds-button--secondary { border-color: var(--color-alert-message-stressed, #00678a); color: var(--color-alert-message-stressed, #00678a); }
+
+.ds-alert-banner--positive .ds-alert-banner__actions .ds-button.ds-button--primary { background: var(--color-alert-positive-stressed, #35692b); }
+.ds-alert-banner--positive .ds-alert-banner__actions .ds-button.ds-button--secondary { border-color: var(--color-alert-positive-stressed, #35692b); color: var(--color-alert-positive-stressed, #35692b); }
+
+.ds-alert-banner--negative .ds-alert-banner__actions .ds-button.ds-button--primary { background: var(--color-alert-negative-stressed, #912417); }
+.ds-alert-banner--negative .ds-alert-banner__actions .ds-button.ds-button--secondary { border-color: var(--color-alert-negative-stressed, #912417); color: var(--color-alert-negative-stressed, #912417); }
+
+.ds-alert-banner--warning .ds-alert-banner__actions .ds-button.ds-button--primary { background: var(--color-alert-warning-stressed, #ab6202); }
+.ds-alert-banner--warning .ds-alert-banner__actions .ds-button.ds-button--secondary { border-color: var(--color-alert-warning-stressed, #ab6202); color: var(--color-alert-warning-stressed, #ab6202); }
+
+/* ── Close icon button — 16px icon, 4px hit padding ── */
+
+.ds-alert-banner__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs, 4px);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm, 4px);
+}
+
+/* 24px from the content when stacked (12px flex gap + 12px) */
+.ds-alert-banner--stacked .ds-alert-banner__close {
+  margin-left: var(--spacing-md, 12px);
+}
+
+.ds-alert-banner__close:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}

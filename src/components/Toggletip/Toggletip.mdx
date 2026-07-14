@@ -1,0 +1,74 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ToggletipStories from './Toggletip.stories';
+import { AnatomyExample, VariantsExample, PlacementsExample } from './ToggletipDocHelpers';
+
+<Meta of={ToggletipStories} />
+
+<Title>Toggletips</Title>
+<Subtitle>
+  Toggletips display and hide additional information upon the click of a UI trigger element.
+  Toggletips can contain interactive elements.
+</Subtitle>
+
+<Canvas of={ToggletipStories.Default} />
+<Controls of={ToggletipStories.Default} />
+
+## Overview
+
+`Toggletip` wraps a single trigger (must be a real interactive element, e.g. a `<button>`, so
+Enter/Space activation works natively) and shows a popover on click — unlike
+[Tooltip](?path=/docs/components-tooltips--docs), it can hold interactive content such as an
+action button, and stays open until the user dismisses it.
+
+```tsx
+<Toggletip
+  title="Rich Tooltips Title"
+  description="More explanation or description about the the tips or information for the tooltips"
+  actionLabel="Action"
+  onAction={() => {}}
+>
+  <button aria-label="More info">
+    <Icon name="info-with-circle" />
+  </button>
+</Toggletip>
+```
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+**Trigger** — any component with an integrated toggletip: commonly an info icon, a button, or
+text.
+
+**Toggletip** — a container holding text and interactive elements (e.g. an action button). The
+popover has no fixed width — its description wraps at a max-width of 250px, and the title stays
+on a single line, so the popover is exactly as wide as its widest line, up to that 250px.
+
+## Variants
+
+There are two colour variants — Primary (dark) is the default; Secondary (light) suits dark or
+busy backgrounds.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Placement
+
+Toggletips can be used on various parts of the UI, including but not limited to headers, data
+tables, side panels, modals, and read-only cards. When active, the popover may be positioned top,
+bottom, left, or right of the trigger.
+
+<Unstyled>
+  <PlacementsExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Toggletips are triggered on click, and are dismissed by clicking again on the trigger
+or anywhere outside the active popover or trigger.
+
+**Keyboard** — Toggletips are triggered by pressing **Enter** or **Space** while the trigger has
+focus. Users can dismiss a toggletip by pressing **Esc**, which also returns focus to the trigger.

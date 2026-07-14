@@ -1,0 +1,60 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as LinkStories from './Link.stories';
+import { VariantsExample, SizesExample, StatesExample } from './LinkDocHelpers';
+
+<Meta of={LinkStories} />
+
+<Title>Links</Title>
+<Subtitle>Link is an actionable text component with connection to another web pages.</Subtitle>
+
+<Canvas of={LinkStories.Primary} />
+<Controls of={LinkStories.Primary} />
+
+## Overview
+
+**When to use** — Use links when you want users to:
+
+- Navigate to a different page within the application
+- Navigate to an entirely different site
+- Jump to an element on the same page
+- Link to emails or phone numbers
+
+**When not to use** — Do not use links for actions that will change data or manipulate how it is
+displayed, change a state, or trigger an action. Instead, use buttons to guide users to specific
+actions.
+
+Do not use images as links. Instead, use a card that can contain an image and additional
+information such as links.
+
+## Variants
+
+There are three variants for Links Button. Primary and Secondary Links are the standalone ones
+that can be used on their own or directly following content and do not use underlines.
+
+Inline is used within a sentence or paragraph and is styled with an underline.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes. Size should follow and align with the main content Links sit together.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Links have five states: default, hover, pressed, focused, and disabled.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Users can trigger a Link by clicking the label.
+
+**Keyboard** — Users can trigger the link by pressing Enter while the Link is focused.

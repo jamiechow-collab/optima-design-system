@@ -1,0 +1,180 @@
+/* ─────────────────────────────────────────────
+   Avatar — design tokens: src/tokens/colors.js, typography.js
+   Sizes: xs 24 · sm 32 · md 44 · lg 48 · xl 56 · 2xl 64
+   ───────────────────────────────────────────── */
+
+.ds-avatar {
+  position: relative;
+  display: inline-block;
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  box-shadow: 0 0 0 1.5px #fff; /* white ring (baked into the Figma assets) */
+  flex-shrink: 0;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-avatar--xs { width: 24px; height: 24px; }
+.ds-avatar--sm { width: 32px; height: 32px; }
+.ds-avatar--md { width: 44px; height: 44px; }
+.ds-avatar--lg { width: 48px; height: 48px; }
+.ds-avatar--xl { width: 56px; height: 56px; }
+.ds-avatar--2xl { width: 64px; height: 64px; }
+
+/* States — Disabled 60% opacity · Focused 4px ring #002AA8 at 60% (navy-blue-800) */
+
+.ds-avatar.is-disabled {
+  opacity: 0.6;
+}
+
+.ds-avatar.is-focused,
+.ds-avatar:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1.5px #fff, var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+/* ── With image ─────────────────────────────── */
+
+.ds-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+/* ── With initials ──────────────────────────────
+   bg black-600 #525252 (Figma Color/text/secondary), text on-invert white
+   Type per size: xs Caption/medium · sm Body/regular · md Heading/medium
+   lg Display/medium · xl Display/bold-1 · 2xl Display/bold-2
+   ──────────────────────────────────────────── */
+
+.ds-avatar__initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-text-secondary, #525252);
+  color: var(--color-text-invert, #fff);
+  border-radius: inherit;
+  user-select: none;
+}
+
+.ds-avatar--xs .ds-avatar__initials { font-size: var(--font-size-xs, 12px); line-height: var(--spacing-lg, 16px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar--sm .ds-avatar__initials { font-size: var(--font-size-sm, 14px); line-height: var(--spacing-xl, 20px); font-weight: var(--font-weight-regular, 400); }
+.ds-avatar--md .ds-avatar__initials { font-size: var(--font-size-md, 16px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar--lg .ds-avatar__initials { font-size: var(--font-size-lg, 20px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar--xl .ds-avatar__initials { font-size: var(--font-size-lg, 20px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-bold, 700); }
+.ds-avatar--2xl .ds-avatar__initials { font-size: var(--font-size-xl, 24px); line-height: var(--spacing-section-xs, 32px); font-weight: var(--font-weight-bold, 700); }
+
+/* ── Without image ──────────────────────────────
+   #D9D9D9 circle + #525252 person silhouette
+   Silhouette spans left/right 10.06%, top 25% → bottom
+   ──────────────────────────────────────────── */
+
+.ds-avatar__placeholder {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: #d9d9d9;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.ds-avatar__person {
+  position: absolute;
+  left: 10.06%;
+  right: 10.06%;
+  top: 25%;
+  bottom: 0;
+  width: 79.88%;
+  height: 75%;
+}
+
+/* ── Status dot ─────────────────────────────────
+   online alert/positive #448537 · busy alert/negative #CF3321 · away alert/warning #DD7F03
+   Dot per avatar size: xs 6 · sm 8 · md 10 · lg 12 · xl 14 · 2xl 16
+   ──────────────────────────────────────────── */
+
+.ds-status-dot {
+  display: inline-block;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-border-invert, #fff); /* Background/White/Primary */
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.ds-avatar .ds-status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.ds-status-dot--online { background: var(--color-alert-positive, #448537); }
+.ds-status-dot--busy { background: var(--color-alert-negative, #cf3321); }
+.ds-status-dot--away { background: var(--color-alert-warning, #dd7f03); }
+
+.ds-status-dot--xs { width: 6px; height: 6px; }
+.ds-status-dot--sm { width: 8px; height: 8px; }
+.ds-status-dot--md { width: 10px; height: 10px; }
+.ds-status-dot--lg { width: 12px; height: 12px; }
+.ds-status-dot--xl { width: 14px; height: 14px; }
+.ds-status-dot--2xl { width: 16px; height: 16px; }
+
+/* ── Avatar group ───────────────────────────────
+   Overlap: xs −4 · sm −8 · md −12; later avatars stack on top
+   ──────────────────────────────────────────── */
+
+.ds-avatar-group {
+  display: flex;
+  align-items: center;
+}
+
+.ds-avatar-group--xs .ds-avatar:not(:last-child) { margin-right: calc(var(--spacing-xs, 4px) * -1); }
+.ds-avatar-group--sm .ds-avatar:not(:last-child) { margin-right: calc(var(--spacing-sm, 8px) * -1); }
+.ds-avatar-group--md .ds-avatar:not(:last-child) { margin-right: calc(var(--spacing-md, 12px) * -1); }
+
+/* ── Avatar with details ────────────────────────
+   Gap: xs/sm 8 · md/lg 12 · xl/2xl 16
+   Name text/primary #050505 · email black-600 #525252 (Figma Color/text/secondary)
+   ──────────────────────────────────────────── */
+
+.ds-avatar-details {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-avatar-details--xs,
+.ds-avatar-details--sm { gap: var(--spacing-sm, 8px); }
+.ds-avatar-details--md,
+.ds-avatar-details--lg { gap: var(--spacing-md, 12px); }
+.ds-avatar-details--xl,
+.ds-avatar-details--2xl { gap: var(--spacing-lg, 16px); }
+
+.ds-avatar-details__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.ds-avatar-details--md .ds-avatar-details__text { gap: var(--spacing-xxs, 2px); }
+
+.ds-avatar-details__name { color: var(--color-text-primary, #050505); }
+.ds-avatar-details__email { color: var(--color-text-secondary, #525252); }
+
+/* Name: xs Caption/medium · sm/md Body/medium · lg/xl Heading/medium · 2xl Display/medium */
+.ds-avatar-details--xs .ds-avatar-details__name { font-size: var(--font-size-xs, 12px); line-height: var(--spacing-lg, 16px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar-details--sm .ds-avatar-details__name,
+.ds-avatar-details--md .ds-avatar-details__name { font-size: var(--font-size-sm, 14px); line-height: var(--spacing-xl, 20px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar-details--lg .ds-avatar-details__name,
+.ds-avatar-details--xl .ds-avatar-details__name { font-size: var(--font-size-md, 16px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-medium, 500); }
+.ds-avatar-details--2xl .ds-avatar-details__name { font-size: var(--font-size-lg, 20px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-medium, 500); }
+
+/* Email: xs/sm/md Caption/regular · lg/xl/2xl Body/regular */
+.ds-avatar-details--xs .ds-avatar-details__email,
+.ds-avatar-details--sm .ds-avatar-details__email,
+.ds-avatar-details--md .ds-avatar-details__email { font-size: var(--font-size-xs, 12px); line-height: var(--spacing-lg, 16px); font-weight: var(--font-weight-regular, 400); }
+.ds-avatar-details--lg .ds-avatar-details__email,
+.ds-avatar-details--xl .ds-avatar-details__email,
+.ds-avatar-details--2xl .ds-avatar-details__email { font-size: var(--font-size-sm, 14px); line-height: var(--spacing-xl, 20px); font-weight: var(--font-weight-regular, 400); }

@@ -1,0 +1,185 @@
+/* ─────────────────────────────────────────────
+   Toast — design tokens: src/tokens/colors.js, shadow.js, typography.js
+   Wraps its content (inline-flex) — never stretches to the container's full width.
+   Message variant (single line): solid colour, white text, shadow-md
+   default core-bg/primary #050505 · positive alert/positive #448537
+   negative alert/negative #CF3321 · warning alert/warning #DD7F03
+   Details/push variant (auto height, white bg): shadow-lg, text/primary title,
+   text/secondary body, 44px avatar bubble with a 24px icon
+   ───────────────────────────────────────────── */
+
+.ds-toast {
+  display: inline-flex;
+  gap: var(--spacing-md, 12px);
+  box-sizing: border-box;
+  border: 0.5px solid #e5e7eb;
+  border-radius: var(--radius-md, 8px); /* Radius/md */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+/* ── Message variant — single line ── */
+
+.ds-toast--message {
+  align-items: center;
+  padding: var(--spacing-sm, 8px) var(--spacing-xl, 20px) var(--spacing-sm, 8px) var(--spacing-lg, 16px);
+  box-shadow: var(--shadow-md, 0px 2px 4px -2px rgba(16, 24, 40, 0.06), 0px 4px 8px -2px rgba(16, 24, 40, 0.1)); /* shadow-md */
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-toast--default { background: var(--color-core-bg-primary, #050505); }
+.ds-toast--positive { background: var(--color-alert-positive, #448537); }
+.ds-toast--negative { background: var(--color-alert-negative, #cf3321); }
+.ds-toast--warning { background: var(--color-alert-warning, #dd7f03); }
+
+.ds-toast__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-toast__icon svg { width: 20px; height: 20px; }
+
+.ds-toast__message {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400); /* Body/regular */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Action — a single white-outlined button, always white regardless of type */
+.ds-toast__actions--message {
+  flex-shrink: 0;
+}
+
+.ds-toast__actions--message .ds-button--secondary {
+  background: transparent;
+  border-color: var(--color-border-invert, #fff);
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-toast__actions--message .ds-button--secondary:hover:not(:disabled),
+.ds-toast__actions--message .ds-button--secondary.is-hover,
+.ds-toast__actions--message .ds-button--secondary:focus-visible:not(:disabled),
+.ds-toast__actions--message .ds-button--secondary.is-focused {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ds-toast__actions--message .ds-button--secondary:active:not(:disabled),
+.ds-toast__actions--message .ds-button--secondary.is-pressed {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+/* ── Details / push variants — white card, auto height ── */
+
+.ds-toast--details,
+.ds-toast--push {
+  align-items: flex-start;
+  padding: var(--spacing-lg, 16px) var(--spacing-xl, 20px) var(--spacing-lg, 16px) var(--spacing-lg, 16px);
+  box-shadow: var(--shadow-lg, 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08)); /* shadow-lg */
+}
+
+.ds-toast--white {
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-toast__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  flex-shrink: 0;
+}
+
+.ds-toast--details .ds-toast__avatar {
+  background: var(--color-beige-bg-primary, #f9f8f6); /* beige-bg/primary */
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-toast--push .ds-toast__avatar {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-toast__avatar svg { width: 24px; height: 24px; }
+
+.ds-toast__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-sm, 8px) 0;
+  gap: var(--spacing-lg, 16px);
+}
+
+.ds-toast--push .ds-toast__body {
+  gap: var(--spacing-none, 0);
+}
+
+.ds-toast__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+}
+
+.ds-toast__title {
+  margin: 0;
+  font-size: var(--font-size-md, 16px);
+  line-height: var(--spacing-xxl, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-toast__description {
+  max-width: 448px;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+.ds-toast__description p {
+  margin: 0;
+}
+
+.ds-toast__timestamp {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-highlight, #002aa8); /* text/highlight */
+}
+
+.ds-toast__actions {
+  display: flex;
+  gap: var(--spacing-sm, 8px);
+}
+
+/* ── Close icon button — 20px icon ── */
+
+.ds-toast__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--spacing-none, 0);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ds-toast__close svg { width: 20px; height: 20px; }
+
+.ds-toast__close:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+  border-radius: var(--radius-sm, 4px);
+}

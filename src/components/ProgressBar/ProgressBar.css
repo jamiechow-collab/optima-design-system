@@ -1,0 +1,76 @@
+/* ─────────────────────────────────────────────
+   Progress Bar — design tokens: src/tokens/colors.js, typography.js
+   Track: h8 · Radius/full (fully rounded, height == radius) ·
+   bg core-bg/tertiary #EBEBEB · fill bg core-bg/primary #050505
+   Row: gap8 (spacing/sm) · py4 (spacing/xs)
+   Vertical rhythm between label and bar: gap4 (spacing/xs)
+   Label: Body/regular 14/20 text/primary · Value label: Label/medium 14/20
+   text/primary
+   Non-interactive — no hover/focus/disabled states.
+   ───────────────────────────────────────────── */
+
+.ds-progressbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  width: 100%;
+}
+
+/* ── Label ──────────────────────────────────────── */
+
+.ds-progressbar__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  width: fit-content;
+}
+
+.ds-progressbar__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-progressbar__tooltip {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+/* ── Bar ────────────────────────────────────────── */
+
+.ds-progressbar__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  padding: var(--spacing-xs, 4px) 0; /* spacing/xs */
+  width: 100%;
+}
+
+.ds-progressbar__value {
+  flex-shrink: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+}
+
+.ds-progressbar__track {
+  flex: 1;
+  min-width: 0;
+  height: 8px;
+  border-radius: var(--radius-full, 100px); /* radius/full */
+  background: var(--color-core-bg-tertiary, #ebebeb); /* core-bg/tertiary */
+  overflow: hidden;
+}
+
+.ds-progressbar__fill {
+  height: 100%;
+  border-radius: var(--radius-full, 100px); /* radius/full */
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  transition: width 0.2s ease;
+}

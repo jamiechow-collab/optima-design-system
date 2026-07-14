@@ -1,0 +1,120 @@
+/* ─────────────────────────────────────────────
+   Menu Button — design tokens: src/tokens/colors.js, typography.js
+   A trigger + popover wrapper. The Filter trigger reuses ToggleButton, the
+   Icon trigger reuses Button (ghost, icon-only), and the Avatar trigger
+   reuses Avatar — only the Inline trigger and the popover shell are new.
+   Popover: gap/sm 8px from the trigger, shadow-lg, aligned per `position`.
+   ───────────────────────────────────────────── */
+
+.ds-menu-button {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-menu-button__popover {
+  position: absolute;
+  z-index: 100;
+}
+
+.ds-menu-button__popover--bottom-left {
+  top: 100%;
+  left: 0;
+  margin-top: var(--spacing-sm, 8px);
+}
+
+.ds-menu-button__popover--bottom-right {
+  top: 100%;
+  right: 0;
+  margin-top: var(--spacing-sm, 8px);
+}
+
+.ds-menu-button__popover--top-left {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+.ds-menu-button__popover--top-right {
+  bottom: 100%;
+  right: 0;
+  margin-bottom: var(--spacing-sm, 8px);
+}
+
+/* ── Inline trigger ─────────────────────────────
+   Default transparent · hover/focused/open core-bg/secondary-hover #F9F8F6
+   Chevron points down when closed, up while the menu is open
+   ───────────────────────────────────────────── */
+
+.ds-menu-button-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+  padding: var(--spacing-xxs, 2px) var(--spacing-xs, 4px);
+  border: none;
+  border-radius: var(--radius-sm, 4px); /* Radius/sm */
+  background: transparent;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.15s ease;
+}
+
+.ds-menu-button-inline:hover:not(:disabled),
+.ds-menu-button-inline.is-open {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-menu-button-inline:focus-visible {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+.ds-menu-button-inline:disabled {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}
+
+.ds-menu-button-inline__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-menu-button-inline__icon svg { width: 16px; height: 16px; }
+
+.ds-menu-button-inline__label {
+  flex-shrink: 0;
+}
+
+.ds-menu-button-inline__chevron {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-menu-button-inline__chevron svg { width: 16px; height: 16px; }
+
+/* ── Avatar trigger — a reset button wrapping Avatar ── */
+
+.ds-menu-button-avatar {
+  display: inline-flex;
+  padding: var(--spacing-none, 0);
+  border: none;
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.ds-menu-button-avatar:focus-visible {
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+.ds-menu-button-avatar:disabled {
+  cursor: not-allowed;
+}

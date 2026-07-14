@@ -1,0 +1,102 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+import {
+  AnatomyExample,
+  TypesExample,
+  VariantsExample,
+  PlacementsExample,
+  AlignmentExample,
+  MaxWidthExample,
+} from './TooltipDocHelpers';
+
+<Meta of={TooltipStories} />
+
+<Title>Tooltips</Title>
+<Subtitle>
+  Small pop-up messages that appear when users hover over or focus on an element, providing
+  additional information without cluttering the UI.
+</Subtitle>
+
+<Canvas of={TooltipStories.LabelOnly} />
+<Controls of={TooltipStories.LabelOnly} />
+
+## Overview
+
+`Tooltip` wraps a single trigger element (it must accept a ref/forward focus and hover events,
+e.g. a `Button`, an `Icon` wrapped in a focusable element, or a native element) and shows its
+content on hover or keyboard focus. Tooltips never contain interactive content — for a
+click-triggered popover with an action, see [Toggletip](?path=/docs/components-toggletips--docs).
+
+```tsx
+<Tooltip label="Brief description of a term">
+  <Icon name="info-with-circle" />
+</Tooltip>
+```
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+**Trigger** — any component with an integrated tooltip: commonly an info icon, a button, or text.
+
+**Tooltip** — a container holding a short or brief text.
+
+## Types
+
+There are two types of tooltip: one with only brief text, one with a title.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+Both types come in two colour variants — Primary (dark) is the default; Secondary (light) suits
+dark or busy backgrounds.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Alignment
+
+The tooltip's container may be aligned to start, center, or end (relative to the trigger) to keep
+it from bleeding off the page or covering important information.
+
+<Unstyled>
+  <AlignmentExample />
+</Unstyled>
+
+## Placement
+
+Tooltip direction defaults to `auto`: on open, the tooltip detects the edges of the browser and
+flips between top and bottom to stay in view. It can instead be pinned to a specific side — right,
+left, bottom, or top — of the trigger. Don't cover related content essential to the user's task;
+tooltips shouldn't bleed off the page or behind other content.
+
+<Unstyled>
+  <PlacementsExample />
+</Unstyled>
+
+## Behaviour
+
+There is a maximum width of 200px applied for helping with readability — if the label or
+description goes really long, it wraps within that width rather than overflowing or forcing the
+bubble wider.
+
+<Unstyled>
+  <MaxWidthExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Tooltips are triggered when the mouse hovers over the trigger, and persist while the
+mouse remains over the tooltip or the trigger. They're dismissed by hovering away.
+
+Definition tooltips can use either hover or click interactions depending on the situation — hover
+for a quick glance, click when the tooltip needs more time to read or might otherwise be triggered
+unintentionally (see [Toggletip](?path=/docs/components-toggletips--docs) for the click-based
+version).
+
+**Keyboard** — Users can navigate to the trigger and reveal the tooltip by pressing **Tab**. It's
+dismissed by pressing **Esc**, or automatically once focus moves away.

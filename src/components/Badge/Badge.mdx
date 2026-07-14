@@ -1,0 +1,36 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './Badge.stories';
+import { TypesExample, SizesExample, VariantsExample } from './BadgeDocHelpers';
+
+<Meta of={BadgeStories} />
+
+<Title>Badges</Title>
+<Subtitle>
+  Badges are used to display notifications, statuses, or counts. They are often placed on icons,
+  buttons, or avatars to highlight important information.
+</Subtitle>
+
+<Canvas of={BadgeStories.Default} />
+<Controls of={BadgeStories.Default} />
+
+## Types
+
+There are five types of badges: Info (default), Message, Positive, Error, Warning.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes: sm, md, lg.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Variants
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>

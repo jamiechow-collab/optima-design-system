@@ -1,0 +1,65 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ToggleButtonStories from './ToggleButton.stories';
+import { OverviewExample, VariantsExample, TypesExample, SizesExample } from './ToggleButtonDocHelpers';
+
+<Meta of={ToggleButtonStories} />
+
+<Title>Toggle Buttons</Title>
+<Subtitle>
+  Toggle buttons should be used for binary selections, such as Save or Favourite.
+</Subtitle>
+
+Toggle buttons should use an outlined icon when unselected, and a filled version when selected. If
+a filled version doesn't exist, increase the weight instead.
+
+<Canvas of={ToggleButtonStories.Default} />
+<Controls of={ToggleButtonStories.Default} />
+
+## Overview
+
+Toggle button follows the same behaviour as Button as the base. Except, it has a state to show if
+the filter is on or active.
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+## Variants
+
+There are two variants for Toggle Button, which show if the state is inactive, or when a user has
+pressed on the toggle button and it is now active.
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+## Types
+
+There are three types of Toggle Button. With label only is the default one, use a leading icon if
+it helps users by providing more context.
+
+The one with a badge could show how many filter items are being applied, but its use case is
+still TBD.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes. Small is the default one which is most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can toggle the Toggle Button on and off by clicking within the container.
+
+**Keyboard**
+
+Users can toggle a Toggle Button on by pressing **Enter** or **Space** while the Toggle Button has
+focus, and pressing **Enter** or **Space** again to toggle it off.

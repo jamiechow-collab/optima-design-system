@@ -1,0 +1,78 @@
+/* ─────────────────────────────────────────────
+   Breadcrumbs — design tokens: src/tokens/colors.js, typography.js
+   Base: Label/medium 14/20 (sm) · Heading/medium 16/24 (md)
+   Current page (last item): Label/semibold (sm) · Heading/semibold (md) — not interactive
+   States: Default text/primary #050505 · Hover text/secondary #525252
+   Focused bg core-bg/secondary-hover #F9F8F6 + system focus ring
+   Separator: chevron-right 16px, fill grey-400 #858585, not interactive
+   ───────────────────────────────────────────── */
+
+.ds-breadcrumbs {
+  display: inline-flex;
+}
+
+.ds-breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px); /* Spacing/xs — between a base and its separator */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ds-breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+}
+
+.ds-breadcrumbs__separator {
+  color: var(--color-text-placeholder, #858585); /* grey-400 */
+  flex-shrink: 0;
+}
+
+/* ── Breadcrumb base ─────────────────────────── */
+
+.ds-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-sm, 4px); /* Radius/sm */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Icon-to-label gap: base gap (4/6) + the icon wrapper's own 2px inset */
+.ds-breadcrumb--sm { gap: var(--spacing-s, 6px); font-size: var(--font-size-sm, 14px); line-height: var(--spacing-xl, 20px); font-weight: var(--font-weight-medium, 500); }
+.ds-breadcrumb--md { gap: var(--spacing-sm, 8px); font-size: var(--font-size-md, 16px); line-height: var(--spacing-xxl, 24px); font-weight: var(--font-weight-medium, 500); }
+
+.ds-breadcrumb__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-breadcrumb__icon svg { width: 16px; height: 16px; }
+
+/* Hover — text/secondary #525252 */
+.ds-breadcrumb:hover:not(.ds-breadcrumb--current),
+.ds-breadcrumb.is-hover {
+  color: var(--color-text-secondary, #525252);
+}
+
+/* Focused — bg core-bg/secondary-hover + system focus ring */
+.ds-breadcrumb:focus-visible,
+.ds-breadcrumb.is-focused {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+/* Current page — always semibold (Label/semibold sm · Heading/semibold md), never interactive */
+.ds-breadcrumb--current {
+  font-weight: var(--font-weight-semibold, 600);
+  cursor: default;
+}

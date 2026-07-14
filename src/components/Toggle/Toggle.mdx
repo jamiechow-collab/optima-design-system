@@ -1,0 +1,61 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ToggleStories from './Toggle.stories';
+import { OverviewExample, TypesExample, SizesExample, StatesExample } from './ToggleDocHelpers';
+
+<Meta of={ToggleStories} />
+
+<Title>Toggle</Title>
+<Subtitle>Switches toggle the selection of an item on and off.</Subtitle>
+
+<Canvas of={ToggleStories.Default} />
+<Controls of={ToggleStories.Default} />
+
+## Overview
+
+Toggles are used for a single, independent on/off setting that takes effect immediately —
+unlike a checkbox, there's no separate "confirm" step. Each toggle works independently from any
+others on the page.
+
+Examples of usage include settings screens and preference panels (e.g. "Dark Mode",
+"Notifications").
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+## Types
+
+A toggle is either off or on.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are two sizes. Small is the default one which is most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Toggle has four states: default, hover, focused, and disabled — each shown for both off and on.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse**
+
+Users can flip the switch by clicking it directly or by clicking its label. Having both regions
+interactive creates a more accessible click target. The only hover effect when the mouse is
+placed over the target is a pointer shape change.
+
+**Keyboard**
+
+Users can navigate to and between toggles by pressing **Tab** or **Shift-Tab**. Users can flip the
+focused toggle by pressing **Space**.

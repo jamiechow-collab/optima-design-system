@@ -1,0 +1,159 @@
+/* ─────────────────────────────────────────────
+   Slider — design tokens: src/tokens/colors.js, typography.js
+   Dual-handle range built from two overlaid native <input type="range">
+   elements — only their 24px thumb is interactive (pointer-events), so both
+   handles stay independently draggable.
+   Track: h6 · Radius/full · bg core-bg/tertiary #EBEBEB · fill bg
+   core-bg/primary #050505 · thumb white, border/layout #D1D1D1, darkens to
+   border/ui-active #050505 on hover, focus ring rgba(0,42,168,0.6)
+   Disabled: track/fill/thumb border all fade to border/ui-disabled #D1D1D1
+   Label: Caption/medium 12/16 text/primary #050505, gap8 (spacing/sm) below
+   the track
+   ───────────────────────────────────────────── */
+
+.ds-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  width: 100%;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-slider__track-area {
+  position: relative;
+  height: 24px;
+  width: 100%;
+}
+
+.ds-slider__track {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  height: 6px;
+  transform: translateY(-50%);
+  background: var(--color-core-bg-tertiary, #ebebeb); /* core-bg/tertiary */
+  border-radius: 999px;
+}
+
+.ds-slider__fill {
+  position: absolute;
+  top: 50%;
+  height: 6px;
+  transform: translateY(-50%);
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  border-radius: 999px;
+}
+
+.ds-slider__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+.ds-slider__input::-webkit-slider-runnable-track {
+  appearance: none;
+  background: transparent;
+  height: 24px;
+}
+
+.ds-slider__input::-moz-range-track {
+  background: transparent;
+  height: 24px;
+  border: none;
+}
+
+.ds-slider__input::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+  box-shadow: 0 1px 2px rgba(5, 5, 5, 0.15);
+  cursor: grab;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-slider__input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  box-shadow: 0 1px 2px rgba(5, 5, 5, 0.15);
+  cursor: grab;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-slider:not(.is-disabled) .ds-slider__input:hover::-webkit-slider-thumb {
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+}
+
+.ds-slider:not(.is-disabled) .ds-slider__input:hover::-moz-range-thumb {
+  border-color: var(--color-border-ui-active, #050505);
+}
+
+.ds-slider__input:focus-visible::-webkit-slider-thumb {
+  outline: none;
+  border-color: var(--color-border-ui-active, #050505);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-slider__input:focus-visible::-moz-range-thumb {
+  outline: none;
+  border-color: var(--color-border-ui-active, #050505);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+/* ── Disabled ─────────────────────────────────── */
+
+.ds-slider.is-disabled .ds-slider__track {
+  background: var(--color-core-bg-tertiary, #ebebeb);
+}
+
+.ds-slider.is-disabled .ds-slider__fill {
+  background: var(--color-border-ui-disabled, #d1d1d1); /* border/ui-disabled */
+}
+
+.ds-slider.is-disabled .ds-slider__input {
+  cursor: not-allowed;
+}
+
+.ds-slider.is-disabled .ds-slider__input::-webkit-slider-thumb {
+  border-color: var(--color-border-ui-disabled, #d1d1d1);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.ds-slider.is-disabled .ds-slider__input::-moz-range-thumb {
+  border-color: var(--color-border-ui-disabled, #d1d1d1);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ── Labels ─────────────────────────────────────── */
+
+.ds-slider__labels {
+  position: relative;
+  height: 16px;
+  width: 100%;
+}
+
+.ds-slider__label {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+}

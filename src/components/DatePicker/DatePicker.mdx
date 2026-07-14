@@ -1,0 +1,91 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as DatePickerStories from './DatePicker.stories';
+import { AnatomyExample, TypesExample, StatesExample } from './DatePickerDocHelpers';
+
+<Meta of={DatePickerStories} />
+
+<Title>Date Picker</Title>
+<Subtitle>
+  Date and time pickers allow users to select a single instance or range of dates and times.
+</Subtitle>
+
+<Canvas of={DatePickerStories.Default} />
+<Controls of={DatePickerStories.Default} />
+
+## Overview
+
+Use **Date Field** if the date can be remembered by the user easily, such as a date of birth, and
+they don't need a calendar to anticipate the dates — it consists only of an input field. Use
+**Date Picker** — a calendar picker (single or range) — when the user needs to know a date's
+relationship to other days, or when a date could be variable; the user can view and pick dates
+from a calendar widget.
+
+```tsx
+<DatePicker mode="single" value={value} onChange={setValue} label="Field title" />
+<DatePicker mode="range" value={[start, end]} onChange={setRange} label="Field title" />
+<DateField value={value} onChange={setValue} label="Date of birth" />
+```
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+The Calendar is made up of a **Month and Year control** (header, with prev/next navigation and
+jump-to menus), a **Week number** column (optional), the date grid itself, and an optional
+**Action button** row (Cancel/Apply) at the foot of the popover.
+
+- The day grid always renders 6 full weeks (42 cells) so the calendar's height never shifts
+  between months.
+- Days outside the currently-viewed month are shown muted, matching the Disabled visual style.
+- Today is marked with a small dot under its number.
+
+## Types
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+**Date Field** — a typed-only `DD / MM / YYYY` field. No calendar icon or popover by default.
+Clicking a segment (day/month/year) jumps the caret there; typing auto-advances to the next
+segment.
+
+**Date Picker (single date)** — a field that opens a Calendar popover. Selecting a date fills the
+field and closes the calendar immediately.
+
+**Date Picker (range)** — the same field/calendar pair in range mode. The first click sets the
+range start; the second sets the end and shows a continuous highlighted band between them, then
+closes the calendar.
+
+## States
+
+Each field has Default, Hover, Active (calendar open, for Date Picker), Focused (keyboard focus,
+shows a focus ring), and Disabled states.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Date Field — mouse** — clicking anywhere in the field starts typing in the first (day) segment;
+clicking directly on a segment jumps the caret there. Clicking outside the field auto-saves the
+entry. Clicking back into an already-filled field re-highlights the first segment for easy
+overwrite.
+
+**Date Field — keyboard** — focusing the field highlights the first segment. **Tab** (or **Arrow
+Left/Right**) moves between segments. **Esc** removes focus from the field.
+
+**Date Picker — mouse** — clicking the field (or its calendar icon) opens the calendar, anchored
+below the field. Hovering a date previews it; clicking selects it. In single mode, selecting a
+date closes the calendar immediately. In range mode, the first click sets the start, hovering
+previews the range, and the second click sets the end and closes the calendar. Clicking the
+Month or Year label opens a menu to jump directly to a month/year without closing the calendar.
+
+**Date Picker — keyboard** — focusing the field (e.g. via **Tab**) automatically opens the
+calendar. From there, **Tab** moves through the prev-month chevron, the Month label, the Year
+label, the next-month chevron, and then into the date grid. **Arrow keys** move focus by day/week,
+**Home/End** jump to the start/end of the week, **Page Up/Down** move by month (**Shift** + Page
+Up/Down by year), and **Space** or **Enter** selects the focused date. **Esc** closes the calendar
+and returns focus to the field.

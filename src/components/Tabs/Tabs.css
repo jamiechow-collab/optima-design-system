@@ -1,0 +1,167 @@
+/* ─────────────────────────────────────────────
+   Tabs — design tokens: src/tokens/colors.js, typography.js
+   Three TabList variants share one Tab markup — variant-specific look lives
+   here via `.ds-tablist--{variant} .ds-tab` ancestor selectors, so a <Tab>
+   never needs to know which container it's in.
+
+   Pill (Default style): bordered h44 box, p4, gap4 — each tab h36 px12/py10
+   radius8; selected tab gets bg core-bg/secondary-hover #F9F8F6 + border
+   ui-active #050505 + shadow-xs; hover (unselected) gets the same bg+shadow
+   without the border
+   Underline (With border style): h48 tabs, px12 — unselected text/secondary
+   #525252, hover darkens to text/primary, selected gets a 2px ui-active
+   bottom border (a transparent 2px border sits under unselected tabs too,
+   so selecting one doesn't shift layout)
+   Vertical: full-width h44 tabs, p12, radius8, gap8 (icon) — always
+   text/primary; selected gets bg core-bg/secondary-hover + border ui-active;
+   unselected hover gets the same bg without the border
+   Badge: alert/message-background #DCF0F7 bg, alert/message-stressed
+   #00678A text, radius/full pill
+   Focus ring rgba(0,42,168,0.6) on every variant
+   ───────────────────────────────────────────── */
+
+.ds-tablist {
+  display: flex;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.ds-tab:disabled {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}
+
+.ds-tab__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ds-tab__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ds-tab__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xxs, 2px) var(--spacing-sm, 8px);
+  border-radius: var(--radius-full, 100px); /* radius/full */
+  background: var(--color-alert-message-background, #dcf0f7); /* alert/message-background */
+  color: var(--color-alert-message-stressed, #00678a); /* alert/message-stressed */
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-tab:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+/* ── Pill ───────────────────────────────────────── */
+
+.ds-tablist--pill {
+  align-items: center;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  height: 44px;
+  box-sizing: border-box;
+  padding: var(--spacing-xs, 4px); /* spacing/xs */
+  border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+}
+
+.ds-tablist--pill .ds-tab {
+  height: 36px;
+  box-sizing: border-box;
+  padding: var(--spacing-m, 10px) var(--spacing-md, 12px); /* spacing/m spacing/md */
+  border: 1px solid transparent;
+  border-radius: var(--radius-md, 8px); /* radius/md */
+}
+
+.ds-tablist--pill .ds-tab:hover:not(.is-active):not(:disabled) {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(16, 24, 40, 0.05)); /* shadow-xs */
+}
+
+.ds-tablist--pill .ds-tab.is-active {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(16, 24, 40, 0.05)); /* shadow-xs */
+}
+
+/* ── Underline ──────────────────────────────────── */
+
+.ds-tablist--underline {
+  align-items: flex-end;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+  border-radius: 12px 12px 0 0;
+}
+
+.ds-tablist--underline .ds-tab {
+  height: 48px;
+  box-sizing: border-box;
+  padding: var(--spacing-md, 12px); /* spacing/md */
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+.ds-tablist--underline .ds-tab:hover:not(.is-active):not(:disabled) {
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-tablist--underline .ds-tab.is-active {
+  border-bottom-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+  color: var(--color-text-primary, #050505);
+}
+
+/* ── Vertical ───────────────────────────────────── */
+
+.ds-tablist--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  width: 100%;
+}
+
+.ds-tablist--vertical .ds-tab {
+  height: 44px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--spacing-md, 12px); /* spacing/md */
+  justify-content: flex-start;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md, 8px); /* radius/md */
+}
+
+.ds-tablist--vertical .ds-tab:hover:not(.is-active):not(:disabled) {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-tablist--vertical .ds-tab.is-active {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+}
+
+.ds-tablist--vertical .ds-tab__badge {
+  margin-left: auto;
+}

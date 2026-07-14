@@ -1,0 +1,127 @@
+/* ─────────────────────────────────────────────
+   Date Picker — design tokens: src/tokens/colors.js, typography.js
+   Field: h44 · radius/md 8 · px16 py10 · gap8 — same state table as
+   Date Field / Dropdown (default/hover/active/focus/disabled)
+   Calendar icon: 16px, right-aligned
+   Popover: anchored 8px below the field, reuses Calendar's own shadow/radius
+   ───────────────────────────────────────────── */
+
+.ds-datepicker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  width: 320px;
+  max-width: 100%;
+}
+
+.ds-datepicker__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-datepicker__field {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--spacing-section-md, 44px);
+  padding: var(--spacing-m, 10px) var(--spacing-lg, 16px); /* spacing/m spacing/lg */
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  border: 1px solid var(--color-border-ui-inactive, #9e9e9e); /* border/ui-inactive */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s ease, border-width 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.ds-datepicker__field:hover:not(:disabled),
+.ds-datepicker__field.is-open {
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+}
+
+.ds-datepicker__field.is-open {
+  border-width: 1.5px;
+}
+
+.ds-datepicker__field:focus-visible {
+  outline: none;
+  border-color: var(--color-border-ui-active, #050505);
+  border-width: 1.5px;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-datepicker__field:disabled {
+  background: var(--color-core-bg-secondary-disabled, #ebebeb); /* core-bg/secondary-disabled */
+  border-color: var(--color-border-ui-disabled, #d1d1d1); /* border/ui-disabled */
+  cursor: not-allowed;
+}
+
+/* Forced state classes — for Storybook docs to illustrate Hover/Active/Focused
+   without requiring real mouse/keyboard interaction. */
+.ds-datepicker.is-hover .ds-datepicker__field,
+.ds-datepicker.is-active .ds-datepicker__field {
+  border-color: var(--color-border-ui-active, #050505);
+}
+
+.ds-datepicker.is-active .ds-datepicker__field {
+  border-width: 1.5px;
+}
+
+.ds-datepicker.is-focused .ds-datepicker__field {
+  border-color: var(--color-border-ui-active, #050505);
+  border-width: 1.5px;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-datepicker__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-datepicker__value.is-placeholder {
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
+
+.ds-datepicker__field:disabled .ds-datepicker__value {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+}
+
+.ds-datepicker__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-datepicker__field:disabled .ds-datepicker__icon {
+  color: var(--color-text-disabled, #9e9e9e);
+}
+
+.ds-datepicker__popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 50;
+}
+
+.ds-datepicker__helper {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}

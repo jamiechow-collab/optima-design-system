@@ -1,0 +1,78 @@
+import { Meta, Title, Subtitle, Unstyled } from '@storybook/addon-docs/blocks';
+import * as TabsStories from './Tabs.stories';
+import {
+  AnatomyExample,
+  HorizontalExample,
+  VerticalExample,
+  VerticalWithBadgesExample,
+} from './TabsDocHelpers';
+
+<Meta of={TabsStories} />
+
+<Title>Tabs</Title>
+<Subtitle>
+  Tabs allow users to navigate between related views of content while remaining in the context of
+  the page.
+</Subtitle>
+
+## Overview
+
+`TabList` renders a group of `Tab`s and owns none of the selection state — pass `active` to each
+`Tab` and handle its `onClick` yourself. Pair with `TabPanel` (or your own conditional rendering)
+to show the selected tab's content.
+
+```tsx
+const [active, setActive] = useState('overview');
+
+<TabList variant="pill" aria-label="Account sections">
+  <Tab active={active === 'overview'} onClick={() => setActive('overview')}>
+    Overview
+  </Tab>
+  <Tab active={active === 'notification'} onClick={() => setActive('notification')}>
+    Notification
+  </Tab>
+</TabList>;
+```
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+A tab list is made up of one or more tabs, each an optional icon, a label, and an optional badge
+(e.g. an unread count). Exactly one tab is active at a time.
+
+## Horizontal tabs
+
+Two styles: **Pill** — a bordered box of boxed tabs, best for switching between a small, equally
+weighted set of views. **Underline** — a bottom-border style that reads lighter, better suited to
+sitting directly above the content it controls.
+
+<Unstyled>
+  <HorizontalExample />
+</Unstyled>
+
+## Vertical tabs
+
+Stacks tabs in a column — each tab is full width, and the active one gets its own bordered box.
+Best for a sidebar-style section switcher.
+
+<Unstyled>
+  <VerticalExample />
+</Unstyled>
+
+Icons and badges work the same way across every variant:
+
+<Unstyled>
+  <VerticalWithBadgesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Clicking a tab makes it active and shows its panel.
+
+**Keyboard** — Users can press **Tab** to move focus into the tab list (landing on the active
+tab), then use the **Arrow keys** (Left/Right for horizontal, Up/Down for vertical) or **Home**/
+**End** to move between tabs — moving focus also activates the tab, following the standard tabs
+keyboard pattern. Pressing **Tab** again moves focus out to the active panel's content.

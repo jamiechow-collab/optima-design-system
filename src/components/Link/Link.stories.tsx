@@ -1,42 +1,38 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Button, ButtonVariant } from './Button';
+import { Link, LinkVariant } from './Link';
 import { Icon } from '../Icon/Icon';
 
-const meta: Meta<typeof Button> = {
-  title: 'Components/Buttons/Standard Buttons',
-  component: Button,
+const meta: Meta<typeof Link> = {
+  title: 'Components/Links',
+  component: Link,
   parameters: { layout: 'centered' },
   argTypes: {
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      description: 'sm 40 · md 44 · lg 48',
+      description: 'sm 14/20 · md 16/24 · lg 16/24',
     },
     disabled: { control: 'boolean' },
-    loading: { control: 'boolean' },
     children: { control: 'text' },
     variant: { table: { disable: true } },
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
-    iconOnly: { table: { disable: true } },
+    href: { table: { disable: true } },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  One playground page per variant — the variant is fixed per page; size,
-//  label, icons, disabled and loading stay adjustable.
+//  One playground page per variant
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface PlaygroundArgs {
-  variant: ButtonVariant;
+  variant: LinkVariant;
   size: 'sm' | 'md' | 'lg';
   children: string;
   disabled: boolean;
-  loading: boolean;
   showLeadingIcon: boolean;
   showTrailingIcon: boolean;
 }
@@ -46,12 +42,11 @@ const iconToggleArgTypes = {
   showTrailingIcon: { control: 'boolean' as const, name: 'trailing icon' },
 };
 
-const playgroundArgs = (variant: ButtonVariant): PlaygroundArgs => ({
+const playgroundArgs = (variant: LinkVariant): PlaygroundArgs => ({
   variant,
   size: 'sm',
-  children: 'Button label',
+  children: 'Link label',
   disabled: false,
-  loading: false,
   showLeadingIcon: false,
   showTrailingIcon: false,
 });
@@ -62,13 +57,14 @@ const renderPlayground = ({
   children,
   ...args
 }: PlaygroundArgs) => (
-  <Button
+  <Link
     {...args}
+    href="#"
     leadingIcon={showLeadingIcon ? <Icon name="placeholder" /> : undefined}
     trailingIcon={showTrailingIcon ? <Icon name="placeholder" /> : undefined}
   >
     {children}
-  </Button>
+  </Link>
 );
 
 export const Primary: StoryObj<PlaygroundArgs> = {
@@ -83,51 +79,8 @@ export const Secondary: StoryObj<PlaygroundArgs> = {
   render: renderPlayground,
 };
 
-export const Tertiary: StoryObj<PlaygroundArgs> = {
+export const Inline: StoryObj<PlaygroundArgs> = {
   argTypes: iconToggleArgTypes,
-  args: playgroundArgs('tertiary'),
+  args: playgroundArgs('inline'),
   render: renderPlayground,
-};
-
-export const Ghost: StoryObj<PlaygroundArgs> = {
-  argTypes: iconToggleArgTypes,
-  args: playgroundArgs('ghost'),
-  render: renderPlayground,
-};
-
-export const Text: StoryObj<PlaygroundArgs> = {
-  argTypes: iconToggleArgTypes,
-  args: playgroundArgs('text'),
-  render: renderPlayground,
-};
-
-export const Disruptive: StoryObj<PlaygroundArgs> = {
-  argTypes: iconToggleArgTypes,
-  args: playgroundArgs('disruptive'),
-  render: renderPlayground,
-};
-
-export const IconOnly: Story = {
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'ghost'],
-      description: 'Icon-only supports primary / secondary / tertiary / ghost',
-      table: { disable: false },
-    },
-    children: { table: { disable: true } },
-    loading: { table: { disable: true } },
-  },
-  args: {
-    variant: 'primary',
-    size: 'sm',
-    iconOnly: true,
-    disabled: false,
-    'aria-label': 'Action',
-  },
-  render: (args) => (
-    <Button {...args}>
-      <Icon name="placeholder" />
-    </Button>
-  ),
 };

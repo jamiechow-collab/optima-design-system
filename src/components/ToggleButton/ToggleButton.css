@@ -1,0 +1,121 @@
+/* ─────────────────────────────────────────────
+   Toggle Button — design tokens: src/tokens/colors.js, typography.js
+   Follows Button as its base, but shaped as a pill (Radius/full) with an
+   on/off (active) state instead of colour variants.
+   Sizes: sm 40 · md 44 · lg 48 (matches Button's scale)
+   Inactive: core-bg/secondary white, border/layout #D1D1D1, text/primary
+   Active: core-bg/primary #050505 fill, white text — same as Button primary
+   ───────────────────────────────────────────── */
+
+.ds-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: var(--spacing-sm, 8px);
+  border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+  border-radius: var(--radius-full, 100px); /* Radius/full */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  color: var(--color-text-primary, #050505); /* text/primary */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+/* ── Sizes — matches Button's sm/md/lg scale ──── */
+
+.ds-toggle-button--sm {
+  height: var(--spacing-section-sm, 40px);
+  padding: 0 14px;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-toggle-button--md {
+  height: var(--spacing-section-md, 44px);
+  padding: 0 var(--spacing-lg, 16px);
+  font-size: var(--font-size-md, 16px);
+  line-height: var(--spacing-xxl, 24px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-toggle-button--lg {
+  height: var(--spacing-section-lg, 48px);
+  padding: 0 var(--spacing-xl, 20px);
+  font-size: var(--font-size-md, 16px);
+  line-height: var(--spacing-xxl, 24px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-toggle-button__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-toggle-button--sm .ds-toggle-button__icon svg,
+.ds-toggle-button--md .ds-toggle-button__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ds-toggle-button--lg .ds-toggle-button__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ds-toggle-button__badge {
+  flex-shrink: 0;
+}
+
+/* ── Inactive — hover/pressed ─────────────────── */
+
+.ds-toggle-button:hover:not(:disabled),
+.ds-toggle-button.is-hover {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-toggle-button:active:not(:disabled),
+.ds-toggle-button.is-pressed {
+  background: var(--color-core-bg-secondary-selected, #ede9e3);
+}
+
+/* ── Active (toggled on) — same treatment as Button primary ── */
+
+.ds-toggle-button[aria-pressed='true'] {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-toggle-button[aria-pressed='true']:hover:not(:disabled),
+.ds-toggle-button[aria-pressed='true'].is-hover {
+  background: var(--color-core-bg-primary-hover, #383838); /* core-bg/primary-hover */
+  border-color: var(--color-border-ui-active, #050505);
+}
+
+.ds-toggle-button[aria-pressed='true']:active:not(:disabled),
+.ds-toggle-button[aria-pressed='true'].is-pressed {
+  background: var(--color-core-bg-primary, #050505);
+  border-color: var(--color-border-ui-active, #050505);
+}
+
+/* ── Focus — system focus ring ───────────────── */
+
+.ds-toggle-button:focus-visible,
+.ds-toggle-button.is-focused {
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+/* ── Disabled — always the neutral look, regardless of active ── */
+
+.ds-toggle-button:disabled {
+  background: var(--color-core-bg-secondary, #fff);
+  border-color: var(--color-border-layout, #d1d1d1);
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}

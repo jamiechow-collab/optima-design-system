@@ -1,0 +1,110 @@
+/* ─────────────────────────────────────────────
+   Link — design tokens: src/tokens/colors.js, typography.js
+   Variants: primary · secondary · inline
+   Structure: gap 2 · padding 0 2px 2px · Radius/sm 4 · icons 20px
+   Underline is a 1px rule under the label (transparent when off so
+   hover weight/line changes never shift layout vertically).
+   ───────────────────────────────────────────── */
+
+.ds-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xxs, 2px);
+  padding: 0 var(--spacing-xxs, 2px) var(--spacing-xxs, 2px);
+  border-radius: var(--radius-sm, 4px); /* Radius/sm */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Sizes — sm 14/20 · md & lg 16/24 */
+.ds-link--sm { font-size: var(--font-size-sm, 14px); line-height: var(--spacing-xl, 20px); }
+.ds-link--md,
+.ds-link--lg { font-size: var(--font-size-md, 16px); line-height: var(--spacing-xxl, 24px); }
+
+.ds-link__label {
+  border-bottom: 1px solid transparent;
+}
+
+.ds-link__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ds-link__icon--leading { padding-left: var(--spacing-xxs, 2px); }
+.ds-link__icon--trailing { padding-right: var(--spacing-xxs, 2px); }
+
+.ds-link__icon svg { width: 20px; height: 20px; }
+
+/* ── Primary ────────────────────────────────────
+   SemiBold text/primary in every state · hover/pressed add underline
+   ──────────────────────────────────────────── */
+
+.ds-link--primary {
+  color: var(--color-text-primary, #050505);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.ds-link--primary:hover:not(.is-disabled) .ds-link__label,
+.ds-link--primary.is-hover .ds-link__label,
+.ds-link--primary:active:not(.is-disabled) .ds-link__label,
+.ds-link--primary.is-pressed .ds-link__label {
+  border-bottom-color: var(--color-text-primary, #050505);
+}
+
+/* ── Secondary ──────────────────────────────────
+   SemiBold text/highlight #002AA8 in every state · hover/pressed add underline
+   ──────────────────────────────────────────── */
+
+.ds-link--secondary {
+  color: var(--color-text-highlight, #002aa8);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.ds-link--secondary:hover:not(.is-disabled) .ds-link__label,
+.ds-link--secondary.is-hover .ds-link__label,
+.ds-link--secondary:active:not(.is-disabled) .ds-link__label,
+.ds-link--secondary.is-pressed .ds-link__label {
+  border-bottom-color: var(--color-text-highlight, #002aa8);
+}
+
+/* ── Inline ─────────────────────────────────────
+   Always underlined · Medium in every state
+   ──────────────────────────────────────────── */
+
+.ds-link--inline {
+  color: var(--color-text-primary, #050505);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-link--inline .ds-link__label {
+  border-bottom-color: var(--color-text-primary, #050505);
+}
+
+/* ── Focused — dark pill, white text + white underline ── */
+
+.ds-link:focus-visible,
+.ds-link.is-focused {
+  background: var(--color-core-bg-primary-hover, #383838); /* core-bg/primary-hover */
+  color: var(--color-text-invert, #fff);
+}
+
+.ds-link:focus-visible .ds-link__label,
+.ds-link.is-focused .ds-link__label {
+  border-bottom-color: var(--color-text-invert, #fff);
+}
+
+/* ── Disabled — text/disabled #9E9E9E, keeps Inline's underline ── */
+
+.ds-link.is-disabled {
+  color: var(--color-text-disabled, #9e9e9e);
+  cursor: not-allowed;
+}
+
+.ds-link--inline.is-disabled .ds-link__label {
+  border-bottom-color: var(--color-text-disabled, #9e9e9e);
+}

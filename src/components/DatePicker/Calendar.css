@@ -1,0 +1,296 @@
+/* ─────────────────────────────────────────────
+   Calendar — design tokens: src/tokens/colors.js, typography.js
+   Container: auto-width, radius/lg 12, shadow-xl 0px 24px 48px -12px rgba(16,24,40,0.18)
+   Content padding 8px (spacing/sm)
+   Header: prev/next chevron icon buttons (Button ghost iconOnly), month/year
+   pills (h40, px8 py12, radius/md 8, Heading/regular 20/24)
+   Grid: week-number column (border-right border/layout #D1D1D1) + dates column,
+   0 gap between them and between week rows — cells sit flush edge-to-edge
+   Weekday/week-no labels: Label/medium 14/20 text/placeholder #858585
+   Day cell: 44x44 circle (radius/full). Default text/primary #050505.
+   Hover/selected/range-band bg core-bg/secondary-selected #EDE9E3. Active
+   (mousedown) bg core-bg/secondary-hover #F9F8F6. Range endpoints: filled
+   circle core-bg/primary #050505, text/invert white. Today: 6px dot under
+   the number. Muted (disabled / outside month): text/disabled #9E9E9E.
+   Footer: padding 12px (spacing/md), border-top border/layout, Cancel
+   (secondary) + Apply (primary), each flex:1
+   ───────────────────────────────────────────── */
+
+.ds-calendar {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  border-radius: 12px; /* Datepicker-specific popover radius, not the generic radius/lg scale */
+  box-shadow: var(--shadow-xl, 0px 24px 48px -12px rgba(16, 24, 40, 0.18)); /* shadow-xl */
+  overflow: hidden;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  box-sizing: border-box;
+}
+
+.ds-calendar__content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-sm, 8px); /* spacing/sm */
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+/* ── Header ──────────────────────────────────── */
+
+.ds-calendar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.ds-calendar__header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.ds-calendar__pill-wrapper {
+  position: relative;
+}
+
+.ds-calendar__pill {
+  display: flex;
+  align-items: center;
+  height: var(--spacing-section-sm, 40px);
+  padding: var(--spacing-md, 12px) var(--spacing-sm, 8px);
+  border: none;
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--font-size-lg, 20px);
+  line-height: var(--spacing-xxl, 24px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  cursor: pointer;
+}
+
+.ds-calendar__pill:hover {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-calendar__pill:active {
+  background: var(--color-core-bg-secondary-selected, #ede9e3); /* core-bg/secondary-selected */
+}
+
+.ds-calendar__pill:focus-visible {
+  outline: none;
+  background: var(--color-core-bg-secondary-selected, #ede9e3);
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-calendar__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 50;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.ds-calendar__menu--year {
+  min-width: 96px;
+}
+
+/* ── Grid ────────────────────────────────────── */
+
+.ds-calendar__grid {
+  display: flex;
+  gap: 0;
+  padding-top: var(--spacing-sm, 8px);
+}
+
+.ds-calendar__week-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-right: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+}
+
+.ds-calendar__week-number-label,
+.ds-calendar__week-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
+
+.ds-calendar__week-number-label {
+  height: 36px;
+}
+
+.ds-calendar__dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.ds-calendar__weekday-row,
+.ds-calendar__week-row {
+  display: flex;
+}
+
+.ds-calendar__weekday {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
+
+/* ── Day cell ─────────────────────────────────── */
+
+.ds-calendar__day {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: var(--spacing-none, 0);
+  border: none;
+  border-radius: var(--radius-full, 100px); /* radius/full */
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.ds-calendar__day-number {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-calendar__day:hover:not(:disabled) {
+  background: var(--color-core-bg-secondary-selected, #ede9e3); /* core-bg/secondary-selected */
+}
+
+.ds-calendar__day:active:not(:disabled) {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-calendar__day:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+.ds-calendar__day--muted .ds-calendar__day-number {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+}
+
+.ds-calendar__day:disabled {
+  cursor: not-allowed;
+}
+
+.ds-calendar__day--today .ds-calendar__day-number {
+  position: relative;
+}
+
+.ds-calendar__today-dot {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full, 100px);
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+/* Active — the currently selected date in single mode, shown as a solid
+   filled circle (same treatment as a range endpoint) so reopening the
+   calendar on an existing selection reads clearly as "this one's picked" */
+.ds-calendar__day--active {
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+.ds-calendar__day--active .ds-calendar__day-number {
+  color: var(--color-text-invert, #fff); /* text/invert */
+  letter-spacing: -0.2px;
+}
+
+.ds-calendar__day--active .ds-calendar__today-dot {
+  background: var(--color-text-invert, #fff);
+}
+
+/* Range middle days — continuous band, square (no radius) so adjacent
+   cells visually connect into one shape */
+.ds-calendar__day--range-middle {
+  background: var(--color-core-bg-secondary-selected, #ede9e3);
+  border-radius: var(--radius-none, 0);
+}
+
+/* Range endpoints — beige band rounded only on the outer side, with a
+   solid black circle behind the number (white text) */
+.ds-calendar__day--range-start,
+.ds-calendar__day--range-end {
+  background: var(--color-core-bg-secondary-selected, #ede9e3);
+}
+
+.ds-calendar__day--range-start {
+  border-radius: var(--radius-full, 100px) var(--radius-none, 0) var(--radius-none, 0) var(--radius-full, 100px);
+}
+
+.ds-calendar__day--range-end {
+  border-radius: var(--radius-none, 0) var(--radius-full, 100px) var(--radius-full, 100px) var(--radius-none, 0);
+}
+
+.ds-calendar__day--range-start::before,
+.ds-calendar__day--range-end::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full, 100px);
+  background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
+}
+
+.ds-calendar__day--range-start .ds-calendar__day-number,
+.ds-calendar__day--range-end .ds-calendar__day-number {
+  position: relative;
+  color: var(--color-text-invert, #fff); /* text/invert */
+  letter-spacing: -0.2px;
+}
+
+.ds-calendar__day--range-start .ds-calendar__today-dot,
+.ds-calendar__day--range-end .ds-calendar__today-dot {
+  background: var(--color-text-invert, #fff);
+}
+
+/* A range that starts and ends on the same day still needs a full circle */
+.ds-calendar__day--range-start.ds-calendar__day--range-end {
+  border-radius: var(--radius-full, 100px);
+}
+
+/* ── Footer ──────────────────────────────────── */
+
+.ds-calendar__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg, 16px);
+  padding: var(--spacing-md, 12px); /* spacing/md */
+  border-top: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+}
+
+.ds-calendar__footer .ds-button {
+  flex: 1;
+}

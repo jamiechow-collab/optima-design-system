@@ -1,0 +1,51 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as MenuWithSectionsStories from './MenuWithSections.stories';
+import { SectionsExample, SectionSizesExample } from './MenuDocHelpers';
+
+<Meta of={MenuWithSectionsStories} />
+
+<Title>Menu with sections</Title>
+<Subtitle>
+  To aid readability and help users scan through a menu, sometimes a section is needed to group
+  related menu items.
+</Subtitle>
+
+<Canvas of={MenuWithSectionsStories.Default} />
+<Controls of={MenuWithSectionsStories.Default} />
+
+## Overview
+
+Especially if the menu is too long, sections help users get a quick sense of what content to look
+for.
+
+<Unstyled>
+  <SectionsExample />
+</Unstyled>
+
+## Content
+
+**Ordering and grouping**
+
+To aid discoverability, arrange menu items in a meaningful sequence that aligns with the order of
+operations. To help users focus on the most relevant options, place the ones used most often at
+the top.
+
+When there is a significant amount of menu items, it's advisable to group them into sections,
+separated by divider lines.
+
+**Number of items within a menu**
+
+Expansive lists of options in menus can overwhelm users. With context menu and overflow menu, try
+to keep the list length manageable by including no more than 12 items to help users scan through
+items easily without having to scroll.
+
+If there are lots of items, try to break it into a separate menu with a different trigger, or use
+sections to divide the content.
+
+## Sizes
+
+There are three sizes for section title. Please use the right size for its belonging menu.
+
+<Unstyled>
+  <SectionSizesExample />
+</Unstyled>

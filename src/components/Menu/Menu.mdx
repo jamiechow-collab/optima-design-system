@@ -1,0 +1,117 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as MenuStories from './Menu.stories';
+import { OverviewExample, TypesExample, SizesExample, StatesExample, BehaviourExample } from './MenuDocHelpers';
+
+<Meta of={MenuStories} />
+
+<Title>Basic Menu</Title>
+<Subtitle>
+  A menu is a disclosure component that appears with a set of actions relevant to a specific
+  control, interface area, data element, or application view.
+</Subtitle>
+
+<Canvas of={MenuStories.Default} />
+<Controls of={MenuStories.Default} />
+
+## Overview
+
+Typically, this context is determined by the user's current selection prior to invoking the menu.
+Menus can be opened from components such as menu buttons or through right-clicking.
+
+This guidance will help you understand how to format, structure, and use the menu component
+effectively.
+
+<Unstyled>
+  <OverviewExample />
+</Unstyled>
+
+**When to use**
+
+**Declutter interface** — In general, use menus to hide less frequently used or advanced options
+until users specifically need them. This keeps the interface clean and focused on essential
+elements.
+
+**Context menu** — Context menus are triggered by a right-click interaction. A context menu is a
+defined list of options in a menu that appears above all other content on a page and is related
+to the selected content or element it was triggered from.
+
+**Customisable actions** — Menus can speed up interactions for advanced users who are already
+familiar with the application. These users often rely on shortcuts and context-specific actions to
+work more efficiently.
+
+**When not to use**
+
+**Form submission** — When submitting a form with a static list of options for users to choose
+from, or when filtering, use a dropdown instead of a menu.
+
+## Types
+
+There are three types of Menu item. Single line contains only one line of label, which should be
+used by default.
+
+Only when more context is needed for categories or explanation of the item, then you can consider
+one with a title or with a description.
+
+<Unstyled>
+  <TypesExample />
+</Unstyled>
+
+## Sizes
+
+There are three sizes. Small is the default one which is most commonly used.
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## States
+
+Menu items have seven states: default, hover, focused, pressed, disabled, alert, and alert hover.
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Behaviour
+
+Menu item label should NOT be truncated. Labels should be easy to scan and understandable for
+users.
+
+Only under certain circumstances, when labels are not in our control (e.g. user-generated
+content), a label can be truncated, but should show a tooltip when a user hovers over the item.
+For a Menu Item that is not single line, it can be truncated when it gets to the end of the second
+line.
+
+<Unstyled>
+  <BehaviourExample />
+</Unstyled>
+
+## Alignment
+
+**Default** — By default, a combo button, menu button, or overflow button remains positioned at
+the top, to the left or right side of the menu when it is open, depending on the available space
+and layout.
+
+**Alternatives** — Alternatively, open menus can be positioned at the bottom, to the left or right
+of its associated menu button trigger, depending on the available space and layout.
+
+## Interactions
+
+**Mouse**
+
+Once the menu opens by clicking on a menu button trigger or right-clicking on an area, users can:
+
+- Select or deselect an item by clicking on it
+- Hover over the item with the caret icon to reveal additional options or actions from that item
+- Click outside of the menu area to close it
+
+**Keyboard**
+
+Once the menu opens by pressing **Return** or **Enter** on the menu trigger, users can:
+
+- Press **Up** and **Down arrows** to navigate between menu options
+- Press **Return** or **Enter** on an item to select or deselect it
+- Press **Right Arrow** on the item with the chevron icon to reveal the sub-menu
+- When a sub-menu is triggered, tap **Arrow Up** and **Down** to navigate
+- Press **Left Arrow** to leave the sub-menu and return to the main menu
+- Press **Escape** to close it

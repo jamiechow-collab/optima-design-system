@@ -1,0 +1,52 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as SubMenuStories from './SubMenu.stories';
+import { SubmenuExample } from './MenuDocHelpers';
+
+<Meta of={SubMenuStories} />
+
+<Title>Sub-Menu</Title>
+<Subtitle>
+  A submenu is a menu item with the chevron icon on the right, offering additional related
+  commands.
+</Subtitle>
+
+<Canvas of={SubMenuStories.Default} />
+<Controls of={SubMenuStories.Default} />
+
+## Overview
+
+A submenu is a menu item with the chevron icon on the right, offering additional related
+commands. While submenus can help tidy up a context menu and make its options clearer,
+introducing multiple levels of submenus can make the user experience more complex and harder to
+navigate. Avoid multiple levels of nesting when it comes to submenus.
+
+<Unstyled>
+  <SubmenuExample />
+</Unstyled>
+
+**Actions associated with a shared label**
+
+When a term appears in more than two menu items in the same group, consider eliminating the
+recurring term in the submenu label to help people predict its content and scan easily — see the
+"Shared Label Removed" story, where "Export as PDF/CSV/PNG" becomes just "PDF/CSV/PNG" once
+nested under an "Export as..." trigger.
+
+## Behaviour
+
+A menu item with a submenu shows a chevron on the right in place of a checkmark or shortcut. The
+submenu opens on click, on hover, or by pressing **Enter**, **Space**, or the **Right Arrow** key
+while the item has focus. It closes on **Left Arrow**, **Escape**, or a click outside the menu.
+
+## Interactions
+
+**Mouse**
+
+Hover over the item with the chevron icon to reveal additional options or actions from that item.
+Click outside of the menu area to close it.
+
+**Keyboard**
+
+- Press **Right Arrow** on the item with the chevron icon to reveal the sub-menu
+- When the sub-menu is triggered, press **Arrow Up** and **Down** to navigate
+- Press **Left Arrow** to leave the sub-menu and return to the main menu
+- Press **Escape** to close it

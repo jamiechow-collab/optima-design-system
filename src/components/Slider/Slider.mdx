@@ -1,0 +1,54 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as SliderStories from './Slider.stories';
+import { AnatomyExample, ValuesExample, StatesExample } from './SliderDocHelpers';
+
+<Meta of={SliderStories} />
+
+<Title>Sliders</Title>
+<Subtitle>
+  Slider is a visual input component that reflects current state status in its appearance.
+</Subtitle>
+
+<Canvas of={SliderStories.Default} />
+<Controls of={SliderStories.Default} />
+
+## Overview
+
+The slider lets users pick a range between two bounds by dragging either handle. It's built from
+two overlaid native range inputs, so both handles are independently keyboard-accessible and
+draggable, and each handle can never cross the other.
+
+## Anatomy
+
+<Unstyled>
+  <AnatomyExample />
+</Unstyled>
+
+A slider is made up of a track (the light grey base), a fill (the dark segment between the two
+handles), two draggable handles, and an optional pair of labels showing each handle's current
+value.
+
+- Labels are optional — only show them when the exact value matters to the user.
+- Handles can be pushed together but never crossed — dragging the low handle past the high handle
+  (or vice versa) clamps it instead.
+
+## Values
+
+The fill always spans between the two handles, however close together or far apart they are.
+
+<Unstyled>
+  <ValuesExample />
+</Unstyled>
+
+## States
+
+<Unstyled>
+  <StatesExample />
+</Unstyled>
+
+## Interactions
+
+**Mouse** — Users can drag either handle along the track. Clicking a handle focuses it.
+
+**Keyboard** — Users can press **Tab** to move focus to a handle, then use the **Arrow keys**
+(or **Home**/**End**) to adjust its value in `step` increments.

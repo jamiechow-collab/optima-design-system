@@ -1,0 +1,228 @@
+/* ─────────────────────────────────────────────
+   Text Input — design tokens: src/tokens/colors.js, typography.js
+   Field: h44 · Radius/md 8 · px16 · gap8 (spacing/lg, spacing/sm)
+   Vertical rhythm between title/field/helper/validation: gap4 (spacing/xs)
+   Default border ui-inactive #9E9E9E · hover/active/focused border
+   ui-active #050505 · disabled bg core-bg/secondary-disabled #EBEBEB
+   border ui-disabled #D1D1D1 · read-only bg core-bg/secondary-hover #F9F8F6,
+   borderless, text/primary #050505
+   Validation: error border/text alert/negative #CF3321, ring #F3B7AF ·
+   success border/text alert/positive #448537, ring #B7DEB0 ·
+   default focus ring rgba(0,42,168,0.6)
+   Label: Body/regular 14/20 text/primary · Helper/validation: Body/regular
+   14/20 text/placeholder #858585 (helper) or validation colour
+   Prefix chip (leading/trailing): beige-bg/secondary #EDE9E3, Radius/sm 4,
+   px-xs 4px, text/secondary #525252
+   ───────────────────────────────────────────── */
+
+.ds-textinput {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  width: 100%;
+}
+
+/* ── Label ──────────────────────────────────────── */
+
+.ds-textinput__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  width: fit-content;
+}
+
+.ds-textinput__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-textinput__tooltip {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+/* ── Field ──────────────────────────────────────── */
+
+.ds-textinput__field {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  box-sizing: border-box;
+  height: var(--spacing-section-md, 44px);
+  padding: 0 var(--spacing-lg, 16px); /* spacing/lg */
+  border-radius: var(--radius-md, 8px); /* radius/md */
+  border: 1px solid var(--color-border-ui-inactive, #9e9e9e); /* border/ui-inactive */
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  transition: border-color 0.15s ease, border-width 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.ds-textinput__content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-textinput__icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+}
+
+.ds-textinput__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ds-textinput__value {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs, 2px); /* spacing/xxs */
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-textinput__prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 var(--spacing-xs, 4px); /* spacing/xs */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  background: var(--color-beige-bg-secondary, #ede9e3); /* beige-bg/secondary */
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-secondary, #525252); /* text/secondary */
+  white-space: nowrap;
+}
+
+.ds-textinput__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-textinput__input::placeholder {
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* ── Hover / Active / Focused — border darkens, focus adds a ring ── */
+
+.ds-textinput:not(.is-disabled):not(.is-readonly) .ds-textinput__field:hover,
+.ds-textinput.is-hover .ds-textinput__field,
+.ds-textinput.is-active .ds-textinput__field {
+  border-color: var(--color-border-ui-active, #050505); /* border/ui-active */
+}
+
+.ds-textinput.is-active .ds-textinput__field {
+  border-width: 1.5px;
+}
+
+.ds-textinput.is-focused .ds-textinput__field {
+  border-color: var(--color-border-ui-active, #050505);
+  border-width: 1.5px;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
+}
+
+/* ── Error validation ─────────────────────────── */
+
+.ds-textinput--error .ds-textinput__field {
+  border-color: var(--color-alert-negative, #cf3321); /* alert/negative */
+}
+
+.ds-textinput--error .ds-textinput__validation {
+  color: var(--color-alert-negative, #cf3321);
+}
+
+.ds-textinput--error.is-active .ds-textinput__field {
+  border-width: 1.5px;
+}
+
+.ds-textinput--error.is-focused .ds-textinput__field {
+  border-width: 1.5px;
+  box-shadow: 0 0 0 4px var(--color-alert-negative-selected, #f3b7af); /* alert/negative-selected */
+}
+
+/* ── Success validation ───────────────────────── */
+
+.ds-textinput--success .ds-textinput__field {
+  border-color: var(--color-alert-positive, #448537); /* alert/positive */
+}
+
+.ds-textinput--success .ds-textinput__validation {
+  color: var(--color-alert-positive, #448537);
+}
+
+.ds-textinput--success.is-active .ds-textinput__field {
+  border-width: 1.5px;
+}
+
+.ds-textinput--success.is-focused .ds-textinput__field {
+  border-width: 1.5px;
+  box-shadow: 0 0 0 4px var(--color-alert-positive-selected, #b7deb0); /* alert/positive-selected */
+}
+
+/* ── Disabled — greys out, no interaction ─────── */
+
+.ds-textinput.is-disabled .ds-textinput__field {
+  background: var(--color-core-bg-secondary-disabled, #ebebeb); /* core-bg/secondary-disabled */
+  border-color: var(--color-border-ui-disabled, #d1d1d1); /* border/ui-disabled */
+}
+
+.ds-textinput.is-disabled .ds-textinput__icon {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+}
+
+.ds-textinput__input:disabled {
+  color: var(--color-text-disabled, #9e9e9e); /* text/disabled */
+  cursor: not-allowed;
+}
+
+.ds-textinput__input:disabled::placeholder {
+  color: var(--color-text-disabled, #9e9e9e);
+}
+
+/* ── Read-only — borderless, secondary text ───── */
+
+.ds-textinput.is-readonly .ds-textinput__field {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+  border-color: transparent;
+}
+
+.ds-textinput.is-readonly .ds-textinput__input {
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+/* ── Helper / validation text ──────────────────── */
+
+.ds-textinput__helper {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
+
+.ds-textinput__validation {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+}
