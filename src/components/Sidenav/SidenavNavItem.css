@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────
-   Sidebar Nav Item — design tokens: src/tokens/colors.js, typography.js
+   Sidenav Nav Item — design tokens: src/tokens/colors.js, typography.js
    Icon box: 40×40 · Radius/md 8 · bg beige-bg/secondary #EDE9E3 ·
    hover beige-bg/secondary-hover #E5DED5 · active (selected)
    beige-bg/secondary-selected #D2C6B7 · focus ring rgba(0,42,168,0.6)
@@ -7,7 +7,7 @@
    to the icon
    ───────────────────────────────────────────── */
 
-.ds-sidebar-nav-item {
+.ds-sidenav-nav-item {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +17,7 @@
   outline: none;
 }
 
-.ds-sidebar-nav-item__icon {
+.ds-sidenav-nav-item__icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,12 +30,12 @@
   transition: background-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.ds-sidebar-nav-item__icon svg {
+.ds-sidenav-nav-item__icon svg {
   width: 20px;
   height: 20px;
 }
 
-.ds-sidebar-nav-item__label {
+.ds-sidenav-nav-item__label {
   font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: var(--font-size-xs, 12px);
   line-height: var(--spacing-lg, 16px);
@@ -45,16 +45,16 @@
   white-space: nowrap;
 }
 
-.ds-sidebar-nav-item:hover .ds-sidebar-nav-item__icon,
-.ds-sidebar-nav-item.is-hover .ds-sidebar-nav-item__icon {
+.ds-sidenav-nav-item:hover .ds-sidenav-nav-item__icon,
+.ds-sidenav-nav-item.is-hover .ds-sidenav-nav-item__icon {
   background: var(--color-beige-bg-secondary-hover, #e5ded5); /* beige-bg/secondary-hover */
 }
 
-.ds-sidebar-nav-item.is-active .ds-sidebar-nav-item__icon {
+.ds-sidenav-nav-item.is-active .ds-sidenav-nav-item__icon {
   background: var(--color-beige-bg-secondary-selected, #d2c6b7); /* beige-bg/secondary-selected */
 }
 
-.ds-sidebar-nav-item:focus-visible .ds-sidebar-nav-item__icon,
-.ds-sidebar-nav-item.is-focused .ds-sidebar-nav-item__icon {
+.ds-sidenav-nav-item:focus-visible .ds-sidenav-nav-item__icon,
+.ds-sidenav-nav-item.is-focused .ds-sidenav-nav-item__icon {
   box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6)); /* Focus - Default */
 }

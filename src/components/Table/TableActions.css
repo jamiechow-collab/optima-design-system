@@ -1,0 +1,44 @@
+/* ─────────────────────────────────────────────
+   Table-actions — design tokens: src/tokens/colors.js, spacing.js
+   Leading checkbox column for row selection — a fixed 48px grid track.
+   Row expansion has no dedicated column of its own; its chevron renders
+   inline in the first data column instead (see TableCell), per the Figma
+   spec. Padding spacing-xl (20px) left, spacing-md (12px) right.
+   Header type: bg beige-bg-primary, matches TableColumnHeader (48px/56px).
+   Cell type: bg core-bg-secondary, matches TableCell (40px/48px), with
+   hover/selected states shared with TableCell — selected+hover is a
+   distinct third shade #E5DED5, not a reuse of the plain hover tone.
+   ───────────────────────────────────────────── */
+
+.ds-table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 0 var(--spacing-md, 12px) 0 var(--spacing-xl, 20px); /* spacing/xl, spacing/md */
+}
+
+.ds-table-actions--header {
+  background: var(--color-beige-bg-primary, #f9f8f6); /* beige-bg/primary */
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+}
+
+.ds-table-actions--cell {
+  background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+}
+
+.ds-table-actions--cell:hover {
+  background: var(--color-core-bg-secondary-hover, #f9f8f6); /* core-bg/secondary-hover */
+}
+
+.ds-table-actions--cell.is-selected {
+  background: var(--color-core-bg-secondary-selected, #ede9e3); /* core-bg/secondary-selected */
+}
+
+.ds-table-actions--cell.is-selected:hover {
+  background: var(--color-core-bg-secondary-selected-hover, #e5ded5); /* core-bg/secondary-selected-hover */
+}

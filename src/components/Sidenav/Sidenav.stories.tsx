@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Sidebar } from './Sidebar';
-import { SidebarNavItem } from './SidebarNavItem';
-import { SidebarActionButton } from './SidebarActionButton';
+import { Sidenav } from './Sidenav';
+import { SidenavNavItem } from './SidenavNavItem';
+import { SidenavActionButton } from './SidenavActionButton';
 import { Icon } from '../Icon/Icon';
 
 const MenuIcon = () => (
@@ -25,31 +25,32 @@ const APLogo = () => (
   </svg>
 );
 
-const meta: Meta<typeof Sidebar> = {
-  title: 'Components/Sidebar',
-  component: Sidebar,
+const meta: Meta<typeof Sidenav> = {
+  title: 'Components/Sidenav',
+  component: Sidenav,
   parameters: { layout: 'fullscreen' },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Sidebar>;
+type Story = StoryObj<typeof Sidenav>;
 
 const NAV_ITEMS = [
   { key: 'home', label: 'Home', icon: 'home' as const },
-  { key: 'campaign', label: 'Campaign', icon: 'trumpet' as const },
-  { key: 'report', label: 'Report', icon: 'vertical-bar-card' as const },
+  { key: 'campaigns', label: 'Campaigns', icon: 'trumpet' as const },
+  { key: 'reports', label: 'Reports', icon: 'vertical-bar-card' as const },
+  { key: 'items', label: 'Items', icon: 'grid-3' as const },
   { key: 'integration', label: 'Integration', icon: 'connect' as const },
 ];
 
-const SidebarExample = () => {
-  const [active, setActive] = useState('report');
+const SidenavExample = () => {
+  const [active, setActive] = useState('reports');
   return (
     <div style={{ height: '100vh' }}>
-      <Sidebar
+      <Sidenav
         logo={<APLogo />}
         actionButton={
-          <SidebarActionButton
+          <SidenavActionButton
             aria-label="Create new"
             icon={<Icon name="plus" />}
             onClick={() => {}}
@@ -58,7 +59,7 @@ const SidebarExample = () => {
         footer={<MenuIcon />}
       >
         {NAV_ITEMS.map((item) => (
-          <SidebarNavItem
+          <SidenavNavItem
             key={item.key}
             href="#"
             icon={<Icon name={item.icon} />}
@@ -70,26 +71,26 @@ const SidebarExample = () => {
             }}
           />
         ))}
-      </Sidebar>
+      </Sidenav>
     </div>
   );
 };
 
 export const Default: Story = {
-  render: () => <SidebarExample />,
+  render: () => <SidenavExample />,
 };
 
 export const WithoutFooter: Story = {
   render: () => (
     <div style={{ height: '100vh' }}>
-      <Sidebar
+      <Sidenav
         logo={<APLogo />}
         actionButton={
-          <SidebarActionButton aria-label="Create new" icon={<Icon name="plus" />} />
+          <SidenavActionButton aria-label="Create new" icon={<Icon name="plus" />} />
         }
       >
         {NAV_ITEMS.map((item) => (
-          <SidebarNavItem
+          <SidenavNavItem
             key={item.key}
             href="#"
             icon={<Icon name={item.icon} />}
@@ -97,7 +98,7 @@ export const WithoutFooter: Story = {
             active={item.key === 'home'}
           />
         ))}
-      </Sidebar>
+      </Sidenav>
     </div>
   ),
 };

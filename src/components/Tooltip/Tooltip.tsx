@@ -38,7 +38,7 @@ export const Tooltip = ({
 }: TooltipProps) => {
   const [visible, setVisible] = useState(false);
   const [resolvedPlacement, setResolvedPlacement] = useState<'top' | 'bottom' | 'left' | 'right'>(
-    placement === 'auto' ? 'top' : placement
+    placement === 'auto' ? 'bottom' : placement
   );
   const wrapperRef = useRef<HTMLSpanElement>(null);
   const bubbleRef = useRef<HTMLSpanElement>(null);

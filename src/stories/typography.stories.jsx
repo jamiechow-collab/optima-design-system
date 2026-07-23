@@ -17,6 +17,7 @@ export default meta;
 // ─────────────────────────────────────────────────────────────────────────────
 
 const WEIGHT_NAMES = {
+  300: 'Light',
   400: 'Regular',
   500: 'Medium',
   600: 'Semi Bold',
@@ -58,9 +59,10 @@ const GROUPS = [
   {
     title: 'Body',
     variants: [
+      { name: 'Light', style: typography.body.light },
       { name: 'Regular', style: typography.body.regular },
       { name: 'Medium', style: typography.body.medium },
-      { name: 'Bold', style: typography.body.bold },
+      { name: 'SemiBold', style: typography.body.semibold },
     ],
   },
   {

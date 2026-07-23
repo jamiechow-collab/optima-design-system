@@ -1,0 +1,171 @@
+import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
+import * as TableStories from './Table.stories';
+import { DefaultTableDemo, SizesExample } from './TableDocHelpers';
+
+<Meta of={TableStories} />
+
+<Title>Table</Title>
+<Subtitle>
+  The data table's features are ideal for organizing and displaying data in a UI. Column headers
+  can sort data in ascending or descending order, and columns can be resized and filtered.
+</Subtitle>
+
+<Canvas of={TableStories.Default} />
+<Controls of={TableStories.Default} />
+
+See the **Selectable** and **Expandable** pages in the sidebar for each feature demonstrated on
+its own, without the other switched on. The **Mixed actions** page shows both together — check
+"Report 6" to see selection cascade to every descendant, or check a single nested child to see
+its ancestors go indeterminate.
+
+## Overview
+
+**When to use** — to organise and display data; when a user needs to scan or navigate to a
+specific piece of data to complete a task; when displaying all of a user's resources.
+
+**When not to use** — when a more complex data display or interaction is required, or as a
+replacement for a spreadsheet application.
+
+```tsx
+<Table
+  columns={columns}
+  rows={rows}
+  rowKey={(row) => row.id}
+  sortColumn={sortColumn}
+  sortDirection={sortDirection}
+  onSortChange={onSortChange}
+  filterValues={filterValues}
+  onFilterChange={onFilterChange}
+  pagination={{ rangeStart, rangeEnd, total, currentPage, totalPages, onPageChange }}
+  selectable
+  selectedRowKeys={selectedRowKeys}
+  onSelectedRowKeysChange={setSelectedRowKeys}
+  expandable
+  getChildRows={(row) => row.children}
+  expandedRowKeys={expandedRowKeys}
+  onExpandedRowKeysChange={setExpandedRowKeys}
+/>
+```
+
+`Table` is **presentational only** — it does not sort, filter, or paginate data itself. It
+renders whatever `rows` it's given and calls `onSortChange` / `onFilterChange` / `onPageChange` so
+the consuming app can recompute `rows` and pass the updated array back in. Column resizing is the
+one interaction the component owns directly, since it's pure UI state with no data implications.
+
+## Anatomy
+
+<Unstyled>
+  <DefaultTableDemo />
+</Unstyled>
+
+- **Table column header** — the title for a column, with an optional leading icon, sort
+  behaviour, and a "more options" menu control. Clicking anywhere in the header (not just the
+  chevron) toggles sort. Right-aligned columns mirror the layout — the chevron/menu sit on the
+  left, the label on the right. Use the Controls panel above to toggle the leading icon and menu
+  control on and off.
+- **Table floating filter** — an optional dropdown that appears in a row directly beneath a
+  column header, letting a user narrow down that column's data.
+- **Table grid cell** — renders a column's data for each row. Accepts plain text or a custom
+  render function (badges, progress bars, star ratings, chart previews, etc.) — see the
+  **Country** column above for an inline-editable dropdown.
+- **Table actions** — selection gets its own dedicated 48px leading column (the header checkbox is
+  3-state — all / none / some selected; each row's checkbox is 2-state). Expansion has no column
+  of its own — its chevron always renders inline, leading the label in the first data column, at
+  every depth. Toggle "Report 6" above to see its nested rows, including "6A" which is itself
+  expandable. Toggle `selectable` / `expandable` off in the Controls panel to compare.
+- **Pagination** — an optional footer for navigating data as pages when there's too much to show
+  at once, with a record-range counter ("1 to 20 of 8,618") and first/previous/next/last controls.
+
+## Sizes
+
+Two densities are available — **Small** (40px rows / 48px header) and **Medium** (48px rows /
+56px header).
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Interactions
+
+**Sort** — click a sortable column's header to cycle ascending → descending → unsorted. The
+chevron is hidden until the header is hovered, or a sort is active on that column.
+
+**Menu control** — a column with `showMenuControl` renders a "more options" kebab button. Unlike
+the sort chevron, it's static — always visible, not tied to hover. Its contents aren't defined
+yet (see "Not yet built" below) — use `onMenuClick` to wire up your own menu.
+
+**Resize** — drag the handle on a column's trailing edge to change its width. `Table` owns the
+resize pointer events and width state internally; data doesn't need to change shape.
+
+**Reorder** — set `reorderableColumns` to let a user drag a header to move its column elsewhere.
+Holding a header (rather than a quick click) is what starts a drag — this is what lets `sortable`
+columns keep their normal click-to-sort behaviour even when reordering is also on. Dragging over
+another header swaps the two columns immediately, and a floating chip (grip icon + the dragged
+column's label) follows the cursor for the duration of the drag, matching the Figma
+"Behaviour - Re-order column" spec. Like resize, `Table` owns the resulting column order
+internally — the `columns` prop's own order is only used for the very first render.
+
+**Filter** — a column with `filterOptions` renders a `TableFloatingFilter` beneath its header.
+Selecting a value calls `onFilterChange(columnKey, value)`.
+
+**Paginate** — pass a `pagination` prop with already-computed range/page numbers; `Table` renders
+the counter and controls and calls `onPageChange` on click.
+
+**Select** — set `selectable` and control `selectedRowKeys` / `onSelectedRowKeysChange`. The
+header checkbox selects/deselects every row in the whole dataset, including rows nested under a
+currently-collapsed parent. Selected rows get a highlighted background across all their cells —
+hovering a selected cell shows a third, distinct shade (not a reuse of the plain hover tone), so a
+selected+hovered cell is visually distinguishable from both states alone.
+
+**Batch select** — checking a row that has children selects all of its descendants with it
+(recursively, however many levels deep); unchecking it clears them the same way. Checking
+individual children back out one at a time flips their parent to indeterminate as soon as the set
+stops being "all" or "none", and back to fully checked once every child is checked again — this
+recomputes from the whole tree on every change, so it stays correct no matter which row (parent,
+child, or grandchild) was actually clicked.
+
+**Expand** — set `expandable` and provide `getChildRows` to return a row's nested rows (or
+`undefined` for a leaf row). Any row with children — top-level or nested — gets its expand/collapse
+chevron rendered inline in the first data column, right before the label; there's no dedicated
+actions column for it (unlike `selectable`'s checkbox column). Each ancestor depth level reserves
+a 24px indent slot (matching the chevron's own 16px icon + 8px gap footprint) before the chevron
+or label, so indentation lines up whether or not a given row happens to have its own children.
+Control `expandedRowKeys` / `onExpandedRowKeysChange` to manage which rows are open.
+
+**Reorder rows** — set `reorderableRows` to show a grip handle leading every row's first cell (see
+the **Reorder rows** page in the sidebar). Unlike column reorder, the grip is a dedicated handle —
+dragging it starts immediately on pointerdown, with no click behaviour to protect and so no
+long-press needed. Dragging over another row swaps them immediately, with the same floating chip
+used for column reorder (showing the dragged row's first-column value), and the dragged row's own
+first cell gets a focus outline while its other cells dim to a disabled colour for the duration of
+the drag, matching the Figma "Behaviour - Re-order row" spec. Reordering is scoped to siblings —
+dragging within `expandable`'s nested rows reorders that group's children without ever moving a
+row into a different parent. Unlike `reorderableColumns`, `Table` doesn't own the result: row order
+is the caller's own data, so it only tracks the live drag preview and calls
+`onRowOrderChange(orderedKeys, parentKey)` once on drop (`parentKey` is `null` at the top level) —
+apply the new order to your own `rows` the same way you already do for sort/select/expand.
+
+**Edit inline** — render a `TableCellSelect` from a column's `render`, and set
+`overflowVisible` on that column so its popover isn't clipped by the cell (the "Country" column
+above does this). Clicking the field opens a menu of options; picking one commits the value and
+closes the menu — click elsewhere or press Escape to close without changing anything.
+`TableCellSelect` is a self-contained control (it owns its own open/closed state); `Table` isn't
+aware that a cell is "being edited", so wiring the new value back into your row data is entirely
+up to the `onChange` callback you pass it — exactly like any other custom cell renderer.
+
+## Not yet built
+
+This pass covers a static table with sort, resize, filter, pagination, row selection, expandable
+rows, and inline cell editing (single-select dropdown only — a free-text editor isn't built yet).
+The following pieces of the full Figma spec are deferred to a later iteration:
+
+- The grouping panel (drag a column header to group rows)
+- Sticky columns and the scroll sticky-indicator
+- Free-text inline cell editing (only a select-from-list editor exists so far)
+- Header menu contents (the kebab button renders and calls `onMenuClick`, but no dropdown menu
+  is wired up yet)
+
+**Known limitation:** an open `TableCellSelect` popover can be clipped if it belongs to a row in
+the last visible page of a scrolled/tall table, since it's constrained by the table's own rounded
+outer border. A production version would likely render the popover through a portal to escape
+this entirely.

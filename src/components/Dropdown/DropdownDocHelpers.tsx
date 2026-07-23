@@ -100,6 +100,66 @@ export const TypesExample = () => (
   </div>
 );
 
+const SizeDemo = () => {
+  const [basic, setBasic] = useState<string | undefined>(undefined);
+  const [combo, setCombo] = useState<string | undefined>(undefined);
+  const [multi, setMulti] = useState<string[]>(['a', 'b']);
+  return (
+    <>
+      <div style={{ ...example, width: 384 }}>
+        <span style={exampleLabel}>Small</span>
+        <div style={{ width: 360 }}>
+          <Dropdown size="sm" options={OPTIONS} value={basic} onChange={setBasic} />
+        </div>
+        <ComboBox
+          size="sm"
+          fieldTitle="Field title"
+          options={OPTIONS}
+          value={combo}
+          onChange={setCombo}
+          placeholder="Search…"
+        />
+        <ComboBoxMultiSelect
+          size="sm"
+          fieldTitle="Field title"
+          options={OPTIONS}
+          value={multi}
+          onChange={setMulti}
+          placeholder="Search…"
+        />
+      </div>
+      <div style={{ ...example, width: 384 }}>
+        <span style={exampleLabel}>Medium</span>
+        <div style={{ width: 360 }}>
+          <Dropdown size="md" options={OPTIONS} value={basic} onChange={setBasic} />
+        </div>
+        <ComboBox
+          size="md"
+          fieldTitle="Field title"
+          options={OPTIONS}
+          value={combo}
+          onChange={setCombo}
+          placeholder="Search…"
+        />
+        <ComboBoxMultiSelect
+          size="md"
+          fieldTitle="Field title"
+          options={OPTIONS}
+          value={multi}
+          onChange={setMulti}
+          placeholder="Search…"
+        />
+      </div>
+    </>
+  );
+};
+
+export const SizeExample = () => (
+  <div style={card}>
+    <SizeDemo />
+  </div>
+);
+
 const STATES: { name: string; cls?: string; disabled?: boolean }[] = [
   { name: 'Default' },
   { name: 'Hover', cls: 'is-hover' },

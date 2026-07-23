@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────────
    Toggle — design tokens: src/tokens/colors.js, typography.js
    Sizes: sm track 36×20, thumb 16 (default) · md track 44×24, thumb 20 —
-   2px inset (spacing/xxs) on every side, gap 12px (spacing/md) to the label
+   2px inset (spacing/xxs) on every side, gap 8px (spacing/sm) to the label
    States (off): bg core-bg/tertiary #EBEBEB, thumb white with shadow-sm ·
    focus adds a ring · disabled bg stays #EBEBEB, thumb loses its shadow
    States (on): bg core-bg/primary #050505, thumb slides to the far side ·
@@ -14,7 +14,7 @@
 .ds-toggle {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-md, 12px); /* spacing/md */
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
   font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   cursor: pointer;
 }

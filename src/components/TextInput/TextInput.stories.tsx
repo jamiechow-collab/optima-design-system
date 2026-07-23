@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { TextInput, TextInputValidation } from './TextInput';
+import { TextInput, TextInputSize, TextInputValidation } from './TextInput';
 import { Icon } from '../Icon/Icon';
 
 const meta: Meta<typeof TextInput> = {
@@ -8,6 +8,7 @@ const meta: Meta<typeof TextInput> = {
   component: TextInput,
   parameters: { layout: 'centered' },
   argTypes: {
+    size: { control: 'select', options: ['sm', 'md'] },
     label: { control: 'text' },
     placeholder: { control: 'text' },
     value: { control: 'text' },
@@ -27,6 +28,7 @@ const meta: Meta<typeof TextInput> = {
 export default meta;
 
 interface PlaygroundArgs {
+  size: TextInputSize;
   label: string;
   placeholder: string;
   value: string;
@@ -71,6 +73,7 @@ const adornmentArgTypes = {
 export const Default: StoryObj<PlaygroundArgs> = {
   argTypes: adornmentArgTypes,
   args: {
+    size: 'md',
     label: 'Field title',
     placeholder: 'placeholder text',
     value: '',

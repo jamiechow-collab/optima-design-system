@@ -10,6 +10,8 @@ export interface DropdownOption {
   disabled?: boolean;
 }
 
+export type DropdownSize = 'sm' | 'md';
+
 const focusFirstMenuItem = (menu: HTMLUListElement | null) => {
   const first = menu?.querySelector<HTMLElement>('[role="menuitem"]:not([aria-disabled="true"])');
   first?.focus();
@@ -18,8 +20,12 @@ const focusFirstMenuItem = (menu: HTMLUListElement | null) => {
 // ── Dropdown — Basic, single-select, not typeable ───────────────────────────
 
 export interface DropdownProps {
+  /** Text shown above the field — hidden unless provided */
+  fieldTitle?: React.ReactNode;
   /** Placeholder shown when nothing is selected */
   label?: string;
+  /** Field height — sm (32px) or md (44px, default) */
+  size?: DropdownSize;
   options: DropdownOption[];
   value?: string;
   onChange: (value: string) => void;
@@ -30,7 +36,9 @@ export interface DropdownProps {
 }
 
 export const Dropdown = ({
+  fieldTitle,
   label = 'Dropdown label',
+  size = 'md',
   options,
   value,
   onChange,
@@ -43,6 +51,7 @@ export const Dropdown = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
+  const generatedId = useId();
 
   const selected = options.find((o) => o.value === value);
 
@@ -82,10 +91,17 @@ export const Dropdown = ({
     }
   };
 
-  const classes = ['ds-dropdown', disabled ? 'is-disabled' : '', className].filter(Boolean).join(' ');
+  const classes = ['ds-dropdown', `ds-dropdown--${size}`, disabled ? 'is-disabled' : '', className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div ref={rootRef} className={classes}>
+      {fieldTitle && (
+        <span className="ds-dropdown__label" id={generatedId}>
+          {fieldTitle}
+        </span>
+      )}
       <button
         ref={buttonRef}
         type="button"
@@ -93,6 +109,7 @@ export const Dropdown = ({
         disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-labelledby={fieldTitle ? generatedId : undefined}
         onClick={() => !disabled && setOpen((o) => !o)}
         onKeyDown={handleButtonKeyDown}
         {...rest}
@@ -131,6 +148,8 @@ export const Dropdown = ({
 export interface ComboBoxProps {
   fieldTitle?: React.ReactNode;
   placeholder?: string;
+  /** Field height — sm (32px) or md (44px, default) */
+  size?: DropdownSize;
   options: DropdownOption[];
   value?: string;
   onChange: (value: string | undefined) => void;
@@ -142,6 +161,7 @@ export interface ComboBoxProps {
 export const ComboBox = ({
   fieldTitle = 'Field title',
   placeholder,
+  size = 'md',
   options,
   value,
   onChange,
@@ -213,7 +233,9 @@ export const ComboBox = ({
     }
   };
 
-  const classes = ['ds-combobox', disabled ? 'is-disabled' : '', className].filter(Boolean).join(' ');
+  const classes = ['ds-combobox', `ds-combobox--${size}`, disabled ? 'is-disabled' : '', className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div ref={rootRef} className={classes}>
@@ -306,6 +328,8 @@ export const ComboBox = ({
 export interface ComboBoxMultiSelectProps {
   fieldTitle?: React.ReactNode;
   placeholder?: string;
+  /** Field height — sm (32px) or md (44px, default) */
+  size?: DropdownSize;
   options: DropdownOption[];
   value: string[];
   onChange: (value: string[]) => void;
@@ -317,6 +341,7 @@ export interface ComboBoxMultiSelectProps {
 export const ComboBoxMultiSelect = ({
   fieldTitle = 'Field title',
   placeholder,
+  size = 'md',
   options,
   value,
   onChange,
@@ -384,7 +409,9 @@ export const ComboBoxMultiSelect = ({
     }
   };
 
-  const classes = ['ds-combobox', disabled ? 'is-disabled' : '', className].filter(Boolean).join(' ');
+  const classes = ['ds-combobox', `ds-combobox--${size}`, disabled ? 'is-disabled' : '', className]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div ref={rootRef} className={classes}>

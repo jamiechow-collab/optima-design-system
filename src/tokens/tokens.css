@@ -42,6 +42,7 @@
 
   /* Typography — src/tokens/typography.js (line-heights reuse --spacing-*) */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -78,7 +79,7 @@
   --color-core-bg-secondary: #FFFFFF;
   --color-core-bg-secondary-hover: #F9F8F6;
   --color-core-bg-secondary-selected: #EDE9E3;
-  --color-core-bg-secondary-selected-hover: #383838;
+  --color-core-bg-secondary-selected-hover: #E5DED5;
   --color-core-bg-secondary-disabled: #EBEBEB;
   --color-core-bg-tertiary: #EBEBEB;
   --color-core-bg-tertiary-hover: #D1D1D1;
@@ -98,7 +99,7 @@
   --color-alert-message-selected: #9ED9EE;
   --color-alert-message-selected-hover: #67BCDD;
   --color-alert-message-background: #DCF0F7;
-  --color-alert-positive: #519E42;
+  --color-alert-positive: #448537;
   --color-alert-positive-stressed: #35692B;
   --color-alert-positive-selected: #B7DEB0;
   --color-alert-positive-selected-hover: #9AD090;

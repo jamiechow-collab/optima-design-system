@@ -1,11 +1,11 @@
 import React from 'react';
-import { Sidebar } from './Sidebar';
-import { SidebarNavItem } from './SidebarNavItem';
-import { SidebarActionButton } from './SidebarActionButton';
+import { Sidenav } from './Sidenav';
+import { SidenavNavItem } from './SidenavNavItem';
+import { SidenavActionButton } from './SidenavActionButton';
 import { Icon } from '../Icon/Icon';
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Presentational helpers for Sidebar.mdx — replicate the Figma spec cards.
+//  Presentational helpers for Sidenav.mdx — replicate the Figma spec cards.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const card: React.CSSProperties = {
@@ -48,19 +48,20 @@ const APLogo = () => (
 );
 
 export const AnatomyExample = () => (
-  <div style={{ ...card, height: 480, padding: 0, overflow: 'hidden' }}>
-    <Sidebar
+  <div style={{ ...card, height: 640, padding: 0, overflow: 'hidden' }}>
+    <Sidenav
       logo={<APLogo />}
       actionButton={
-        <SidebarActionButton aria-label="Create new" icon={<Icon name="plus" />} />
+        <SidenavActionButton aria-label="Create new" icon={<Icon name="plus" />} />
       }
       footer={<MenuIcon />}
     >
-      <SidebarNavItem href="#" icon={<Icon name="home" />} label="Home" active />
-      <SidebarNavItem href="#" icon={<Icon name="trumpet" />} label="Campaign" />
-      <SidebarNavItem href="#" icon={<Icon name="vertical-bar-card" />} label="Report" />
-      <SidebarNavItem href="#" icon={<Icon name="connect" />} label="Integration" />
-    </Sidebar>
+      <SidenavNavItem href="#" icon={<Icon name="home" />} label="Home" active />
+      <SidenavNavItem href="#" icon={<Icon name="trumpet" />} label="Campaigns" />
+      <SidenavNavItem href="#" icon={<Icon name="vertical-bar-card" />} label="Reports" />
+      <SidenavNavItem href="#" icon={<Icon name="grid-3" />} label="Items" />
+      <SidenavNavItem href="#" icon={<Icon name="connect" />} label="Integration" />
+    </Sidenav>
   </div>
 );
 
@@ -75,7 +76,7 @@ const NAV_ITEM_STATES: { name: string; cls?: string; active?: boolean }[] = [
 export const NavItemStatesExample = () => (
   <div style={{ ...card, alignItems: 'center' }}>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-      <SidebarActionButton aria-label="Create new" icon={<Icon name="plus" />} />
+      <SidenavActionButton aria-label="Create new" icon={<Icon name="plus" />} />
       <span style={exampleLabel}>Key</span>
     </div>
     {NAV_ITEM_STATES.map((state) => (
@@ -83,7 +84,7 @@ export const NavItemStatesExample = () => (
         key={state.name}
         style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}
       >
-        <SidebarNavItem
+        <SidenavNavItem
           href="#"
           icon={<Icon name="home" />}
           label="Label"

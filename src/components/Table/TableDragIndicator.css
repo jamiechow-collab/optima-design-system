@@ -1,0 +1,32 @@
+/* ─────────────────────────────────────────────
+   Table drag indicator — design tokens: src/tokens/colors.js, tokens.css
+   Floating chip shown while long-press-dragging a header to reorder columns
+   (Figma "Behaviour - Re-order column", node 2103-6654). Positioned via
+   `left`/`top` in fixed coordinates, nudged past the cursor so it doesn't sit
+   directly under it. bg core-bg/secondary #FFFFFF, radius-sm, shadow-md
+   (two-layer drop shadow), label sm/semibold.
+   ───────────────────────────────────────────── */
+
+.ds-table-drag-indicator {
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 12px);
+  background: var(--color-core-bg-secondary, #ffffff); /* core-bg/secondary */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  box-shadow:
+    0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1); /* shadow-md */
+  pointer-events: none;
+  transform: translate(12px, 12px);
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-table-drag-indicator__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+}

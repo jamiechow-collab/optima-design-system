@@ -1,0 +1,171 @@
+/* ─────────────────────────────────────────────
+   Table-column-header — design tokens: src/tokens/colors.js, spacing.js
+   sm 48px / md 56px height, bg beige-bg-primary #F9F8F6
+   border-bottom border-layout #D1D1D1 (1px, shared with cell/filter rows)
+   Text sm/regular text-primary #050505 · label-group gap spacing-lg (16px)
+   Label and control (sort chevron + "more options" kebab) sit at opposite
+   edges (Figma node 2113-8602); right-aligned columns mirror this — control
+   on the left, label on the right (Figma nodes 2113-16013 / 2113-16014).
+   The sort chevron is hidden until header hover, or shown solid once a sort
+   is active on that column. The menu control kebab is static — always
+   visible whenever showMenuControl is true, not tied to hover. Control gap
+   10px (one-off value from Figma, not a token).
+   Resize handle: always-visible 2x14px bar on the trailing edge (full-height
+   hit area for an easier drag target), border-layout #D1D1D1 by default,
+   beige-bg-primary-selected #D2C6B7 on hover/active (existing "active drag" token)
+   ───────────────────────────────────────────── */
+
+.ds-table-header {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  background: var(--color-beige-bg-primary, #f9f8f6); /* beige-bg/primary */
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-table-header--sm {
+  height: 48px;
+}
+
+.ds-table-header--md {
+  height: 56px;
+}
+
+.ds-table-header__inner {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 0 var(--spacing-lg, 16px); /* spacing/lg */
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-table-header__inner[role='button'] {
+  cursor: pointer;
+}
+
+/* Reorderable — without this, a real mouse press-and-drag over the label
+   text starts a native text selection instead of our custom drag, since
+   nothing else in this component prevents the browser's default drag
+   behaviour (see Table.tsx's long-press handler, which can't safely call
+   preventDefault on pointerdown without also breaking the sort click). */
+.ds-table-header--reorderable {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Sortable and/or has a menu control — pin the label and control group to
+   opposite edges instead of packing them together */
+.ds-table-header__inner--has-control {
+  justify-content: space-between;
+}
+
+.ds-table-header--right .ds-table-header__inner {
+  justify-content: flex-end;
+}
+
+.ds-table-header--right .ds-table-header__inner--has-control {
+  justify-content: space-between;
+}
+
+/* Right-aligned mirrors the layout: control group on the left, label on the
+   right */
+.ds-table-header--right .ds-table-header__control-group {
+  order: -1;
+}
+
+/* ...and mirrors the icon order within the group too — the menu kebab leads,
+   with the sort chevron trailing right next to the label (Figma node
+   2138-22143), instead of reusing the left-aligned chevron-then-menu order */
+.ds-table-header--right .ds-table-header__sort-icon {
+  order: 1;
+}
+
+.ds-table-header--right .ds-table-header__menu-button {
+  order: 0;
+}
+
+.ds-table-header__label-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg, 16px); /* spacing/lg */
+  min-width: 0;
+}
+
+.ds-table-header__leading-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-table-header__label {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-table-header__control-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-table-header__sort-icon {
+  flex-shrink: 0;
+  opacity: 0;
+  color: var(--color-text-primary, #050505);
+  transition: opacity 0.1s ease;
+}
+
+.ds-table-header:hover .ds-table-header__sort-icon,
+.ds-table-header__sort-icon.is-active {
+  opacity: 1;
+}
+
+.ds-table-header__menu-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  cursor: pointer;
+}
+
+.ds-table-header__resize-handle {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.ds-table-header__resize-handle::before {
+  content: '';
+  width: 2px;
+  height: 14px;
+  border-radius: 1px;
+  background: var(--color-border-layout, #d1d1d1); /* border/layout */
+}
+
+.ds-table-header__resize-handle:hover::before,
+.ds-table-header__resize-handle:active::before {
+  background: var(--color-beige-bg-primary-selected, #d2c6b7); /* beige-bg/primary-selected */
+}

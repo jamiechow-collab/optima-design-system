@@ -89,7 +89,7 @@
   font-family: inherit;
   font-size: var(--font-size-sm, 14px);
   line-height: var(--spacing-xl, 20px);
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-regular, 400);
   color: var(--color-text-primary, #050505); /* text/primary */
   resize: vertical;
   transition: border-color 0.15s ease, border-width 0.15s ease, box-shadow 0.15s ease,
@@ -109,7 +109,7 @@
 
 .ds-textarea__input::placeholder {
   color: var(--color-text-placeholder, #858585); /* text/placeholder */
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-regular, 400);
 }
 
 /* ── Hover / Active / Focused — border darkens, focus adds a ring ── */

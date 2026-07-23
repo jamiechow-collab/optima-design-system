@@ -1,7 +1,7 @@
 import React from 'react';
-import './SidebarNavItem.css';
+import './SidenavNavItem.css';
 
-export interface SidebarNavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface SidenavNavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Icon shown in the 40×40 box — pass an <Icon /> (defaults to its 20px "md" size) */
   icon: React.ReactNode;
   /** Caption shown under the icon */
@@ -10,21 +10,21 @@ export interface SidebarNavItemProps extends React.AnchorHTMLAttributes<HTMLAnch
   active?: boolean;
 }
 
-export const SidebarNavItem = ({
+export const SidenavNavItem = ({
   icon,
   label,
   active = false,
   className,
   ...rest
-}: SidebarNavItemProps) => {
-  const classes = ['ds-sidebar-nav-item', active ? 'is-active' : '', className]
+}: SidenavNavItemProps) => {
+  const classes = ['ds-sidenav-nav-item', active ? 'is-active' : '', className]
     .filter(Boolean)
     .join(' ');
 
   return (
     <a className={classes} aria-current={active ? 'page' : undefined} {...rest}>
-      <span className="ds-sidebar-nav-item__icon">{icon}</span>
-      <span className="ds-sidebar-nav-item__label">{label}</span>
+      <span className="ds-sidenav-nav-item__icon">{icon}</span>
+      <span className="ds-sidenav-nav-item__label">{label}</span>
     </a>
   );
 };

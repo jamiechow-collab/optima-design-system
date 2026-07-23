@@ -9,7 +9,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
   /** sm 20px · md 24px · lg 28px tall */
   size?: BadgeSize;
-  /** Optional trailing icon (e.g. dot, close, arrow) — 12px */
+  /** Optional leading icon (e.g. dot) — 12px on sm/md, 16px on lg */
+  leadingIcon?: React.ReactNode;
+  /** Optional trailing icon (e.g. dot, close, arrow) — 12px on sm/md, 16px on lg */
   icon?: React.ReactNode;
   children: React.ReactNode;
 }
@@ -17,6 +19,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 export const Badge = ({
   variant = 'info',
   size = 'sm',
+  leadingIcon,
   icon,
   children,
   className,
@@ -35,8 +38,9 @@ export const Badge = ({
   return (
     <span className={classes} {...rest}>
       <span className="ds-badge__content">
+        {leadingIcon && <span className="ds-badge__icon ds-badge__icon--leading">{leadingIcon}</span>}
         <span className="ds-badge__label">{children}</span>
-        {icon && <span className="ds-badge__icon">{icon}</span>}
+        {icon && <span className="ds-badge__icon ds-badge__icon--trailing">{icon}</span>}
       </span>
     </span>
   );

@@ -3,14 +3,14 @@
    Container: auto-width, radius/lg 12, shadow-xl 0px 24px 48px -12px rgba(16,24,40,0.18)
    Content padding 8px (spacing/sm)
    Header: prev/next chevron icon buttons (Button ghost iconOnly), month/year
-   pills (h40, px8 py12, radius/md 8, Heading/regular 20/24)
+   pills (auto height, p8, radius/md 8, Label/medium 14/20)
    Grid: week-number column (border-right border/layout #D1D1D1) + dates column,
    0 gap between them and between week rows — cells sit flush edge-to-edge
-   Weekday/week-no labels: Label/medium 14/20 text/placeholder #858585
-   Day cell: 44x44 circle (radius/full). Default text/primary #050505.
+   Weekday/week-no labels: Caption/medium 12/16 text/placeholder #858585
+   Day cell: 32x32 circle (radius/full). Default text/primary #050505.
    Hover/selected/range-band bg core-bg/secondary-selected #EDE9E3. Active
    (mousedown) bg core-bg/secondary-hover #F9F8F6. Range endpoints: filled
-   circle core-bg/primary #050505, text/invert white. Today: 6px dot under
+   circle core-bg/primary #050505, text/invert white. Today: 4px dot under
    the number. Muted (disabled / outside month): text/disabled #9E9E9E.
    Footer: padding 12px (spacing/md), border-top border/layout, Cancel
    (secondary) + Apply (primary), each flex:1
@@ -57,14 +57,13 @@
 .ds-calendar__pill {
   display: flex;
   align-items: center;
-  height: var(--spacing-section-sm, 40px);
-  padding: var(--spacing-md, 12px) var(--spacing-sm, 8px);
+  padding: var(--spacing-sm, 8px);
   border: none;
   border-radius: var(--radius-md, 8px); /* radius/md */
   background: transparent;
   font-family: inherit;
-  font-size: var(--font-size-lg, 20px);
-  line-height: var(--spacing-xxl, 24px);
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
   font-weight: var(--font-weight-medium, 500);
   color: var(--color-text-primary, #050505); /* text/primary */
   cursor: pointer;
@@ -102,7 +101,6 @@
 .ds-calendar__grid {
   display: flex;
   gap: 0;
-  padding-top: var(--spacing-sm, 8px);
 }
 
 .ds-calendar__week-numbers {
@@ -117,16 +115,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  font-size: var(--font-size-sm, 14px);
-  line-height: var(--spacing-xl, 20px);
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
   font-weight: var(--font-weight-medium, 500);
   color: var(--color-text-placeholder, #858585); /* text/placeholder */
-}
-
-.ds-calendar__week-number-label {
-  height: 36px;
 }
 
 .ds-calendar__dates {
@@ -146,9 +140,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
-  font-size: var(--font-size-sm, 14px);
-  line-height: var(--spacing-xl, 20px);
+  height: 32px;
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
   font-weight: var(--font-weight-medium, 500);
   color: var(--color-text-placeholder, #858585); /* text/placeholder */
 }
@@ -160,8 +154,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   padding: var(--spacing-none, 0);
   border: none;
   border-radius: var(--radius-full, 100px); /* radius/full */
@@ -172,8 +166,8 @@
 }
 
 .ds-calendar__day-number {
-  font-size: var(--font-size-sm, 14px);
-  line-height: var(--spacing-xl, 20px);
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
   font-weight: var(--font-weight-medium, 500);
   color: var(--color-text-primary, #050505); /* text/primary */
 }
@@ -208,8 +202,8 @@
   bottom: 3px;
   left: 50%;
   transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
+  width: 4px;
+  height: 4px;
   border-radius: var(--radius-full, 100px);
   background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
 }
@@ -258,8 +252,8 @@
   position: absolute;
   inset: 0;
   margin: auto;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-full, 100px);
   background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
 }

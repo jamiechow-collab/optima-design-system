@@ -3,9 +3,12 @@ import { Icon } from '../Icon/Icon';
 import './TextInput.css';
 
 export type TextInputValidation = 'default' | 'error' | 'success';
+export type TextInputSize = 'sm' | 'md';
 
 export interface TextInputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+  /** Field height — sm (32px) or md (44px, default) */
+  size?: TextInputSize;
   /** Text shown above the field */
   label?: React.ReactNode;
   /** Shows an info icon next to the label — pass `tooltip` for its accessible name */
@@ -31,6 +34,7 @@ export interface TextInputProps
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
+      size = 'md',
       label,
       showTooltip = false,
       tooltip,
@@ -88,6 +92,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
     const classes = [
       'ds-textinput',
+      `ds-textinput--${size}`,
       validation !== 'default' ? `ds-textinput--${validation}` : '',
       disabled ? 'is-disabled' : '',
       readOnly ? 'is-readonly' : '',

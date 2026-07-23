@@ -534,9 +534,19 @@ const ChevronUpIcon = ({ size = 24, ...rest }: IconSvgProps) => (
   </svg>
 );
 
-const ArrowAdjustIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+const ArrowAdjustVerticalIcon = ({ size = 24, ...rest }: IconSvgProps) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
     <path d="M15.3 18.075L12.8625 20.475V3.48748L15.3 5.88748C15.45 6.03748 15.675 6.11248 15.9 6.11248C16.125 6.11248 16.35 6.03748 16.5 5.84998C16.8375 5.51248 16.8375 4.98748 16.5 4.64998L12.6 0.899976C12.2625 0.562476 11.7375 0.562476 11.4 0.899976L7.53755 4.72498C7.20005 5.06248 7.20005 5.58748 7.53755 5.92498C7.87505 6.26248 8.40005 6.26248 8.73755 5.92498L11.175 3.52498V20.475L8.73755 18.075C8.40005 17.7375 7.87505 17.7375 7.53755 18.075C7.20005 18.4125 7.20005 18.9375 7.53755 19.275L11.4 23.1C11.55 23.25 11.775 23.325 12 23.325C12.225 23.325 12.4125 23.25 12.6 23.1L16.4625 19.275C16.8 18.9375 16.8 18.4125 16.4625 18.075C16.1625 17.775 15.6 17.775 15.3 18.075Z" fill="currentColor"/>
+  </svg>
+);
+
+const ArrowAdjustHorizontalIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path
+      d="M15.3 18.075L12.8625 20.475V3.48748L15.3 5.88748C15.45 6.03748 15.675 6.11248 15.9 6.11248C16.125 6.11248 16.35 6.03748 16.5 5.84998C16.8375 5.51248 16.8375 4.98748 16.5 4.64998L12.6 0.899976C12.2625 0.562476 11.7375 0.562476 11.4 0.899976L7.53755 4.72498C7.20005 5.06248 7.20005 5.58748 7.53755 5.92498C7.87505 6.26248 8.40005 6.26248 8.73755 5.92498L11.175 3.52498V20.475L8.73755 18.075C8.40005 17.7375 7.87505 17.7375 7.53755 18.075C7.20005 18.4125 7.20005 18.9375 7.53755 19.275L11.4 23.1C11.55 23.25 11.775 23.325 12 23.325C12.225 23.325 12.4125 23.25 12.6 23.1L16.4625 19.275C16.8 18.9375 16.8 18.4125 16.4625 18.075C16.1625 17.775 15.6 17.775 15.3 18.075Z"
+      fill="currentColor"
+      transform="rotate(90 12 12)"
+    />
   </svg>
 );
 
@@ -1342,7 +1352,62 @@ const FiIcon = ({ size = 24, ...rest }: IconSvgProps) => (
   </svg>
 );
 
-export type BasicIconName = 'archive' | 'download' | 'code' | 'ban' | 'link' | 'flask' | 'brackets' | 'world' | 'graduate' | 'plus-with-circle' | 'minus-with-circle' | 'checkmark-with-circle' | 'lightning' | 'user' | 'user-settings' | 'heart-filled' | 'heart-empty' | 'list-1' | 'list-2' | 'barrier' | 'bookmark' | 'list-3' | 'target-1' | 'invoice' | 'files' | 'cloud-close' | 'location-pin' | 'cloud-check' | 'cloud-upload' | 'folder-timer' | 'more-info' | 'more' | 'hand' | 'close' | 'minus' | 'plus' | 'checkmark' | 'sort' | 'switch' | 'shield' | 'shield-checkmark' | 'layers-1' | 'layers-2' | 'funnel' | 'hashtag' | 'target-2' | 'lock' | 'email' | 'phone-forward' | 'paperclip' | 'money-bag' | 'pie-chart' | 'stats-up' | 'like' | 'cube' | 'delivery-truck-4' | 'plane' | 'stats-down' | 'license' | 'report-sales' | 'trumpet' | 'balance' | 'investment' | 'revenue' | 'customer' | 'tag' | 'pie-chart-dollar' | 'group' | 'cup' | 'gift' | 'briefcase' | 'analytic' | 'trophy' | 'flow-chart' | 'pie-chart-1' | 'pulse' | 'temperature' | 'wheelchair' | 'chat' | 'report-heartbeat' | 'crown' | 'eyeglass' | 'arrow-left' | 'arrow-right' | 'chevron-right' | 'chevron-left' | 'chevron-down' | 'chevron-up' | 'arrow-adjust' | 'arrow-collapse' | 'arrow-expand' | 'arrow-up' | 'arrow-down' | 'arrow-top-right' | 'dot' | 'arrow-bottom-right' | 'headphone' | 'quote-close' | 'font' | 'sort-dsc' | 'quote-open' | 'sort-asc' | 'line-spacing' | 'highlight' | 'text' | 'capital-letter' | 'idea' | 'font-height' | 'move' | 'pen' | 'connect-2' | 'book-font' | 'vertical-line' | 'layout-1' | 'layout-2' | 'table' | 'grid-add' | 'grid-2' | 'hide-eye' | 'show-eye' | 'rows' | 'columns' | 'grid-1' | 'layout-3' | 'chat-1' | 'connect' | 'home' | 'at' | 'alarm-clock' | 'clock' | 'line-dotted' | 'hourglass' | 'watch' | 'alarm-on' | 'placeholder' | 'alarm-mute' | 'setting-cog' | 'alarm' | 'alarm-nooze' | 'alarm-timer' | 'display-tablet' | 'calender' | 'wifi' | 'trash-can' | 'bluetooth-filled' | 'bar-chart-1' | 'chart-up' | 'display-desktop' | 'display-mobile' | 'bar-chart-2' | 'bar-chart-3' | 'chart-down' | 'pyramid' | 'vertical-bar-card' | 'bar-search' | 'horizontal-bar-card' | 'pie-chart-2' | 'spinner' | 'signal' | 'empty-file' | 'reload' | 'file-exclamation' | 'search' | 'mic' | 'warning' | 'info-with-circle' | 'question-with-circle';
+const DraggerIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M7.24714 9.11538C7.24714 9.67642 7.02138 10.2145 6.61951 10.6112C6.21765 11.0079 5.6726 11.2308 5.10428 11.2308C4.53596 11.2308 3.99092 11.0079 3.58905 10.6112C3.18719 10.2145 2.96143 9.67642 2.96143 9.11538C2.96143 8.55435 3.18719 8.01629 3.58905 7.61958C3.99092 7.22287 4.53596 7 5.10428 7C5.6726 7 6.21765 7.22287 6.61951 7.61958C7.02138 8.01629 7.24714 8.55435 7.24714 9.11538ZM14.1043 9.11538C14.1043 9.67642 13.8785 10.2145 13.4767 10.6112C13.0748 11.0079 12.5297 11.2308 11.9614 11.2308C11.3931 11.2308 10.8481 11.0079 10.4462 10.6112C10.0443 10.2145 9.81857 9.67642 9.81857 9.11538C9.81857 8.55435 10.0443 8.01629 10.4462 7.61958C10.8481 7.22287 11.3931 7 11.9614 7C12.5297 7 13.0748 7.22287 13.4767 7.61958C13.8785 8.01629 14.1043 8.55435 14.1043 9.11538ZM18.8186 11.2308C19.3869 11.2308 19.9319 11.0079 20.3338 10.6112C20.7357 10.2145 20.9614 9.67642 20.9614 9.11538C20.9614 8.55435 20.7357 8.01629 20.3338 7.61958C19.9319 7.22287 19.3869 7 18.8186 7C18.2502 7 17.7052 7.22287 17.3033 7.61958C16.9015 8.01629 16.6757 8.55435 16.6757 9.11538C16.6757 9.67642 16.9015 10.2145 17.3033 10.6112C17.7052 11.0079 18.2502 11.2308 18.8186 11.2308ZM7.24714 15.8846C7.24714 16.4457 7.02138 16.9837 6.61951 17.3804C6.21765 17.7771 5.6726 18 5.10428 18C4.53596 18 3.99092 17.7771 3.58905 17.3804C3.18719 16.9837 2.96143 16.4457 2.96143 15.8846C2.96143 15.3236 3.18719 14.7855 3.58905 14.3888C3.99092 13.9921 4.53596 13.7692 5.10428 13.7692C5.6726 13.7692 6.21765 13.9921 6.61951 14.3888C7.02138 14.7855 7.24714 15.3236 7.24714 15.8846ZM11.9614 18C12.2428 18 12.5215 17.9453 12.7815 17.839C13.0414 17.7327 13.2777 17.5768 13.4767 17.3804C13.6756 17.184 13.8335 16.9508 13.9412 16.6941C14.0489 16.4375 14.1043 16.1624 14.1043 15.8846C14.1043 15.6068 14.0489 15.3317 13.9412 15.0751C13.8335 14.8184 13.6756 14.5852 13.4767 14.3888C13.2777 14.1924 13.0414 14.0366 12.7815 13.9303C12.5215 13.8239 12.2428 13.7692 11.9614 13.7692C11.3931 13.7692 10.8481 13.9921 10.4462 14.3888C10.0443 14.7855 9.81857 15.3236 9.81857 15.8846C9.81857 16.4457 10.0443 16.9837 10.4462 17.3804C10.8481 17.7771 11.3931 18 11.9614 18ZM20.9614 15.8846C20.9614 16.4457 20.7357 16.9837 20.3338 17.3804C19.9319 17.7771 19.3869 18 18.8186 18C18.2502 18 17.7052 17.7771 17.3033 17.3804C16.9015 16.9837 16.6757 16.4457 16.6757 15.8846C16.6757 15.3236 16.9015 14.7855 17.3033 14.3888C17.7052 13.9921 18.2502 13.7692 18.8186 13.7692C19.3869 13.7692 19.9319 13.9921 20.3338 14.3888C20.7357 14.7855 20.9614 15.3236 20.9614 15.8846Z" fill="currentColor"/>
+  </svg>
+);
+
+const GridGroupIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.01847 13.371C9.37125 13.371 10.4538 14.4536 10.4538 15.8064V20.7147C10.4536 22.0673 9.33249 23.15 8.01847 23.15H3.11011C1.75747 23.15 0.674976 22.0287 0.674805 20.7147V15.8064C0.674805 14.4536 1.79601 13.3711 3.11011 13.371H8.01847ZM3.11011 15.1103C2.72364 15.1104 2.41409 15.4199 2.41409 15.8064V20.7147C2.41426 21.101 2.72374 21.4107 3.11011 21.4107H8.01847C8.40487 21.4107 8.71432 21.1011 8.71448 20.7147V15.8064C8.71448 15.4198 8.40497 15.1103 8.01847 15.1103H3.11011Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M20.8895 13.1385C22.2036 13.1385 23.3248 14.2211 23.3248 15.5738V20.4822C23.3248 21.835 22.2036 22.9175 20.8895 22.9175H15.9811C14.6284 22.9175 13.5458 21.7963 13.5458 20.4822V15.5738C13.5459 14.2211 14.667 13.1385 15.9811 13.1385H20.8895ZM15.9811 14.8778C15.5946 14.8778 15.2851 15.1873 15.2851 15.5738V20.4822C15.2851 20.8687 15.5946 21.1782 15.9811 21.1782H20.8895C21.276 21.1782 21.5855 20.8687 21.5855 20.4822V15.5738C21.5855 15.1873 21.276 14.8778 20.8895 14.8778H15.9811Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M8.01847 1.04052C9.37115 1.04052 10.4536 2.12318 10.4538 3.47583V8.38418C10.4538 9.73696 9.33259 10.8195 8.01847 10.8195H3.11011C1.75737 10.8194 0.674805 9.69829 0.674805 8.38418V3.47583C0.674965 2.12321 1.79611 1.04056 3.11011 1.04052H8.01847ZM3.11011 2.77981C2.72373 2.77985 2.41425 3.08948 2.41409 3.47583V8.38418C2.41409 8.77067 2.72364 9.08016 3.11011 9.0802H8.01847C8.40497 9.0802 8.71448 8.77069 8.71448 8.38418V3.47583C8.71433 3.08945 8.40488 2.77981 8.01847 2.77981H3.11011Z" fill="currentColor"/>
+    <path d="M16.1744 0.654014C16.5159 0.398383 17.0009 0.468262 17.2569 0.809523C17.5126 1.15101 17.4427 1.636 17.1014 1.89205L15.8649 2.81906H18.957C21.0915 2.81907 22.822 4.5496 22.822 6.68415V10.5492H21.276V6.68415C21.2759 5.40345 20.2377 4.3651 18.957 4.3651H15.8649L17.1014 5.29212C17.4428 5.54812 17.5126 6.03313 17.2569 6.37464C17.0009 6.71602 16.5159 6.78588 16.1744 6.53015L13.0823 4.2111C12.8877 4.06511 12.7728 3.83536 12.7728 3.59208C12.7729 3.34883 12.8877 3.11902 13.0823 2.97306L16.1744 0.654014Z" fill="currentColor"/>
+  </svg>
+);
+
+const Grid3Icon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <circle cx="5" cy="5" r="2.15" fill="currentColor"/>
+    <circle cx="12" cy="5" r="2.15" fill="currentColor"/>
+    <circle cx="19" cy="5" r="2.15" fill="currentColor"/>
+    <circle cx="5" cy="12" r="2.15" fill="currentColor"/>
+    <circle cx="12" cy="12" r="2.15" fill="currentColor"/>
+    <circle cx="19" cy="12" r="2.15" fill="currentColor"/>
+    <circle cx="5" cy="19" r="2.15" fill="currentColor"/>
+    <circle cx="12" cy="19" r="2.15" fill="currentColor"/>
+    <circle cx="19" cy="19" r="2.15" fill="currentColor"/>
+  </svg>
+);
+
+const FilterIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M3 6.10526C3 5.81213 3.10536 5.531 3.29289 5.32372C3.48043 5.11645 3.73478 5 4 5H20C20.2652 5 20.5196 5.11645 20.7071 5.32372C20.8946 5.531 21 5.81213 21 6.10526C21 6.3984 20.8946 6.67953 20.7071 6.8868C20.5196 7.09408 20.2652 7.21053 20 7.21053H4C3.73478 7.21053 3.48043 7.09408 3.29289 6.8868C3.10536 6.67953 3 6.3984 3 6.10526ZM6.556 12C6.556 11.7069 6.66136 11.4257 6.84889 11.2185C7.03643 11.0112 7.29078 10.8947 7.556 10.8947H16.444C16.7092 10.8947 16.9636 11.0112 17.1511 11.2185C17.3386 11.4257 17.444 11.7069 17.444 12C17.444 12.2931 17.3386 12.5743 17.1511 12.7815C16.9636 12.9888 16.7092 13.1053 16.444 13.1053H7.556C7.29078 13.1053 7.03643 12.9888 6.84889 12.7815C6.66136 12.5743 6.556 12.2931 6.556 12ZM10.2227 16.7895C9.95745 16.7895 9.7031 16.9059 9.51556 17.1132C9.32802 17.3205 9.22267 17.6016 9.22267 17.8947C9.22267 18.1879 9.32802 18.469 9.51556 18.6763C9.7031 18.8836 9.95745 19 10.2227 19H13.7773C14.0426 19 14.2969 18.8836 14.4844 18.6763C14.672 18.469 14.7773 18.1879 14.7773 17.8947C14.7773 17.6016 14.672 17.3205 14.4844 17.1132C14.2969 16.9059 14.0426 16.7895 13.7773 16.7895H10.2227Z" fill="currentColor"/>
+  </svg>
+);
+
+const JumpToFrontIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M15.3545 2.49223C15.8481 1.99876 16.6265 1.99876 17.1201 2.49223C17.6128 2.985 17.6129 3.76013 17.1221 4.25395L9.52246 11.9981L17.1582 19.7422L17.2441 19.8379C17.6491 20.332 17.6209 21.045 17.1582 21.5079L17.1299 21.5352L17.0967 21.5577C16.8808 21.7016 16.5987 21.8868 16.2373 21.8868C15.9391 21.8867 15.5977 21.7888 15.3525 21.5049L6.87695 12.8799C6.38739 12.3869 6.38688 11.6119 6.87695 11.1192L15.3525 2.49418L15.3545 2.49223Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M4.5 2.59965C4.99693 2.59965 5.40019 3.00315 5.40039 3.50004V20.5C5.40018 20.9969 4.99693 21.3995 4.5 21.3995C4.00307 21.3995 3.59982 20.9969 3.59961 20.5V3.50004C3.59981 3.00315 4.00307 2.59965 4.5 2.59965Z" fill="currentColor"/>
+  </svg>
+);
+
+const JumpToBackIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M7.24523 2.49217C6.75157 1.9987 5.97326 1.9987 5.47961 2.49217C4.98694 2.98494 4.9868 3.76007 5.47765 4.25389L13.0773 11.998L5.44152 19.7422L5.35558 19.8379C4.95062 20.3319 4.97884 21.0449 5.44152 21.5078L5.46984 21.5351L5.50304 21.5576C5.71896 21.7015 6.00105 21.8867 6.36242 21.8867C6.66062 21.8867 7.00201 21.7887 7.24718 21.5049L15.7228 12.8799C16.2123 12.3868 16.2128 11.6118 15.7228 11.1191L7.24718 2.49412L7.24523 2.49217Z" fill="currentColor"/>
+    <path fillRule="evenodd" clipRule="evenodd" d="M18.0997 2.59959C17.6028 2.59959 17.1995 3.00309 17.1993 3.49998V20.5C17.1995 20.9969 17.6028 21.3994 18.0997 21.3994C18.5966 21.3994 18.9999 20.9969 19.0001 20.5V3.49998C18.9999 3.00309 18.5967 2.59959 18.0997 2.59959Z" fill="currentColor"/>
+  </svg>
+);
+
+const DraggerIndicatorIcon = ({ size = 24, ...rest }: IconSvgProps) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" {...rest}>
+    <path fillRule="evenodd" clipRule="evenodd" d="M12.7146 2.29575C12.525 2.10637 12.268 2 12 2C11.732 2 11.475 2.10637 11.2854 2.29575L8.58861 4.9925C8.40998 5.18421 8.31273 5.43776 8.31735 5.69975C8.32198 5.96174 8.42811 6.21171 8.61339 6.397C8.79868 6.58228 9.04865 6.68841 9.31064 6.69304C9.57263 6.69766 9.82619 6.60041 10.0179 6.42178L10.9887 5.4523V10.9887H5.4523L6.42313 10.0179C6.60725 9.82707 6.70906 9.57157 6.70663 9.30642C6.70421 9.04126 6.59773 8.78767 6.41014 8.60026C6.22255 8.41285 5.96886 8.30661 5.7037 8.30443C5.43855 8.30226 5.18314 8.40431 4.9925 8.58861L2.29575 11.2854C2.10637 11.475 2 11.732 2 12C2 12.268 2.10637 12.525 2.29575 12.7146L4.9925 15.4114C5.08508 15.5107 5.19673 15.5904 5.32078 15.6457C5.44483 15.701 5.57874 15.7307 5.71452 15.7331C5.85031 15.7355 5.98519 15.7105 6.11111 15.6597C6.23703 15.6088 6.35142 15.5331 6.44745 15.4371C6.54348 15.341 6.61918 15.2266 6.67004 15.1007C6.7209 14.9748 6.74588 14.8399 6.74349 14.7041C6.74109 14.5683 6.71137 14.4344 6.6561 14.3104C6.60083 14.1863 6.52113 14.0747 6.42178 13.9821L5.4523 13.0113H10.9887V18.5477L10.0179 17.5769C9.92456 17.4803 9.81293 17.4033 9.68953 17.3504C9.56612 17.2975 9.43341 17.2696 9.29913 17.2685C9.16485 17.2674 9.0317 17.2931 8.90744 17.344C8.78319 17.3949 8.67031 17.47 8.5754 17.565C8.4805 17.66 8.40546 17.773 8.35467 17.8973C8.30388 18.0216 8.27836 18.1548 8.27959 18.289C8.28082 18.4233 8.30877 18.556 8.36183 18.6793C8.41489 18.8027 8.49198 18.9143 8.58861 19.0075L11.2854 21.7042C11.475 21.8936 11.732 22 12 22C12.268 22 12.525 21.8936 12.7146 21.7042L15.4114 19.0075C15.59 18.8158 15.6873 18.5622 15.6826 18.3002C15.678 18.0383 15.5719 17.7883 15.3866 17.603C15.2013 17.4177 14.9514 17.3116 14.6894 17.307C14.4274 17.3023 14.1738 17.3996 13.9821 17.5782L13.0113 18.5477V13.0113H18.5477L17.5769 13.9821C17.4803 14.0754 17.4033 14.1871 17.3504 14.3105C17.2975 14.4339 17.2696 14.5666 17.2685 14.7009C17.2674 14.8351 17.2931 14.9683 17.344 15.0926C17.3949 15.2168 17.47 15.3297 17.565 15.4246C17.66 15.5195 17.773 15.5945 17.8973 15.6453C18.0216 15.6961 18.1548 15.7216 18.289 15.7204C18.4233 15.7192 18.556 15.6912 18.6793 15.6382C18.8027 15.5851 18.9143 15.508 19.0075 15.4114L21.7042 12.7146C21.8936 12.525 22 12.268 22 12C22 11.732 21.8936 11.475 21.7042 11.2854L19.0075 8.58861C18.8158 8.40998 18.5622 8.31273 18.3002 8.31735C18.0383 8.32198 17.7883 8.42811 17.603 8.61339C17.4177 8.79868 17.3116 9.04865 17.307 9.31064C17.3023 9.57263 17.3996 9.82619 17.5782 10.0179L18.5477 10.9887H13.0113V5.4523L13.9821 6.42313C14.0754 6.51967 14.1871 6.59666 14.3105 6.6496C14.4339 6.70254 14.5666 6.73037 14.7009 6.73148C14.8351 6.73258 14.9683 6.70693 15.0926 6.65602C15.2168 6.60512 15.3297 6.52997 15.4246 6.43498C15.5195 6.33998 15.5945 6.22703 15.6453 6.10273C15.6961 5.97842 15.7216 5.84524 15.7204 5.71097C15.7192 5.57669 15.6912 5.44401 15.6382 5.32065C15.5851 5.1973 15.508 5.08574 15.4114 4.9925L12.7146 2.29575Z" fill="currentColor"/>
+  </svg>
+);
+
+export type BasicIconName = 'archive' | 'download' | 'code' | 'ban' | 'link' | 'flask' | 'brackets' | 'world' | 'graduate' | 'plus-with-circle' | 'minus-with-circle' | 'checkmark-with-circle' | 'lightning' | 'user' | 'user-settings' | 'heart-filled' | 'heart-empty' | 'list-1' | 'list-2' | 'barrier' | 'bookmark' | 'list-3' | 'target-1' | 'invoice' | 'files' | 'cloud-close' | 'location-pin' | 'cloud-check' | 'cloud-upload' | 'folder-timer' | 'more-info' | 'more' | 'hand' | 'close' | 'minus' | 'plus' | 'checkmark' | 'sort' | 'switch' | 'shield' | 'shield-checkmark' | 'layers-1' | 'layers-2' | 'funnel' | 'hashtag' | 'target-2' | 'lock' | 'email' | 'phone-forward' | 'paperclip' | 'money-bag' | 'pie-chart' | 'stats-up' | 'like' | 'cube' | 'delivery-truck-4' | 'plane' | 'stats-down' | 'license' | 'report-sales' | 'trumpet' | 'balance' | 'investment' | 'revenue' | 'customer' | 'tag' | 'pie-chart-dollar' | 'group' | 'cup' | 'gift' | 'briefcase' | 'analytic' | 'trophy' | 'flow-chart' | 'pie-chart-1' | 'pulse' | 'temperature' | 'wheelchair' | 'chat' | 'report-heartbeat' | 'crown' | 'eyeglass' | 'arrow-left' | 'arrow-right' | 'chevron-right' | 'chevron-left' | 'chevron-down' | 'chevron-up' | 'arrow-adjust-vertical' | 'arrow-adjust-horizontal' | 'arrow-collapse' | 'arrow-expand' | 'arrow-up' | 'arrow-down' | 'arrow-top-right' | 'dot' | 'arrow-bottom-right' | 'headphone' | 'quote-close' | 'font' | 'sort-dsc' | 'quote-open' | 'sort-asc' | 'line-spacing' | 'highlight' | 'text' | 'capital-letter' | 'idea' | 'font-height' | 'move' | 'pen' | 'connect-2' | 'book-font' | 'vertical-line' | 'layout-1' | 'layout-2' | 'table' | 'grid-add' | 'grid-2' | 'hide-eye' | 'show-eye' | 'rows' | 'columns' | 'grid-1' | 'layout-3' | 'chat-1' | 'connect' | 'home' | 'at' | 'alarm-clock' | 'clock' | 'line-dotted' | 'hourglass' | 'watch' | 'alarm-on' | 'placeholder' | 'alarm-mute' | 'setting-cog' | 'alarm' | 'alarm-nooze' | 'alarm-timer' | 'display-tablet' | 'calender' | 'wifi' | 'trash-can' | 'bluetooth-filled' | 'bar-chart-1' | 'chart-up' | 'display-desktop' | 'display-mobile' | 'bar-chart-2' | 'bar-chart-3' | 'chart-down' | 'pyramid' | 'vertical-bar-card' | 'bar-search' | 'horizontal-bar-card' | 'pie-chart-2' | 'spinner' | 'signal' | 'empty-file' | 'reload' | 'file-exclamation' | 'search' | 'mic' | 'warning' | 'info-with-circle' | 'question-with-circle' | 'dragger' | 'grid-group' | 'grid-3' | 'filter' | 'jump-to-front' | 'jump-to-back' | 'dragger-indicator';
 export type ChannelIconName = 'amazon-filled' | 'android-filled' | 'apple-brand-filled' | 'chrome-filled' | 'discord-filled' | 'dropbox-filled' | 'facebook-messenger-filled' | 'firefox-filled' | 'github-filled' | 'instagram-filled' | 'meta-filled' | 'microsoft-filled' | 'microsoft-teams-filled' | 'pinterest-filled' | 'reddit-filled' | 'skype-filled' | 'slack-filled' | 'snapchat-filled' | 'tiktok-filled' | 'twitter-filled' | 'wechat-filled' | 'youtube-filled';
 export type CountryIconName = 'dk' | 'gb' | 'fr' | 'de' | 'ua' | 'it' | 'se' | 'ch' | 'be' | 'no' | 'fi' | 'us' | 'ca' | 'lr' | 'jm' | 'is' | 'nz' | 'ro' | 'hu' | 'ie' | 'uy' | 'br' | 'lu' | 'md' | 'jp' | 'kr' | 'hk' | 'sg' | 'tw' | 'in' | 'cn' | 'id' | 'vn';
 export type IconName = BasicIconName | ChannelIconName | CountryIconName;
@@ -1436,7 +1501,8 @@ export const BASIC_ICONS: Record<string, React.FC<IconSvgProps>> = {
   'chevron-left': ChevronLeftIcon,
   'chevron-down': ChevronDownIcon,
   'chevron-up': ChevronUpIcon,
-  'arrow-adjust': ArrowAdjustIcon,
+  'arrow-adjust-vertical': ArrowAdjustVerticalIcon,
+  'arrow-adjust-horizontal': ArrowAdjustHorizontalIcon,
   'arrow-collapse': ArrowCollapseIcon,
   'arrow-expand': ArrowExpandIcon,
   'arrow-up': ArrowUpIcon,
@@ -1515,6 +1581,13 @@ export const BASIC_ICONS: Record<string, React.FC<IconSvgProps>> = {
   'warning': WarningIcon,
   'info-with-circle': InfoWithCircleIcon,
   'question-with-circle': QuestionWithCircleIcon,
+  'dragger': DraggerIcon,
+  'grid-group': GridGroupIcon,
+  'grid-3': Grid3Icon,
+  'filter': FilterIcon,
+  'jump-to-front': JumpToFrontIcon,
+  'jump-to-back': JumpToBackIcon,
+  'dragger-indicator': DraggerIndicatorIcon,
 };
 
 export const CHANNEL_ICONS: Record<string, React.FC<IconSvgProps>> = {

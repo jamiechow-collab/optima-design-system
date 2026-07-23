@@ -1,0 +1,45 @@
+/* ─────────────────────────────────────────────
+   Table-pagination — design tokens: src/tokens/colors.js, typography.js
+   Record-range counter ("1 to 20 of 8,618") + first/prev/next/last icon
+   buttons (reuses Button secondary/sm/iconOnly) around a "Page X of Y" label.
+   The whole thing packs together as a single right-aligned cluster — counter
+   leading, controls trailing — rather than spreading counter-left/controls-
+   right across the row. The 38px gap between them is the counter's own
+   trailing padding (one-off value from Figma, not a token), not a flex gap.
+   ───────────────────────────────────────────── */
+
+.ds-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-table-pagination__range {
+  padding-right: 38px;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+}
+
+.ds-table-pagination__range strong {
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.ds-table-pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+}
+
+.ds-table-pagination__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary, #050505); /* text/primary */
+  white-space: nowrap;
+  padding: 0 var(--spacing-sm, 8px);
+}

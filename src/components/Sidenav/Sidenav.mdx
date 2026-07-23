@@ -1,17 +1,17 @@
 import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
-import * as SidebarStories from './Sidebar.stories';
-import { AnatomyExample, NavItemStatesExample } from './SidebarDocHelpers';
+import * as SidenavStories from './Sidenav.stories';
+import { AnatomyExample, NavItemStatesExample } from './SidenavDocHelpers';
 
-<Meta of={SidebarStories} />
+<Meta of={SidenavStories} />
 
-<Title>Sidebar</Title>
+<Title>Sidenav</Title>
 <Subtitle>Main navigation of the application.</Subtitle>
 
-<Canvas of={SidebarStories.Default} />
+<Canvas of={SidenavStories.Default} />
 
 ## Overview
 
-The sidebar is a fixed-width vertical navigation rail — 80px wide, anchored to the side of the
+The sidenav is a fixed-width vertical navigation rail — 80px wide, anchored to the side of the
 screen for the lifetime of the session. It houses the app logo, a primary action, the main
 navigation items, and an optional footer slot (e.g. a settings or collapse trigger).
 
@@ -21,7 +21,7 @@ navigation items, and an optional footer slot (e.g. a settings or collapse trigg
   <AnatomyExample />
 </Unstyled>
 
-A sidebar is made up of:
+A sidenav is made up of:
 
 - A **logo** slot at the top.
 - An optional **action button** (a 40×40 square, e.g. "create new") shown above the nav items.

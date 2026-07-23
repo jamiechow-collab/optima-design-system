@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Menu, MenuItem, MenuDivider, MenuItemProps } from './Menu';
+import { Menu, MenuItem, MenuDivider, MenuItemProps, MenuItemSize } from './Menu';
 import { Icon } from '../Icon/Icon';
 
 const meta: Meta<typeof Menu> = {
@@ -42,6 +42,7 @@ const stateToProps = (state: ItemState): Partial<MenuItemProps> => {
 
 interface PlaygroundArgs {
   state: ItemState;
+  size: MenuItemSize;
   label: string;
   title?: string;
   description?: string;
@@ -56,8 +57,14 @@ const stateArgType = {
   options: ['default', 'hover', 'focused', 'pressed', 'disabled', 'alert', 'alertHover'],
 };
 
+const sizeArgType = {
+  control: 'select' as const,
+  options: ['sm', 'md', 'lg'],
+};
+
 const sharedArgTypes = {
   state: stateArgType,
+  size: sizeArgType,
   label: { control: 'text' as const },
   showLeadingIcon: { control: 'boolean' as const, name: 'leading icon' },
   showTrailingIcon: { control: 'boolean' as const, name: 'trailing icon' },
@@ -67,6 +74,7 @@ const sharedArgTypes = {
 
 const renderPlayground = ({
   state,
+  size,
   label,
   title,
   description,
@@ -77,6 +85,7 @@ const renderPlayground = ({
 }: PlaygroundArgs) => (
   <Menu>
     <MenuItem
+      size={size}
       label={label}
       title={title}
       description={description}
@@ -97,6 +106,7 @@ export const Default: StoryObj<PlaygroundArgs> = {
   argTypes: sharedArgTypes,
   args: {
     state: 'default',
+    size: 'sm',
     label: 'Menu item',
     showLeadingIcon: false,
     showTrailingIcon: false,
@@ -110,6 +120,7 @@ export const WithTitle: StoryObj<PlaygroundArgs> = {
   argTypes: { ...sharedArgTypes, title: { control: 'text' } },
   args: {
     state: 'default',
+    size: 'sm',
     title: 'Title',
     label: 'Label',
     showLeadingIcon: false,
@@ -124,6 +135,7 @@ export const WithDescription: StoryObj<PlaygroundArgs> = {
   argTypes: { ...sharedArgTypes, description: { control: 'text' } },
   args: {
     state: 'default',
+    size: 'sm',
     label: 'Label',
     description: 'Description',
     showLeadingIcon: false,
@@ -136,52 +148,40 @@ export const WithDescription: StoryObj<PlaygroundArgs> = {
 
 // ─────────────────────────────────────────────────────────────────────────────
 //  List-composition examples — illustrate patterns across several items, so
-//  a single-item control set doesn't map cleanly; shown as fixed examples.
+//  a single-item control set doesn't map cleanly; only `size` is exposed, so
+//  the sizes previously shown in their own "Sizes" story can be explored here
+//  on every variant instead.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const WithDividers: StoryObj = {
-  parameters: { controls: { disable: true } },
-  render: () => (
+interface ListArgs {
+  size: MenuItemSize;
+}
+
+export const WithDividers: StoryObj<ListArgs> = {
+  argTypes: { size: sizeArgType },
+  args: { size: 'sm' },
+  render: ({ size }) => (
     <Menu>
-      <MenuItem label="Item 1" />
-      <MenuItem label="Item 2" />
+      <MenuItem size={size} label="Item 1" />
+      <MenuItem size={size} label="Item 2" />
       <MenuDivider />
-      <MenuItem label="Item 3" />
-      <MenuItem label="Item 4" />
+      <MenuItem size={size} label="Item 3" />
+      <MenuItem size={size} label="Item 4" />
       <MenuDivider />
-      <MenuItem label="Item 5" />
+      <MenuItem size={size} label="Item 5" />
     </Menu>
   ),
 };
 
-export const WithAlertItem: StoryObj = {
-  parameters: { controls: { disable: true } },
-  render: () => (
+export const WithAlertItem: StoryObj<ListArgs> = {
+  argTypes: { size: sizeArgType },
+  args: { size: 'sm' },
+  render: ({ size }) => (
     <Menu>
-      <MenuItem label="Duplicate" />
-      <MenuItem label="Rename" />
+      <MenuItem size={size} label="Duplicate" />
+      <MenuItem size={size} label="Rename" />
       <MenuDivider />
-      <MenuItem label="Delete" alert />
+      <MenuItem size={size} label="Delete" alert />
     </Menu>
-  ),
-};
-
-export const Sizes: StoryObj = {
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
-      <Menu>
-        <MenuItem size="sm" label="Small" />
-        <MenuItem size="sm" label="Menu item" />
-      </Menu>
-      <Menu>
-        <MenuItem size="md" label="Medium" />
-        <MenuItem size="md" label="Menu item" />
-      </Menu>
-      <Menu>
-        <MenuItem size="lg" label="Large" />
-        <MenuItem size="lg" label="Menu item" />
-      </Menu>
-    </div>
   ),
 };

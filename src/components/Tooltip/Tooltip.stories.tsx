@@ -62,7 +62,7 @@ export const WithTitle: StoryObj<WithTitleArgs> = {
         variant={variant}
         placement={placement}
         title="Brief description of a term"
-        description="More detail about what this means."
+        description="More detail about what this means, long enough to show how it wraps within the 200px maximum width."
       >
         <Button variant="secondary" iconOnly aria-label="Download">
           <Icon name="download" />

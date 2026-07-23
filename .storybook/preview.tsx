@@ -75,7 +75,7 @@ const preview: Preview = {
             'Pagination',
             'Progress bar',
             'Radio Button',
-            'Sidebar',
+            'Sidenav',
             'Sliders',
             'Spinners',
             'Tabs',
@@ -85,6 +85,16 @@ const preview: Preview = {
             'Toggle',
             'Tooltips',
             'Toggletips',
+          ],
+          'Data Visualisation', [
+            'Bar Chart',
+            'Line Chart',
+            'Star Review',
+          ],
+          'Pattern', [
+            'Table', [
+              'Default', 'Selectable', 'Expandable', 'Medium',
+            ],
           ],
         ],
       },

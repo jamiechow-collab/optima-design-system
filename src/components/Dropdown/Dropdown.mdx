@@ -1,6 +1,11 @@
 import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
 import * as DropdownStories from './Dropdown.stories';
-import { AnatomyExample, TypesExample, StatesExample } from './DropdownDocHelpers';
+import {
+  AnatomyExample,
+  TypesExample,
+  SizeExample,
+  StatesExample,
+} from './DropdownDocHelpers';
 
 <Meta of={DropdownStories} />
 
@@ -52,6 +57,14 @@ Once a selection is made, a dismiss ("x") icon appears to clear it back to empty
 **Combo Box (multi-select)** — like the single-select Combo Box, but each selection appears as a
 tag inside the field, and multiple options can be selected at once. A dismiss icon clears every
 selection; each tag also has its own remove icon.
+
+## Size
+
+There are two sizes: Small (sm), and Medium (md, default).
+
+<Unstyled>
+  <SizeExample />
+</Unstyled>
 
 ## States
 

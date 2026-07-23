@@ -203,7 +203,7 @@ const colors = {
       secondary: primitives.beige[20],
       secondaryHover: primitives.beige[50],
       secondarySelected: primitives.beige[200],
-      secondarySelectedHover: primitives.black[700],
+      secondarySelectedHover: primitives.beige[300],
       secondaryDisabled: primitives.black[50],
 
       tertiary: primitives.black[50],
@@ -234,7 +234,7 @@ const colors = {
       background: primitives.seaBlue[20],
     },
     positive: {
-      color: primitives.green[800],
+      color: primitives.green[900],
       stressed: primitives.green[950],
       selected: primitives.green[50],
       selectedHover: primitives.green[200],

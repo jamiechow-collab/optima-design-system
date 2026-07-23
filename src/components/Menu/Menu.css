@@ -156,8 +156,23 @@
   white-space: nowrap;
   font-size: var(--font-size-xs, 12px);
   line-height: var(--spacing-lg, 16px);
-  font-weight: var(--font-weight-medium, 500);
+  font-weight: var(--font-weight-regular, 400); /* Caption/regular */
   color: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
+
+/* lg steps up a scale from sm/md: label is Heading/medium (16/24/medium)
+   instead of Body/regular, and the title/description caption grows to
+   Body/regular (14/20/regular) instead of Caption/regular. */
+.ds-menu-item--lg .ds-menu-item__label {
+  font-size: var(--font-size-md, 16px);
+  line-height: var(--spacing-xxl, 24px);
+  font-weight: var(--font-weight-medium, 500); /* Heading/medium */
+}
+
+.ds-menu-item--lg .ds-menu-item__caption {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400); /* Body/regular */
 }
 
 /* ── Leading icon / avatar ────────────────────── */

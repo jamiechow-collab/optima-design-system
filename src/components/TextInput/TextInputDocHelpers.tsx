@@ -126,6 +126,33 @@ export const TypesExample = () => (
   </div>
 );
 
+export const SizeExample = () => (
+  <div style={card}>
+    <div style={example}>
+      <span style={exampleLabel}>Small</span>
+      <TextInput
+        size="sm"
+        label="Field title"
+        showTooltip
+        placeholder="placeholder text"
+        helperText="Give tips on filling the field"
+        onChange={() => {}}
+      />
+    </div>
+    <div style={example}>
+      <span style={exampleLabel}>Medium</span>
+      <TextInput
+        size="md"
+        label="Field title"
+        showTooltip
+        placeholder="placeholder text"
+        helperText="Give tips on filling the field"
+        onChange={() => {}}
+      />
+    </div>
+  </div>
+);
+
 const STATES: { name: string; cls?: string; disabled?: boolean; readOnly?: boolean }[] = [
   { name: 'Default' },
   { name: 'Hover', cls: 'is-hover' },

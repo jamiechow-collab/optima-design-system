@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip, TooltipPlacement } from './Tooltip';
+import { TooltipPlacement } from './Tooltip';
 import { Button } from '../Button/Button';
 import { Icon } from '../Icon/Icon';
 
@@ -36,7 +36,7 @@ const exampleLabel: React.CSSProperties = {
 };
 
 export const AnatomyExample = () => (
-  <div style={{ ...card, alignItems: 'center' }}>
+  <div style={{ ...card, alignItems: 'center', gap: 8 /* spacing/sm — gap between trigger and tooltip */ }}>
     <Icon name="info-with-circle" />
     <span className="ds-tooltip ds-tooltip--primary ds-tooltip--label" style={{ position: 'static' }}>
       <span className="ds-tooltip__label">Brief description of a term</span>
@@ -79,26 +79,44 @@ export const VariantsExample = () => (
   </div>
 );
 
+// Static replicas — render the trigger + bubble in the DOM directly (always
+// "open") so the placement/alignment CSS positions the bubble exactly as the
+// real component would, without requiring the user to hover to see it.
+const StaticTooltip = ({
+  placement,
+  align = 'center',
+  children,
+}: {
+  placement: TooltipPlacement;
+  align?: 'start' | 'center' | 'end';
+  children: React.ReactNode;
+}) => (
+  <span className="ds-tooltip__wrapper">
+    <Button variant="secondary" iconOnly aria-label={`${placement} ${align}`}>
+      <Icon name="download" />
+    </Button>
+    <span className={`ds-tooltip ds-tooltip--primary ds-tooltip--label ds-tooltip--${placement} ds-tooltip--align-${align}`}>
+      <span className="ds-tooltip__label">{children}</span>
+    </span>
+  </span>
+);
+
 export const PlacementsExample = () => (
   <div style={{ ...card, gap: 64, padding: 64 }}>
     {(['top', 'bottom', 'left', 'right'] as TooltipPlacement[]).map((placement) => (
-      <Tooltip key={placement} label={placement} placement={placement}>
-        <Button variant="secondary" iconOnly aria-label={placement}>
-          <Icon name="download" />
-        </Button>
-      </Tooltip>
+      <StaticTooltip key={placement} placement={placement}>
+        {placement}
+      </StaticTooltip>
     ))}
   </div>
 );
 
 export const AlignmentExample = () => (
-  <div style={{ ...card, gap: 64, padding: 64 }}>
+  <div style={{ ...card, gap: 96, padding: 64 }}>
     {(['start', 'center', 'end'] as const).map((align) => (
-      <Tooltip key={align} label="Button description" placement="bottom" align={align}>
-        <Button variant="secondary" iconOnly aria-label={align}>
-          <Icon name="download" />
-        </Button>
-      </Tooltip>
+      <StaticTooltip key={align} placement="bottom" align={align}>
+        Button description
+      </StaticTooltip>
     ))}
   </div>
 );

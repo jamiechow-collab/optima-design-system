@@ -10,6 +10,7 @@ export const fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI
 
 // Weight/*
 export const fontWeight = {
+  light: 300,
   regular: 400,
   medium: 500,
   semibold: 600,
@@ -62,9 +63,10 @@ const typography = {
   },
 
   body: {
+    light: style(fontWeight.light, fontSize.sm, 20),
     regular: style(fontWeight.regular, fontSize.sm, 20),
     medium: style(fontWeight.medium, fontSize.sm, 20),
-    bold: style(fontWeight.bold, fontSize.sm, 20),
+    semibold: style(fontWeight.semibold, fontSize.sm, 20),
   },
 
   caption: {

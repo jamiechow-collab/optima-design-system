@@ -17,7 +17,12 @@
 
 .ds-tooltip__wrapper {
   position: relative;
-  display: inline-block;
+  /* inline-flex (not inline-block) so the wrapper's box hugs the trigger's
+     actual content height. inline-block participates in inline layout and
+     picks up baseline/line-height whitespace around an inline-level child,
+     inflating the wrapper's height beyond the trigger's real size — which
+     throws off the `calc(100% + 8px)` gap and center-alignment math below. */
+  display: inline-flex;
   /* Without this, a wrapper placed as a direct grid/flex child stretches to
      fill its cell/track by default, which throws off the placement/align
      centering below (it would center against the stretched wrapper, not the
@@ -44,6 +49,12 @@
   gap: var(--spacing-xs, 4px); /* spacing/xs */
   padding-top: var(--spacing-s, 6px); /* spacing/s */
   padding-bottom: var(--spacing-s, 6px);
+  /* With two wrappable text children (title + description) and no child
+     pinning an explicit width, shrink-to-fit sizing collapses to the widest
+     *word* instead of expanding toward max-width — same root cause fixed in
+     Toggletip. width:max-content forces the correct calculation; max-width
+     above still clamps the final result to 200px. */
+  width: max-content;
 }
 
 .ds-tooltip--primary {
@@ -57,7 +68,7 @@
 .ds-tooltip__label {
   width: 100%;
   font-weight: var(--font-weight-medium, 500);
-  text-align: center;
+  text-align: left;
 }
 
 .ds-tooltip--primary .ds-tooltip__label {
