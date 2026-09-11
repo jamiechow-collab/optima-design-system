@@ -1,0 +1,740 @@
+/* Layout-only styles for the Report Overview — Adaptive Panels & AI exploration.
+   Every value below is a design token — no invented colors/spacing/radius. */
+
+.rop-app {
+  display: flex;
+  height: 100%;
+  background: var(--color-beige-bg-primary, #f9f8f6);
+  font-family: var(--font-family, 'Inter', sans-serif);
+  color: var(--color-text-primary, #050505);
+}
+
+.rop-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  background: var(--color-core-bg-secondary, #fff);
+}
+
+/* ── Top chrome ───────────────────────────────────────────────────────── */
+
+.rop-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg, 16px) var(--spacing-xl, 20px);
+  background: var(--color-beige-bg-primary, #f9f8f6);
+}
+
+.rop-wordmark {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-secondary, #525252);
+}
+
+.rop-topbar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px);
+}
+
+.rop-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px);
+}
+
+/* A bare 20px icon trigger, matching the source design (no button chrome/
+   hit-padding) — an icon-only Button here is 40px tall and stretches the
+   whole Top Nav row taller than its 32px-tall siblings (the inline menu
+   button, the avatar), which is what was reading as oversized margins. */
+.rop-topbar__icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-text-primary, #050505);
+  cursor: pointer;
+}
+
+/* ── Body: content + panels ──────────────────────────────────────────── */
+
+.rop-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background: var(--color-core-bg-secondary, #fff);
+}
+
+/* Overview (+ its chart-details panel) scrolls independently from the
+   Supporting Info panel, each in its own container, so scrolling one
+   doesn't move the other. */
+.rop-overview-scroll {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.rop-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl, 20px);
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-xl, 20px);
+  /* Query container for .rop-charts-grid's own responsive column count —
+     driven by this column's real rendered width, not a panel-count proxy. */
+  container-type: inline-size;
+  container-name: rop-charts;
+}
+
+/* ── Report header ───────────────────────────────────────────────────── */
+
+.rop-report-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-lg, 16px);
+  flex-shrink: 0;
+  margin: var(--spacing-lg, 16px) 0;
+  padding: 0 var(--spacing-xl, 20px);
+  background: var(--color-core-bg-secondary, #fff);
+}
+
+/* A plain box-shadow on the header itself blurs on all four sides, which
+   (since the header sits inset within the content padding rather than
+   flush with the page edge) reads as a boxed-in card around the title
+   instead of a clean line below it. A zero-height strip pinned to the
+   header's bottom edge casts the same shadow token but only downward. */
+.rop-report-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  box-shadow: var(--shadow-sm, 0px 1px 2px 0px rgba(16, 24, 40, 0.06), 0px 1px 3px 0px rgba(16, 24, 40, 0.1));
+}
+
+.rop-report-header__title {
+  margin: 0;
+  font-size: var(--font-size-xl, 24px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.rop-report-header__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  margin-top: var(--spacing-xs, 4px);
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #525252);
+}
+
+.rop-report-header__updated {
+  color: var(--color-text-secondary, #525252);
+}
+
+.rop-report-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  flex-shrink: 0;
+}
+
+.rop-ai-pill {
+  border-radius: var(--radius-md, 8px);
+}
+
+.rop-sparkle {
+  color: var(--color-brand-highlight, #ef7038);
+}
+
+.rop-sparkle--muted {
+  color: var(--color-text-primary, #050505);
+}
+
+/* ── Overview row: stats + AI summary ────────────────────────────────── */
+
+.rop-overview-row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-xl, 20px);
+}
+
+.rop-stats-col {
+  flex: 1;
+  min-width: 0;
+  /* Establishes a query container so .rop-stats-grid can respond to this
+     column's own rendered width — not a proxy like panel count — matching
+     the source design's "Responsive Summary" reference exactly. */
+  container-type: inline-size;
+  container-name: rop-stats;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 12px);
+}
+
+.rop-section-title {
+  margin: 0;
+  font-size: var(--font-size-md, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.rop-stats-grid {
+  /* Grows to fill .rop-stats-col's stretched height (matching the AI
+     Summary card alongside it), with every row sharing that height equally
+     so the score cards themselves grow taller instead of leaving empty
+     space below the grid. */
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: var(--spacing-sm, 8px);
+}
+
+/* Thresholds derived from the source design's four demonstrated states —
+   each is the exact pixel width where a 152px score-card minimum (with an
+   8px gap) can no longer fit the current column count. */
+@container rop-stats (max-width: 631px) {
+  .rop-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@container rop-stats (max-width: 471px) {
+  .rop-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container rop-stats (max-width: 311px) {
+  .rop-stats-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.rop-stat-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs, 4px);
+  padding: var(--spacing-md, 12px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-md, 8px);
+}
+
+.rop-stat-tile__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs, 4px);
+}
+
+.rop-stat-tile__label {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #525252);
+}
+
+/* A 20px icon trigger — smaller than any icon-only Button size the design
+   system offers (sm is 40px) — hidden until the tile is hovered/focused or
+   its own popover is open, matching the source design's hover affordance. */
+.rop-stat-ai-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-sm, 4px);
+  background: none;
+  color: var(--color-text-primary, #050505);
+  cursor: pointer;
+  opacity: 0;
+}
+
+.rop-stat-tile:hover .rop-stat-ai-btn,
+.rop-stat-ai-btn:focus-visible,
+.rop-stat-ai-btn.is-open {
+  opacity: 1;
+}
+
+.rop-stat-ai-btn:hover {
+  background: var(--color-core-bg-tertiary, #ebebeb);
+}
+
+/* This whole popover — composer + suggestion list — is meant to read as one
+   card, but <Menu> renders its own independent card (background, border,
+   shadow) since it's normally used standalone. Giving the card treatment to
+   this wrapper instead and stripping Menu's own down to just list layout
+   avoids the doubled/disconnected box that produced otherwise. */
+.rop-stat-ai-menu {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-md, 8px);
+  box-shadow: var(--shadow-lg, 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08));
+  overflow: hidden;
+}
+
+.rop-stat-ai-menu .ds-menu {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  min-width: 0;
+}
+
+.rop-stat-ai-menu__composer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-sm, 8px);
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1);
+}
+
+.rop-stat-ai-menu__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.rop-stat-ai-menu__send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  background: var(--color-core-bg-primary, #050505);
+  color: var(--color-text-invert, #fff);
+  cursor: pointer;
+}
+
+/* Body/medium: Size/sm (14px) · Weight/medium (500) · line-height Spacing/xl (20px) */
+.rop-stat-tile__value {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--spacing-xl, 20px);
+  color: var(--color-text-primary, #050505);
+}
+
+.rop-ai-summary {
+  /* Fixed preferred width, not a proportional share of the row — matches
+     the source design, where the AI Summary card holds a constant 310px
+     and only the stat grid narrows, until space is too tight to fit both. */
+  flex: 0 1 310px;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+}
+
+/* The title + Details button sit above the bordered card, not inside it. */
+.rop-ai-summary__card {
+  flex: 1;
+  padding: var(--spacing-lg, 16px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-md, 8px);
+}
+
+[data-panel-count='2'] .rop-overview-row,
+[data-panel-count='3'] .rop-overview-row {
+  flex-direction: column;
+}
+
+[data-panel-count='2'] .rop-ai-summary,
+[data-panel-count='3'] .rop-ai-summary {
+  flex: none;
+  width: 100%;
+}
+
+.rop-ai-summary__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rop-ai-summary__title {
+  font-size: var(--font-size-md, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.rop-ai-summary__body {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  color: var(--color-text-secondary, #525252);
+}
+
+/* ── Insights table ───────────────────────────────────────────────────── */
+
+.rop-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 12px);
+}
+
+/* Table already renders its own bordered container with its own internal
+   horizontal scroll (.ds-table__scroll) — this wrapper doesn't need a
+   second overflow-x:auto of its own; nesting two independent scroll
+   containers was clipping the inner one's right border out of view. */
+.rop-table-wrap {
+  min-width: 0;
+}
+
+/* Table defaults to hugging its content width (each column a fixed px
+   track, sized for resizability) rather than filling its parent — a
+   sensible default elsewhere, but this Insights table should span the
+   full Overview column. The grid's column widths are set inline by the
+   component itself, so `!important` is needed to win over that. Only the
+   outer .ds-table needs forcing — .ds-table__container/__scroll already
+   stretch to match it via the component's own flex layout. */
+.rop-insights-table {
+  width: 100% !important;
+}
+
+.rop-insights-table .ds-table__grid {
+  grid-template-columns: minmax(160px, 2fr) repeat(5, minmax(120px, 1fr)) !important;
+}
+
+.rop-channel-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+}
+
+.rop-channel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full, 100px);
+  flex-shrink: 0;
+}
+
+.rop-metric-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-xs, 4px);
+  width: 100%;
+}
+
+.rop-trend {
+  display: inline-flex;
+}
+
+/* ── Chart cards ──────────────────────────────────────────────────────── */
+
+.rop-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg, 16px);
+}
+
+/* Threshold derived from the source design's own responsive states: the
+   narrowest still showing 2 columns measured 579px, the next stacks to 1. */
+@container rop-charts (max-width: 578px) {
+  .rop-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rop-chart-card {
+  /* Grid items default to min-width:auto (content's own intrinsic minimum),
+     which can force this track wider than its 1fr share and overflow the
+     grid past the Overview column — min-width:0 lets it actually shrink. */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-sm, 8px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-md, 8px);
+}
+
+.rop-chart-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm, 8px);
+}
+
+.rop-chart-card__title {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.rop-chart-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xxs, 2px);
+  flex-shrink: 0;
+}
+
+.rop-chart-card__body {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 0;
+  min-height: 140px;
+  padding: var(--spacing-lg, 16px);
+  background: var(--color-beige-bg-primary, #f9f8f6);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+}
+
+/* ── Side panels (shared shell) ───────────────────────────────────────── */
+
+.rop-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 16px);
+  flex-shrink: 0;
+  padding: var(--spacing-xl, 20px);
+  border-left: 1px solid var(--color-border-layout, #d1d1d1);
+  background: var(--color-core-bg-secondary, #fff);
+  overflow-y: auto;
+}
+
+.rop-panel--chart-details {
+  width: 340px;
+  padding-top: var(--spacing-sm, 8px);
+}
+
+.rop-panel--info {
+  width: 320px;
+  padding-top: var(--spacing-sm, 8px);
+  gap: var(--spacing-xs, 4px);
+}
+
+/* The tab list directly below already carries its own underline border, so
+   the header doesn't need a second divider on top of that. */
+.rop-panel--info .rop-panel__header {
+  padding: 0;
+  border-bottom: none;
+}
+
+/* Tabs + tab content, grouped so the 4px header gap above doesn't also
+   shrink the (still 16px) spacing between the tabs and their content. */
+.rop-panel--info__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 16px);
+  min-height: 0;
+}
+
+.rop-panel--ai {
+  width: 340px;
+  padding: var(--spacing-lg, 16px);
+  background: var(--color-beige-bg-primary, #f9f8f6);
+}
+
+/* The header/body/footer group sits as one white card inside the beige
+   panel, rather than the panel itself being white with a flat divider
+   between each section. */
+.rop-panel--ai__card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: var(--spacing-xs, 4px);
+  padding: var(--spacing-sm, 8px) var(--spacing-lg, 16px);
+  background: var(--color-core-bg-secondary, #fff);
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+}
+
+/* Header/chat/footer each carry their own padding when used elsewhere
+   (chart-details' header, the docked panel shell) — here that's replaced
+   by the card's own uniform inset plus the 4px gap between sections. */
+.rop-panel--ai .rop-panel__header {
+  padding: 0;
+  border-bottom: none;
+}
+
+.rop-panel--ai .rop-panel__title {
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--spacing-xl, 20px);
+}
+
+.rop-panel--ai .rop-ai-chat {
+  padding: 0;
+}
+
+.rop-panel--ai .rop-ai-footer {
+  padding: 0;
+  border-top: none;
+}
+
+.rop-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-lg, 16px) var(--spacing-xl, 20px);
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1);
+}
+
+.rop-panel--chart-details .rop-panel__header {
+  padding: 0;
+  border-bottom: none;
+}
+
+.rop-panel__title {
+  font-size: var(--font-size-md, 16px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.rop-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 16px);
+}
+
+.rop-panel__placeholder {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #525252);
+}
+
+.rop-panel__description {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  color: var(--color-text-secondary, #525252);
+}
+
+/* ── Info sections ────────────────────────────────────────────────────── */
+
+.rop-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+}
+
+.rop-info-section__title {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+/* The title sits above this bordered card, not inside it. */
+.rop-info-section__card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-sm, 8px) var(--spacing-lg, 16px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-md, 8px);
+}
+
+.rop-info-section__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md, 12px);
+  padding: var(--spacing-sm, 8px) 0;
+  border-bottom: 1px solid var(--color-border-layout, #d1d1d1);
+  font-size: var(--font-size-sm, 14px);
+}
+
+.rop-info-section__row:last-of-type {
+  border-bottom: none;
+}
+
+.rop-info-section__row > span:first-child {
+  color: var(--color-text-secondary, #525252);
+}
+
+.rop-info-section__row > span:last-child {
+  text-align: right;
+}
+
+.rop-info-section__see-more {
+  align-self: flex-end;
+  margin: var(--spacing-xs, 4px) 0;
+}
+
+.rop-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+}
+
+/* ── AI Audrey chat ───────────────────────────────────────────────────── */
+
+.rop-ai-chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md, 12px);
+  flex: 1;
+  min-height: 0;
+  padding: var(--spacing-lg, 16px) var(--spacing-xl, 20px);
+  overflow-y: auto;
+}
+
+.rop-ai-message {
+  padding: var(--spacing-md, 12px);
+  border-radius: var(--radius-lg, 16px);
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+}
+
+.rop-ai-message--assistant {
+  background: var(--color-beige-bg-primary, #f9f8f6);
+  color: var(--color-text-primary, #050505);
+}
+
+.rop-ai-message--user {
+  align-self: flex-end;
+  background: var(--color-core-bg-primary, #050505);
+  color: var(--color-text-invert, #fff);
+}
+
+/* Suggested prompts + composer, grouped as one footer beneath the chat. */
+.rop-ai-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-lg, 16px) var(--spacing-xl, 20px);
+  border-top: 1px solid var(--color-border-layout, #d1d1d1);
+}
+
+.rop-ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm, 8px);
+}
+
+.rop-ai-composer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+}
+
+.rop-ai-composer__input {
+  flex: 1;
+}

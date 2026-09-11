@@ -1,0 +1,22 @@
+import { Meta, Title, Subtitle, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as StarReviewStories from './StarReview.stories';
+
+<Meta of={StarReviewStories} />
+
+<Title>Star Review</Title>
+<Subtitle>
+  A compact star rating preview, used as a thumbnail or swatch to represent review or rating
+  data visualizations.
+</Subtitle>
+
+<Canvas of={StarReviewStories.Default} />
+<Controls of={StarReviewStories.Default} />
+
+## Overview
+
+The star review renders a rating from 1 to 5 as that many filled stars — there's no partial or
+empty-star state, matching the reference design.
+
+```tsx
+<StarReview rating={4} />
+```

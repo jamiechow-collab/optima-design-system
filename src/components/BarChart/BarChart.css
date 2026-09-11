@@ -1,0 +1,32 @@
+/* ─────────────────────────────────────────────
+   Bar Chart — design tokens: src/tokens/colors.js, spacing.js
+   Bars: w4 · gap4 (spacing/xs) · bg alert/message #3393BA · pl6 (spacing/s)
+   Axis: h1 · w191 · bg text/placeholder #858585
+   Non-interactive — a preview/thumbnail visualization, no hover/focus states.
+   ───────────────────────────────────────────── */
+
+.ds-barchart {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ds-barchart__bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--spacing-xs, 4px); /* spacing/xs */
+  padding-left: var(--spacing-s, 6px); /* spacing/s */
+}
+
+.ds-barchart__bar {
+  width: 4px;
+  flex-shrink: 0;
+  background: var(--color-alert-message, #3393ba); /* alert/message */
+}
+
+.ds-barchart__axis {
+  height: 1px;
+  width: 191px;
+  background: var(--color-text-placeholder, #858585); /* text/placeholder */
+}
