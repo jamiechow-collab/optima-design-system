@@ -1,0 +1,36 @@
+/* ─────────────────────────────────────────────
+   Line Chart — design tokens: src/tokens/colors.js, typography.js
+   Sparkline: w100 · positive h24, negative h16 · stroke-width 2, round caps
+   Positive (default): alert/positive #448537 · Negative: alert/negative #CF3321
+   Label: Body/regular 14/20, same colour as the sparkline · gap8 (spacing/sm)
+   Non-interactive — a preview/thumbnail visualization, no hover/focus states.
+   ───────────────────────────────────────────── */
+
+.ds-linechart {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px); /* spacing/sm */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: var(--color-alert-positive, #448537); /* alert/positive */
+}
+
+.ds-linechart--negative {
+  color: var(--color-alert-negative, #cf3321); /* alert/negative */
+}
+
+.ds-linechart__sparkline {
+  width: 100px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.ds-linechart--negative .ds-linechart__sparkline {
+  height: 16px;
+}
+
+.ds-linechart__label {
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-regular, 400);
+  white-space: nowrap;
+}

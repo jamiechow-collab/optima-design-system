@@ -1,0 +1,23 @@
+import { Meta, Title, Subtitle, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as BarChartStories from './BarChart.stories';
+
+<Meta of={BarChartStories} />
+
+<Title>Bar Chart</Title>
+<Subtitle>
+  A compact bar chart preview, used as a thumbnail or swatch to represent chart-type data
+  visualizations.
+</Subtitle>
+
+<Canvas of={BarChartStories.Default} />
+<Controls of={BarChartStories.Default} />
+
+## Overview
+
+The bar chart renders a series of vertical bars of varying height above a baseline axis. Pass a
+custom `data` array of bar heights (in px) to represent a different dataset — it defaults to the
+reference dataset shown above.
+
+```tsx
+<BarChart data={[20, 9, 25, 33, 8, 10, 26]} />
+```

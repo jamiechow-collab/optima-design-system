@@ -1,0 +1,17 @@
+/* ─────────────────────────────────────────────
+   Star Review — design tokens: src/tokens/colors.js
+   Star: w12 h12 · tiled edge-to-edge (no gap) · fill text/primary #050505
+   Non-interactive — a preview/thumbnail visualization, no hover/focus states.
+   ───────────────────────────────────────────── */
+
+.ds-starreview {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-text-primary, #050505); /* text/primary */
+}
+
+.ds-starreview__star {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}

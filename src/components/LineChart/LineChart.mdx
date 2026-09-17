@@ -1,0 +1,23 @@
+import { Meta, Title, Subtitle, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as LineChartStories from './LineChart.stories';
+
+<Meta of={LineChartStories} />
+
+<Title>Line Chart</Title>
+<Subtitle>
+  A compact sparkline preview, used as a thumbnail or swatch to represent trend data
+  visualizations.
+</Subtitle>
+
+<Canvas of={LineChartStories.Default} />
+<Controls of={LineChartStories.Default} />
+
+## Overview
+
+The line chart renders a small trend sparkline alongside a label. Use the default (positive,
+green) variant for an upward trend, or the negative (red) variant for a downward trend — both the
+sparkline and label share the same colour.
+
+```tsx
+<LineChart label="Revenue" negative={false} />
+```
