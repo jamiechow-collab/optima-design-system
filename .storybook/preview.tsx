@@ -86,14 +86,21 @@ const preview: Preview = {
             'Tooltips',
             'Toggletips',
           ],
-          'Data Visualisation', [
-            'Bar Chart',
-            'Line Chart',
-            'Star Review',
-          ],
           'Pattern', [
             'Table', [
               'Default', 'Selectable', 'Expandable', 'Medium',
+            ],
+          ],
+          'Data Visualisation', [
+            'Chart design', [
+              'Color-datavis', 'Chart Anatomy', 'Axes and label',
+              'Tooltips', 'Legend', 'Datavis container',
+            ],
+            'Chart types', [
+              'Bar Chart', [
+                'Docs', 'Vertical simple bar chart', 'Vertical grouped bar chart',
+                'Vertical stacked bar chart', 'Horizontal simple bar chart',
+              ],
             ],
           ],
         ],

@@ -7,18 +7,18 @@
 // Each family keeps Figma's real shade stops (some skip 100, some start at 20).
 export const primitives = {
   black: {
-    20: '#F6F6F6',
-    50: '#EBEBEB',
-    100: '#D1D1D1',
-    200: '#B8B8B8',
-    300: '#9E9E9E',
-    400: '#858585',
-    500: '#6B6B6B',
-    600: '#525252',
-    700: '#383838',
-    800: '#1F1F1F',
-    900: '#050505',
-    950: '#000000',
+    20: '#D4D4D4',
+    50: '#D1D1D1',
+    100: '#A1A1A1',
+    200: '#878787',
+    300: '#6E6E6E',
+    400: '#545454',
+    500: '#4D4D4D',
+    600: '#474747',
+    700: '#3B3B3B',
+    800: '#2E2E2E',
+    900: '#222222',
+    950: '#151313',
   },
   grey: {
     50: '#D5DAE2',
@@ -167,9 +167,6 @@ export const primitives = {
     900: '#3C0F8A',
     950: '#240953',
   },
-  border: {
-    layout: '#D1D1D1',
-  },
 };
 
 // Semantic tokens — reference primitives, named for how/where they're used.
@@ -261,8 +258,15 @@ const colors = {
     uiInactive: primitives.black[300],
     uiHover: primitives.black[800],
     uiDisabled: primitives.black[100],
-    layout: primitives.border.layout,
+    layout: primitives.black[50],
+    layoutHover: primitives.black[100],
     invert: primitives.beige[20],
+  },
+
+  divider: {
+    primary: primitives.black[600],
+    secondary: primitives.black[50],
+    tertiary: primitives.beige[200],
   },
 };
 

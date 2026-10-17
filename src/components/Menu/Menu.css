@@ -234,7 +234,7 @@
 
 .ds-menu-divider {
   height: 1px;
-  background: var(--color-border-layout, #d1d1d1); /* border/layout */
+  background: var(--color-divider-tertiary, #ede9e3); /* divider/tertiary */
   margin: var(--spacing-xs, 4px) var(--spacing-none, 0);
   list-style: none;
   align-self: stretch;

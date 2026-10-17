@@ -17,6 +17,7 @@ import radius from '../src/tokens/radius.js';
 import shadow from '../src/tokens/shadow.js';
 import colors from '../src/tokens/colors.js';
 import { fontFamily, fontWeight, fontSize } from '../src/tokens/typography.js';
+import { datavisCategorical, datavisSequential } from '../src/tokens/datavis-colors.js';
 import grid from '../src/tokens/grid.js';
 
 const toKebab = (str) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
@@ -53,6 +54,7 @@ lines.push('  /* Colour — src/tokens/colors.js */');
 Object.entries(colors.brand).forEach(([key, hex]) => push(`color-brand-${toKebab(key)}`, hex));
 Object.entries(colors.text).forEach(([key, hex]) => push(`color-text-${toKebab(key)}`, hex));
 Object.entries(colors.border).forEach(([key, hex]) => push(`color-border-${toKebab(key)}`, hex));
+Object.entries(colors.divider).forEach(([key, hex]) => push(`color-divider-${toKebab(key)}`, hex));
 Object.entries(colors.background.core).forEach(([key, hex]) => push(`color-core-bg-${toKebab(key)}`, hex));
 Object.entries(colors.background.beige).forEach(([key, hex]) => push(`color-beige-bg-${toKebab(key)}`, hex));
 Object.entries(colors.alert).forEach(([variant, group]) => {
@@ -62,6 +64,16 @@ Object.entries(colors.alert).forEach(([variant, group]) => {
     const suffix = key === 'color' ? '' : `-${toKebab(key)}`;
     push(`color-alert-${variant}${suffix}`, hex);
   });
+});
+
+// ── Data visualisation colour ───────────────────────────────────────────────
+lines.push('');
+lines.push('  /* Data visualisation colour — src/tokens/datavis-colors.js */');
+Object.values(datavisCategorical).flat().forEach(({ name, ...states }) => {
+  Object.entries(states).forEach(([state, hex]) => push(`color-datavis-${name}-${state}`, hex));
+});
+Object.entries(datavisSequential).forEach(([name, steps]) => {
+  Object.entries(steps).forEach(([step, hex]) => push(`color-datavis-${name}-${step}`, hex));
 });
 
 // ── Layout grid ─────────────────────────────────────────────────────────────

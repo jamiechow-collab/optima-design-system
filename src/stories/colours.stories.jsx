@@ -216,12 +216,23 @@ const AlertSection = () => (
 const BorderSection = () => (
   <Section title="Border">
     <Card>
-      <Swatch name="ui-border-color-active" hex={colors.border.uiActive} reference="black-900" description="Border color for ui elements and components when active (Button, Input...)" />
-      <Swatch name="ui-border-color-inactive" hex={colors.border.uiInactive} reference="black-300" description="Border color for ui elements and components when inactive (Button, Input...)" />
+      <Swatch name="ui-border-color-active" hex={colors.border.uiActive} reference="black-900" description="Border color for ui elements and components when it’s active (Button, Input...)" />
+      <Swatch name="ui-border-color-inactive" hex={colors.border.uiInactive} reference="black-300" description="Border color for ui elements and components when it’s inactive (Button, Input...)" />
       <Swatch name="ui-border-hover-color" hex={colors.border.uiHover} reference="black-800" description="Use as hover color for ui border" />
       <Swatch name="ui-border-disabled" hex={colors.border.uiDisabled} reference="black-100" description="Use as disabled color for ui border" />
-      <Swatch name="layout-border-color" hex={colors.border.layout} reference="border-layout" description="Border color for general layout and separators (Leftpane, Menu Divider...)" />
-      <Swatch name="border-invert" hex={colors.border.invert} border={colors.brand.secondaryBorder} reference="beige-20" description="Border color for general layout and separators on inverted surfaces" />
+      <Swatch name="layout-border-color" hex={colors.border.layout} reference="black-50" description="Border color for general layout and separators (Leftpane, Menu Divider...)" />
+      <Swatch name="layout-border-hover-color" hex={colors.border.layoutHover} reference="black-100" description="Use as hover color for layout border" />
+      <Swatch name="border-invert" hex={colors.border.invert} border={colors.brand.secondaryBorder} reference="beige-20" description="Border color for general layout and separators (Leftpane, Menu Divider...)" />
+    </Card>
+  </Section>
+);
+
+const DividerSection = () => (
+  <Section title="Divider">
+    <Card>
+      <Swatch name="ui-divider-color-primary" hex={colors.divider.primary} reference="black-600" description="Used for primary divider (x-axis, y-axis) which need to clearly dividing information" />
+      <Swatch name="ui-divider-color-secondary" hex={colors.divider.secondary} reference="black-50" description="Used for secondary divider (divider for menu)" />
+      <Swatch name="ui-divider-color-tertiary" hex={colors.divider.tertiary} reference="beige-200" description="Used for tertiary divider (grid line on datavis) that fell into background" />
     </Card>
   </Section>
 );
@@ -238,6 +249,7 @@ export const AllColours = () => (
     <BeigeBackgroundSection />
     <AlertSection />
     <BorderSection />
+    <DividerSection />
   </Page>
 );
 
@@ -268,5 +280,17 @@ export const BeigeBackground = () => (
 export const Alert = () => (
   <Page>
     <AlertSection />
+  </Page>
+);
+
+export const Border = () => (
+  <Page>
+    <BorderSection />
+  </Page>
+);
+
+export const Divider = () => (
+  <Page>
+    <DividerSection />
   </Page>
 );
