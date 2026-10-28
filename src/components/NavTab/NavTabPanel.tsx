@@ -1,11 +1,11 @@
 import React from 'react';
 
-export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NavTabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Only rendered content when true — pass whether this panel's tab is active */
   active: boolean;
 }
 
-export const TabPanel = ({ active, children, ...rest }: TabPanelProps) => {
+export const NavTabPanel = ({ active, children, ...rest }: NavTabPanelProps) => {
   if (!active) return null;
 
   return (

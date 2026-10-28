@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { TabList, TabListVariant } from './TabList';
-import { Tab } from './Tab';
-import { TabPanel } from './TabPanel';
+import { NavTabList, NavTabListVariant } from './NavTabList';
+import { NavTab } from './NavTab';
+import { NavTabPanel } from './NavTabPanel';
 import { Icon } from '../Icon/Icon';
 
-const meta: Meta<typeof TabList> = {
-  title: 'Components/Tabs',
-  component: TabList,
+const meta: Meta<typeof NavTabList> = {
+  title: 'Components/Tabs/Nav-tab',
+  component: NavTabList,
   parameters: { layout: 'centered' },
 };
 
@@ -21,24 +21,24 @@ const TABS = [
 ];
 
 interface PlaygroundArgs {
-  variant: TabListVariant;
+  variant: NavTabListVariant;
 }
 
 const Interactive = ({ variant }: PlaygroundArgs) => {
   const [active, setActive] = useState('overview');
   return (
     <div style={{ width: variant === 'vertical' ? 200 : 500 }}>
-      <TabList variant={variant} aria-label="Example sections">
+      <NavTabList variant={variant} aria-label="Example sections">
         {TABS.map((tab) => (
-          <Tab key={tab.value} active={active === tab.value} onClick={() => setActive(tab.value)}>
+          <NavTab key={tab.value} active={active === tab.value} onClick={() => setActive(tab.value)}>
             {tab.label}
-          </Tab>
+          </NavTab>
         ))}
-      </TabList>
+      </NavTabList>
       {TABS.map((tab) => (
-        <TabPanel key={tab.value} active={active === tab.value} style={{ padding: 16 }}>
+        <NavTabPanel key={tab.value} active={active === tab.value} style={{ padding: 16 }}>
           {tab.label} content
-        </TabPanel>
+        </NavTabPanel>
       ))}
     </div>
   );
@@ -70,38 +70,38 @@ export const WithIconsAndBadges: Story = {
     const [active, setActive] = useState('analytics');
     return (
       <div style={{ width: 240 }}>
-        <TabList variant="vertical" aria-label="Example sections">
-          <Tab
+        <NavTabList variant="vertical" aria-label="Example sections">
+          <NavTab
             active={active === 'overview'}
             icon={<Icon name="placeholder" size="sm" />}
             onClick={() => setActive('overview')}
           >
             Overview
-          </Tab>
-          <Tab
+          </NavTab>
+          <NavTab
             active={active === 'notification'}
             icon={<Icon name="placeholder" size="sm" />}
             onClick={() => setActive('notification')}
           >
             Notification
-          </Tab>
-          <Tab
+          </NavTab>
+          <NavTab
             active={active === 'analytics'}
             icon={<Icon name="placeholder" size="sm" />}
             badge="3"
             onClick={() => setActive('analytics')}
           >
             Analytics
-          </Tab>
-          <Tab
+          </NavTab>
+          <NavTab
             active={active === 'customers'}
             icon={<Icon name="placeholder" size="sm" />}
             badge="New"
             onClick={() => setActive('customers')}
           >
             Customers
-          </Tab>
-        </TabList>
+          </NavTab>
+        </NavTabList>
       </div>
     );
   },

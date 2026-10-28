@@ -1,19 +1,19 @@
 import React from 'react';
-import './Tabs.css';
+import './NavTab.css';
 
-export type TabListVariant = 'pill' | 'underline' | 'vertical';
+export type NavTabListVariant = 'pill' | 'underline' | 'vertical';
 
-export interface TabListProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NavTabListProps extends React.HTMLAttributes<HTMLDivElement> {
   /** pill (default) is a bordered box of boxed tabs; underline is a bottom-border
       style; vertical stacks tabs in a column, each its own box when selected */
-  variant?: TabListVariant;
+  variant?: NavTabListVariant;
   /** Accessible name for the tablist, e.g. "Account settings sections" */
   'aria-label'?: string;
 }
 
-export const TabList = React.forwardRef<HTMLDivElement, TabListProps>(
+export const NavTabList = React.forwardRef<HTMLDivElement, NavTabListProps>(
   ({ variant = 'pill', className, children, onKeyDown, ...rest }, forwardedRef) => {
-    const classes = ['ds-tablist', `ds-tablist--${variant}`, className].filter(Boolean).join(' ');
+    const classes = ['ds-nav-tablist', `ds-nav-tablist--${variant}`, className].filter(Boolean).join(' ');
 
     const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
       onKeyDown?.(e);
@@ -60,4 +60,4 @@ export const TabList = React.forwardRef<HTMLDivElement, TabListProps>(
   }
 );
 
-TabList.displayName = 'TabList';
+NavTabList.displayName = 'NavTabList';

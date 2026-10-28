@@ -1,0 +1,62 @@
+/* ─────────────────────────────────────────────
+   Ui-tab — a compact segmented switcher that lives inside a component
+   (e.g. a chart card). For navigating between views of a page use Nav-tab.
+   Container: beige-bg/primary #F9F8F6, p4, gap4, radius/full
+   Tab: px8 py4 gap4, Caption/medium (12/16), radius/sm
+   Default: text/secondary · Hover: white bg, radius/full, no shadow · Active: core-bg/secondary white, text/primary,
+   shadow-xs, radius/full · Icon 16
+   ───────────────────────────────────────────── */
+
+.ds-ui-tablist {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+  padding: var(--spacing-xs, 4px);
+  border-radius: var(--radius-full, 100px);
+  background: var(--color-beige-bg-primary, #f9f8f6);
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+}
+
+.ds-ui-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs, 4px);
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+  border: none;
+  border-radius: var(--radius-sm, 4px);
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-xs, 12px);
+  line-height: var(--spacing-lg, 16px);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-secondary, #474747);
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ds-ui-tab:hover:not(.is-active):not(:disabled) {
+  background: var(--color-core-bg-secondary, #fff);
+  border-radius: var(--radius-full, 100px);
+}
+
+.ds-ui-tab.is-active {
+  background: var(--color-core-bg-secondary, #fff);
+  border-radius: var(--radius-full, 100px);
+  box-shadow: var(--shadow-xs, 0 1px 2px rgba(16, 24, 40, 0.05));
+  color: var(--color-text-primary, #050505);
+}
+
+.ds-ui-tab:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus, 0 0 0 4px rgba(0, 42, 168, 0.6));
+}
+
+.ds-ui-tab:disabled {
+  color: var(--color-text-disabled, #9e9e9e);
+  cursor: not-allowed;
+}
+
+.ds-ui-tab__icon { display: inline-flex; flex-shrink: 0; }
+.ds-ui-tab__icon svg { width: 16px; height: 16px; }

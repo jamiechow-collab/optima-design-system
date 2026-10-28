@@ -1,0 +1,24 @@
+/* ─────────────────────────────────────────────
+   Stepper — Figma "Shared UI Design patterns / Stepper" (node 2290:15840)
+   Dots 12px apart · current 10px core-bg/primary · others 8px core-bg/tertiary
+   ───────────────────────────────────────────── */
+
+.ds-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md, 12px);
+}
+
+.ds-stepper__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full, 100px);
+  background: var(--color-core-bg-tertiary, #d1d1d1);
+  flex-shrink: 0;
+}
+
+.ds-stepper__dot.is-selected {
+  width: 10px;
+  height: 10px;
+  background: var(--color-core-bg-primary, #222);
+}

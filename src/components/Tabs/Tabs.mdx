@@ -1,68 +1,63 @@
 import { Meta, Title, Subtitle, Unstyled } from '@storybook/addon-docs/blocks';
-import * as TabsStories from './Tabs.stories';
-import {
-  AnatomyExample,
-  HorizontalExample,
-  VerticalExample,
-  VerticalWithBadgesExample,
-} from './TabsDocHelpers';
+import { NavTabTypesExample, UiTabTypeExample } from './TabsDocHelpers';
+import { VerticalWithBadgesExample } from '../NavTab/NavTabDocHelpers';
 
-<Meta of={TabsStories} />
+<Meta title="Components/Tabs/Docs" />
 
 <Title>Tabs</Title>
 <Subtitle>
-  Tabs allow users to navigate between related views of content while remaining in the context of
-  the page.
+  Tabs are used to organise related content. They allow the user to navigate between groups of
+  information that appear within the same context.
 </Subtitle>
 
-## Overview
+## When to use
 
-`TabList` renders a group of `Tab`s and owns none of the selection state — pass `active` to each
-`Tab` and handle its `onClick` yourself. Pair with `TabPanel` (or your own conditional rendering)
-to show the selected tab's content.
+To help reduce cognitive load, use tabs to group related information into different categories. Tabs
+can be used to organize content such as forms, settings, and dashboards so a user does not have to
+navigate away from their workflow to complete their task.
 
-```tsx
-const [active, setActive] = useState('overview');
+## When not to use
 
-<TabList variant="pill" aria-label="Account sections">
-  <Tab active={active === 'overview'} onClick={() => setActive('overview')}>
-    Overview
-  </Tab>
-  <Tab active={active === 'notification'} onClick={() => setActive('notification')}>
-    Notification
-  </Tab>
-</TabList>;
-```
+**Filtering the same content**
 
-## Anatomy
+When toggling between different formats of the same content or filtering the same content, use
+content switcher instead. Content switcher is often used alongside tabs, but it typically serves at a
+lower hierarchy to organise related content within the tab's contents.
 
-<Unstyled>
-  <AnatomyExample />
-</Unstyled>
+**Indicating progress**
 
-A tab list is made up of one or more tabs, each an optional icon, a label, and an optional badge
-(e.g. an unread count). Exactly one tab is active at a time.
+When the user needs to work through a step by step linear process, use a progress indicator. Tabs help
+organise information hierarchically but remain flexible in how content can be designed and consumed.
 
-## Horizontal tabs
+**Comparing information**
 
-Two styles: **Pill** — a bordered box of boxed tabs, best for switching between a small, equally
-weighted set of views. **Underline** — a bottom-border style that reads lighter, better suited to
-sitting directly above the content it controls.
+Tabs should not be used if the user needs to compare information in different groups, as this would
+result in the user having to click back and forth to complete a task.
+
+## Types
+
+There are two types of tabs in the library:
+
+1. **Nav-tab:** used to navigate within pages or screens. Available as an underline or a pill style.
 
 <Unstyled>
-  <HorizontalExample />
+  <NavTabTypesExample />
 </Unstyled>
 
-## Vertical tabs
-
-Stacks tabs in a column — each tab is full width, and the active one gets its own bordered box.
-Best for a sidebar-style section switcher.
+2. **Ui-tab:** used within a UI component (e.g. the Widget) to shift between different
+   presentations of the same context.
 
 <Unstyled>
-  <VerticalExample />
+  <UiTabTypeExample />
 </Unstyled>
 
-Icons and badges work the same way across every variant:
+See [Nav-tab](?path=/docs/components-tabs-nav-tab--docs) and [Ui-tab](?path=/story/components-tabs-ui-tab--default)
+for each component's usage and code.
+
+## Orientation
+
+For Nav-tab, it depends on the available space. We provide horizontal and vertical tabs. Vertical tabs
+can carry an icon and a badge.
 
 <Unstyled>
   <VerticalWithBadgesExample />
@@ -70,9 +65,13 @@ Icons and badges work the same way across every variant:
 
 ## Interactions
 
-**Mouse** — Clicking a tab makes it active and shows its panel.
+**Mouse**
 
-**Keyboard** — Users can press **Tab** to move focus into the tab list (landing on the active
-tab), then use the **Arrow keys** (Left/Right for horizontal, Up/Down for vertical) or **Home**/
-**End** to move between tabs — moving focus also activates the tab, following the standard tabs
-keyboard pattern. Pressing **Tab** again moves focus out to the active panel's content.
+Clicking a tab makes it active and shows its panel.
+
+**Keyboard**
+
+Users can press **Tab** to move focus into the tab list (landing on the active tab), then use the
+**Arrow keys** (Left/Right for horizontal, Up/Down for vertical) or **Home** / **End** to move between
+tabs — moving focus also activates the tab, following the standard tabs keyboard pattern. Pressing
+**Tab** again moves focus out to the active panel's content.

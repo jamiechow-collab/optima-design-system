@@ -1,0 +1,79 @@
+import { Meta, Title, Subtitle, Unstyled } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './Modal.stories';
+import { BasicExample, AlertExample, ScrollableExample, WizardExample, SizesExample } from './ModalDocHelpers';
+
+<Meta of={ModalStories} />
+
+<Title>Modal</Title>
+<Subtitle>
+  Modals help users focus on a single task or a piece of information by popping up and blocking the
+  rest of the page's content.
+</Subtitle>
+
+## Overview
+
+Modals disappear when the user completes a required action or dismisses them. Use modals for
+quick, infrequent tasks. There are 3 different modal types, each providing a different layout for
+a different use case.
+
+<Unstyled>
+  <BasicExample />
+</Unstyled>
+
+```tsx
+<Modal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Modal title"
+  subtitle="Optional subtitle can be placed under title."
+  secondaryAction={{ label: 'Cancel', onClick: close }}
+  primaryAction={{ label: 'Confirm', onClick: confirm }}
+>
+  …content
+</Modal>
+```
+
+## Types
+
+### Alert modal
+
+Use the `alertModal` prop to allow closing the modal only by the close and action buttons, and not
+by ESC or by clicking outside. Use this variant in case of sensitive or important messages, and in
+modals that require data from the user, such as forms.
+
+<Unstyled>
+  <AlertExample />
+</Unstyled>
+
+### Scrollable modal
+
+When the content of the modal is too large to fit within the viewport, the modal content should
+become scrollable while the header and footer stay sticky. The footer gets a top border while the
+content scrolls. If the scroll is too long, consider switching to a different modal size or a
+different layout.
+
+<Unstyled>
+  <ScrollableExample />
+</Unstyled>
+
+### Wizard modal
+
+For modals with multiple steps, use the modal footer with a stepper: pass `wizard={{ count, current }}`
+and use the secondary and primary actions as Back and Next. Disable Back on the first step.
+
+<Unstyled>
+  <WizardExample />
+</Unstyled>
+
+## Variants
+
+There are two sizes available for the modal: `sm` (460px) and `md` (540px, the default).
+
+<Unstyled>
+  <SizesExample />
+</Unstyled>
+
+## Stepper
+
+The stepper is also available on its own as `Stepper` (`count`, `current`): the current step is a
+10px dark dot, the others are 8px light dots, 12px apart.

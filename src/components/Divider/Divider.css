@@ -1,0 +1,23 @@
+/* ─────────────────────────────────────────────
+   Divider — 1px line, colour tokens divider/primary, /secondary, /tertiary (default)
+   Inside a Menu it gets 4px above and below.
+   ───────────────────────────────────────────── */
+
+.ds-divider {
+  flex-shrink: 0;
+  align-self: stretch;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+
+.ds-divider--horizontal { height: 1px; width: auto; }
+.ds-divider--vertical { width: 1px; height: auto; }
+
+.ds-divider--primary { background: var(--color-divider-primary, #474747); }
+.ds-divider--secondary { background: var(--color-divider-secondary, #d1d1d1); }
+.ds-divider--tertiary { background: var(--color-divider-tertiary, #ede9e3); }
+
+.ds-menu > .ds-divider { margin: var(--spacing-xs, 4px) var(--spacing-none, 0); }
