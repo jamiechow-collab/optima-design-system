@@ -1,15 +1,18 @@
 import React from 'react';
-import { ChartTooltip, Hoverline, Datapoint } from '../../components/DataVis/ChartTooltip';
+import { ChartTooltip, Hoverline } from '../../components/DataVis/ChartTooltip';
+import { Datapoint } from '../../components/DataVis/Datapoint';
 import { datavisCategorical } from '../../tokens/datavis-colors';
 import { Page, Heading, Body } from './chartDesignDocs';
 
-export default {
+const meta = {
   title: 'Data Visualisation/Chart design/Tooltips',
   parameters: { layout: 'padded' },
 };
 
+export default meta;
+
 const g1 = datavisCategorical.group1;
-const SWATCHES = { Dot: 'dot', 'Solid line': 'line', 'Dotted line': 'dotted' };
+const SWATCHES = { Filled: 'filled', 'Solid line': 'line', 'Dotted line': 'dotted' };
 
 const sampleItems = (shape) => [
   { label: 'Label', value: 'Data', colour: g1[0].default, shape },
@@ -28,7 +31,7 @@ const figmaItems = [
 const Hovering = ({ items = figmaItems, showHeader = true, showFooter = true, height = 249, labels }) => (
   <div style={{ position: 'relative', height, width: 260 }}>
     <div style={{ position: 'absolute', left: 8, top: 0 }}><Hoverline height={height} /></div>
-    <div style={{ position: 'absolute', left: 1, top: height / 2 - 7 }}><Datapoint /></div>
+    <div style={{ position: 'absolute', left: 1, top: height / 2 - 7 }}><Datapoint state="hover" /></div>
     <div style={{ position: 'absolute', left: 26, top: 40 }}>
       <ChartTooltip
         header={showHeader ? 'Header' : undefined}
@@ -74,7 +77,7 @@ const Cursor = () => (
 const Anatomy = () => (
   <div style={{ position: 'relative', width: 495 + 20, height: 249 }}>
     <div style={{ position: 'absolute', left: 172, top: 0 }}><Hoverline height={249} /></div>
-    <div style={{ position: 'absolute', left: 166, top: 133 }}><Datapoint /></div>
+    <div style={{ position: 'absolute', left: 166, top: 133 }}><Datapoint state="hover" /></div>
     <div style={{ position: 'absolute', left: 191, top: 75 }}>
       <ChartTooltip header="Header" headerValue="Data" items={figmaItems} total="Total" totalValue="Data" />
     </div>
@@ -132,6 +135,24 @@ export const Docs = () => (
       <div style={{ background: 'var(--color-beige-bg-primary, #f9f8f6)', borderRadius: 8, padding: 24, display: 'inline-block' }}>
         <Anatomy />
         <div style={{ marginTop: 48 }}><AnatomyParts /></div>
+      </div>
+    </div>
+
+    <div style={{ marginTop: 48 }}>
+      <Heading>Datapoint</Heading>
+      <Body>
+        A datapoint marks a value on a line or area chart. It is shown solid when selected and gains a halo while it is
+        hovered. Colours follow the series.
+      </Body>
+      <div style={{ display: 'flex', gap: 32, marginTop: 24 }}>
+        {[['Default', 'default'], ['Hover', 'hover'], ['Selected', 'selected']].map(([label, state]) => (
+          <figure key={state} style={{ margin: 0 }}>
+            <div style={{ background: 'var(--color-beige-bg-primary, #f9f8f6)', borderRadius: 8, width: 96, height: 72, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Datapoint state={state} />
+            </div>
+            <figcaption style={{ fontSize: 14, lineHeight: '20px', fontWeight: 500, color: 'var(--color-text-secondary, #474747)', marginTop: 8 }}>{label}</figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   </Page>

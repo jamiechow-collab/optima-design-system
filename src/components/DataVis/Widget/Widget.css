@@ -1,0 +1,115 @@
+/* Widget — Figma "Widget" (node 593:76243): 16px padding, 1px layout border, 4px radius.
+   Header (title + actions, optional description and tabs) over Content, 16px apart. Hover darkens the border. */
+.ds-widget {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg, 16px);
+  width: 100%;
+  padding: var(--spacing-lg, 16px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-sm, 4px);
+  font-family: var(--font-family, 'Inter', sans-serif);
+  color: var(--color-text-primary, #222);
+}
+
+.ds-widget:hover,
+.ds-widget:focus-within,
+.ds-widget.is-hover { border-color: var(--color-border-layout-hover, #a1a1a1); }
+
+/* Header */
+.ds-widget__header { display: flex; flex-direction: column; flex-shrink: 0; min-width: 0; }
+
+.ds-widget__top { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-sm, 8px); min-width: 0; }
+
+.ds-widget__title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs, 4px);
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: inherit;
+}
+.ds-widget__title-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.ds-widget__actions { display: flex; align-items: center; flex-shrink: 0; }
+
+.ds-widget__description {
+  padding-bottom: var(--spacing-sm, 8px);
+  font-size: 12px; /* Caption/regular */
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--color-text-secondary, #474747);
+}
+
+.ds-widget__control { display: flex; justify-content: center; }
+
+/* Content */
+/* The blocks sit on a column grid (the column count is set inline: 12, or 10 at sm), one row as tall as the content area */
+.ds-widget__content { flex: 1 1 0; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr); align-items: stretch; column-gap: var(--spacing-lg, 16px); }
+
+/* Advanced: priority 3 sits leftmost and drops out first; priority 1 takes the columns that are left (the span is set inline).
+   Every block is top-aligned and as tall as the content area; what a block holds decides how it sits inside. */
+.ds-widget__slot { display: flex; flex-direction: column; justify-content: flex-start; min-width: 0; min-height: 0; }
+
+/* Vertical content layout: a row of figures (priority 3), then priority 2 and 1 on the column grid, 24px apart */
+.ds-widget__content--vertical { display: flex; flex-direction: column; gap: var(--spacing-2xl, 24px); }
+.ds-widget__content--vertical .ds-widget__slot--3 { flex: none; }
+.ds-widget__bottom { flex: 1 1 0; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr); column-gap: var(--spacing-lg, 16px); }
+
+/* Layout guide (showGrid): the column grid drawn over the widget, 16px in from the edge like the Figma guide */
+.ds-widget__grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--spacing-lg, 16px);
+  right: var(--spacing-lg, 16px);
+  display: grid;
+  column-gap: var(--spacing-lg, 16px);
+  pointer-events: none;
+}
+.ds-widget__grid span { background: rgba(255, 51, 51, 0.1); }
+
+/* Empty */
+.ds-widget__empty {
+  grid-column: 1 / -1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm, 8px);
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-text-secondary, #474747);
+}
+.ds-widget__empty-icon { color: var(--color-text-secondary, #474747); }
+
+/* A block: the chart fills the space, its legend sits under it, 16px apart. */
+.ds-widget__block { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: var(--spacing-lg, 16px); }
+.ds-widget__chart { flex: 1 1 0; min-height: 0; min-width: 0; }
+.ds-widget__chart.is-centered { display: flex; align-items: center; justify-content: center; }
+.ds-widget__legend { flex-shrink: 0; display: flex; justify-content: center; }
+/* Legend beside the chart (vertical layout at lg): a left-aligned list at the top, the chart takes the rest */
+.ds-widget__block.is-legend-left { flex-direction: row; }
+.ds-widget__block.is-legend-left .ds-widget__legend { justify-content: flex-start; align-items: flex-start; }
+
+/* inline icon-only button: 20px box around a 16px icon, pulled in so the icon is 4px from the title */
+.ds-widget__title-chevron { flex: none; margin-left: -2px; }
+
+/* The table modal: the table sits 24px from the title and from the footer buttons */
+.ds-widget__table-modal .ds-modal__content { padding-bottom: var(--spacing-sm, 8px); }

@@ -3,8 +3,8 @@ import { chartText, chartDeselected } from './chartTheme';
 
 const SIZE = 16;
 
-// 16px swatch box: dot = 8px square, line = 12×2, dotted = three 2px squares (Figma "Swatch")
-export const LegendSwatch = ({ shape = 'dot', colour, deselected = false }) => {
+// 16px swatch box: filled = 8px square, line = 12×2, dotted = three 2px squares (Figma "Swatch")
+export const LegendSwatch = ({ shape = 'filled', colour, deselected = false }) => {
   const fill = deselected ? chartDeselected : colour;
   const box = { width: SIZE, height: SIZE, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 2, flexShrink: 0 };
   if (shape === 'line') return <span style={box}><span style={{ width: 12, height: 2, background: fill }} /></span>;
@@ -17,12 +17,16 @@ export const LegendSwatch = ({ shape = 'dot', colour, deselected = false }) => {
   return <span style={box}><span style={{ width: 8, height: 8, background: fill }} /></span>;
 };
 
-export const LegendItem = ({ label, colour, shape = 'dot', deselected = false, onClick }) => {
+export const LegendItem = ({ label, colour, shape = 'filled', deselected = false, onClick, onHover }) => {
   const Tag = onClick ? 'button' : 'div';
   return (
     <Tag
       type={onClick ? 'button' : undefined}
       onClick={onClick}
+      onMouseEnter={onHover ? () => onHover(true) : undefined}
+      onMouseLeave={onHover ? () => onHover(false) : undefined}
+      onFocus={onHover ? () => onHover(true) : undefined}
+      onBlur={onHover ? () => onHover(false) : undefined}
       aria-pressed={onClick ? !deselected : undefined}
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 2, padding: 0, border: 0, background: 'none',
@@ -39,24 +43,23 @@ export const LegendItem = ({ label, colour, shape = 'dot', deselected = false, o
 
 /**
  * Legend group. items: [{ label, colour, shape?, deselected? }].
- * `title` is the caption above (e.g. the hovered date).
- * layout (Figma "Registers"): horizontal · vertical-right (list left-aligned, 16px free on the right)
- * · vertical-left (list indented 16px). `vertical` is an alias of vertical-right.
+ * onItemHover(i | null): called as the pointer or keyboard focus enters / leaves an item, so a chart can highlight that item's data.
+ * fit: a vertical legend hugs its items instead of keeping the 153px Figma width (for a legend beside a chart in a widget).
+ * `title` is the optional legend title above the items (e.g. the hovered date): centred for the horizontal layout, left-aligned for the vertical ones.
+ * layout (Figma "Legend"): horizontal · vertical-right · vertical-left. Both vertical layouts are the same left-aligned list with no padding;
+ * they differ only in which side of the chart the legend is placed. `vertical` is an alias of vertical-right.
  */
-export const ChartLegend = ({ items, layout = 'horizontal', title, onToggle, align = 'center' }) => {
+export const ChartLegend = ({ items, layout = 'horizontal', title, onToggle, onItemHover, align = 'center', fit = false }) => {
   const vertical = layout.startsWith('vertical');
-  const indent = layout === 'vertical-left' ? 16 : 0;
-  const trailing = vertical && layout !== 'vertical-left' ? 16 : 0;
   return (
     <div
       style={{
         display: 'inline-flex', flexDirection: 'column', gap: 8, boxSizing: 'border-box',
         alignItems: vertical ? 'flex-start' : align === 'center' ? 'center' : 'flex-start',
-        paddingLeft: indent, paddingRight: trailing,
       }}
     >
       {title && (
-        <div style={{ fontFamily: chartText.fontFamily, fontSize: 12, lineHeight: '16px', color: chartText.label, textAlign: 'center', alignSelf: 'stretch' }}>
+        <div style={{ fontFamily: chartText.fontFamily, fontSize: 12, lineHeight: '16px', color: chartText.label, textAlign: vertical ? 'left' : 'center', alignSelf: 'stretch' }}>
           {title}
         </div>
       )}
@@ -64,11 +67,11 @@ export const ChartLegend = ({ items, layout = 'horizontal', title, onToggle, ali
         style={{
           display: 'flex', flexDirection: vertical ? 'column' : 'row', flexWrap: 'wrap',
           gap: vertical ? 8 : '8px 24px', justifyContent: 'center', alignItems: 'flex-start',
-          minWidth: vertical ? 153 : undefined,
+          minWidth: vertical && !fit ? 153 : undefined,
         }}
       >
         {items.map((it, i) => (
-          <LegendItem key={`${it.label}-${i}`} {...it} onClick={onToggle ? () => onToggle(i) : undefined} />
+          <LegendItem key={`${it.label}-${i}`} {...it} onClick={onToggle ? () => onToggle(i) : undefined} onHover={onItemHover ? (on) => onItemHover(on ? i : null) : undefined} />
         ))}
       </div>
     </div>

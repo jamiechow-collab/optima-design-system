@@ -13,7 +13,7 @@ const STATE_LABELS = { default: 'Default', hover: 'Hover', selected: 'Selected',
 const GROUP_LABELS = { group1: 'Group 1', group2: 'Group 2', group3: 'Group 3', group4: 'Group 4', group5: 'Group 5' };
 
 const Page = ({ children }) => (
-  <div style={{ padding: 32, background: '#fff', maxWidth: 1000, fontFamily, color: 'var(--color-text-primary, #222)' }}>
+  <div style={{ padding: 32, background: '#fff', maxWidth: 1100, fontFamily, color: 'var(--color-text-primary, #222)' }}>
     {children}
   </div>
 );
@@ -28,14 +28,16 @@ const Body = ({ children }) => (
 
 const cell = { height: 46, display: 'flex', alignItems: 'flex-end', padding: '0 8px 4px', boxSizing: 'border-box' };
 
-// Light text on dark swatches, dark on light — keeps the hex readable.
+// Light text on dark swatches, dark on light — keeps the label readable. Translucent hexes
+// (#rrggbbaa) are judged as they look over the white page.
 const isDark = (hex) => {
-  const n = parseInt(hex.slice(1), 16);
-  const lum = 0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
-  return lum < 150;
+  const n = parseInt(hex.slice(1, 7), 16);
+  const a = hex.length === 9 ? parseInt(hex.slice(7), 16) / 255 : 1;
+  const ch = [n >> 16, (n >> 8) & 255, n & 255].map((v) => v * a + 255 * (1 - a));
+  return 0.299 * ch[0] + 0.587 * ch[1] + 0.114 * ch[2] < 150;
 };
 
-// Label uses the Figma variable name, e.g. "bluebell/default" or "tide/950".
+// Label shows the palette step, as in Figma, e.g. "tide-300" or "bluebell-500".
 const Label = ({ text, hex }) => (
   <span style={{ fontSize: 12, color: isDark(hex) ? '#fff' : '#222' }}>{text}</span>
 );
@@ -52,7 +54,7 @@ const Categorical = () => (
           {colours.map((c) =>
             datavisStates.map((s) => (
               <div key={`${c.name}-${s}`} style={{ ...cell, background: c[s] }} title={`--color-datavis-${c.name}-${s}`}>
-                <Label text={`${c.name}/${s}`} hex={c[s]} />
+                <Label text={`${c.name}-${c.steps[s]}`} hex={c[s]} />
               </div>
             ))
           )}
@@ -62,16 +64,41 @@ const Categorical = () => (
   </div>
 );
 
-const Sequential = () => (
-  <div style={{ display: 'flex', gap: 24, marginTop: 32 }}>
+const Discrete = () => (
+  <div style={{ display: 'flex', gap: 24, marginTop: 16 }}>
     {Object.entries(datavisSequential).map(([name, steps]) => (
       <div key={name} style={{ flex: 1, maxWidth: 220 }}>
         <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{name}</div>
         {Object.entries(steps).reverse().map(([step, hex]) => (
           <div key={step} style={{ ...cell, background: hex }} title={`--color-datavis-${name}-${step}`}>
-            <Label text={`${name}/${step}`} hex={hex} />
+            <Label text={`${name}-${step}`} hex={hex} />
           </div>
         ))}
+      </div>
+    ))}
+  </div>
+);
+
+
+// Continuous: top-to-bottom fills from `dismissed` to `gradient-end` (dismissed at 0% opacity),
+// used for area / trend charts.
+const Continuous = () => (
+  <div style={{ marginTop: 16 }}>
+    {Object.entries(datavisCategorical).map(([group, colours]) => (
+      <div key={group} style={{ marginBottom: 24 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{GROUP_LABELS[group]}</div>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          {colours.map((c) => (
+            <div
+              key={c.name}
+              title={`${c.name}: --color-datavis-${c.name}-dismissed → --color-datavis-${c.name}-gradient-end`}
+              style={{
+                width: 133, height: 109, borderRadius: 8,
+                background: `linear-gradient(to bottom, var(--color-datavis-${c.name}-dismissed, ${c.dismissed}), var(--color-datavis-${c.name}-gradient-end, ${c['gradient-end']}))`,
+              }}
+            />
+          ))}
+        </div>
       </div>
     ))}
   </div>
@@ -104,6 +131,13 @@ export const Docs = () => (
       The monochromatic palettes are good for relationship charts and trend charts. In light themes, the darkest
       color denotes the largest values. In dark themes, the lightest color denotes the largest values.
     </Body>
-    <Sequential />
+    <div style={{ marginTop: 32 }}>
+      <h3 style={{ fontSize: 32, lineHeight: '40px', fontWeight: 700, margin: 0 }}>Discrete</h3>
+      <Discrete />
+    </div>
+    <div style={{ marginTop: 56 }}>
+      <h3 style={{ fontSize: 32, lineHeight: '40px', fontWeight: 700, margin: 0 }}>Continuous</h3>
+      <Continuous />
+    </div>
   </Page>
 );

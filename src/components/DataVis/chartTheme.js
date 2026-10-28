@@ -56,3 +56,13 @@ export const chartDeselected = 'var(--color-core-bg-primary-disabled, #d1d1d1)';
 // 'hover' colour shift) and all other items switch to 'dismissed'.
 export const hoverColourState = (hoveredIndex, index) =>
   hoveredIndex === null || hoveredIndex === undefined || hoveredIndex === index ? 'default' : 'dismissed';
+
+// Readable text colour on a fill: white on dark fills, primary text on light ones. Takes a #rrggbb or #rrggbbaa hex;
+// a translucent fill (e.g. a dismissed colour) is judged as it looks over the white card surface.
+export const onColour = (hex) => {
+  const n = parseInt(hex.slice(1, 7), 16);
+  const a = hex.length >= 9 ? parseInt(hex.slice(7, 9), 16) / 255 : 1;
+  const ch = (v) => 255 * (1 - a) + v * a;
+  const lum = 0.299 * ch(n >> 16) + 0.587 * ch((n >> 8) & 255) + 0.114 * ch(n & 255);
+  return lum < 140 ? 'var(--color-text-invert, #fff)' : chartText.primary;
+};

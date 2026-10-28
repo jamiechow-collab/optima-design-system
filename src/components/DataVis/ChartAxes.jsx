@@ -1,11 +1,13 @@
 import React from 'react';
 import { chartTheme, chartText, linearScale } from './chartTheme';
+import { AxisTitle } from './AxisTitle';
 
 // Plot-area geometry from Figma "Axes": y labels sit in a 40px gutter (right-aligned,
 // 12px clear of the axis line); x labels sit 12px below the axis line in a 28px gutter.
 export const AXIS_GUTTER = 40;
 export const AXIS_BOTTOM = 28;
 const TICK = 4;
+export const TITLE_SPACE = 32; // axis title: 16px text + 16px gap to the labels
 
 const labelStyle = {
   fontFamily: chartText.fontFamily,
@@ -20,7 +22,7 @@ const labelStyle = {
 // otherwise they wrap (up to two rows). Y labels stay on one line: when the gutter is too
 // narrow they are shortened to the first 7 and last 5 characters ("Current...loyed").
 let measureCtx;
-const measure = (text) => {
+export const measure = (text) => {
   if (typeof document !== 'undefined') {
     measureCtx = measureCtx || document.createElement('canvas').getContext('2d');
     if (measureCtx) {
@@ -84,21 +86,37 @@ export const ChartAxes = ({
   leftGutter: leftGutterProp, // default: fits the longest y label, capped at 21% of the width
   bottomGutter: bottomGutterProp, // default: grows when x labels wrap to a second row
   orientation = 'vertical', // vertical | horizontal (categories on the y-axis, values along the x-axis)
+  yTitle, // axis title text; sits 16px clear of the y labels (left, or right when yAxis='right')
+  yTitleRight: yTitleRightProp, // title for the right axis when both axes are shown (yAxis='both')
+  xTitle, // axis title text; sits 16px clear of the x labels (bottom, or top when xAxis='top')
   xTicks, // horizontal only: [{ value, label }]
   xDomain, // horizontal only: [min, max] (defaults to first/last xTick)
   children,
   ...rest
 }) => {
   const horizontal = orientation === 'horizontal';
+  // Axis titles take 16px (text) + 16px (gap to the labels) on their side of the plot
+  const legacyRight = !!yTitle && !horizontal && yAxis === 'right' && yTitleRightProp === undefined;
+  const yTitleRight = legacyRight || (!horizontal && !!yTitleRightProp);
+  const yTitleLeft = !!yTitle && !legacyRight;
+  const xTitleTop = !!xTitle && xAxis === 'top';
+  const xTitleBottom = !!xTitle && !xTitleTop;
+  const padL = yTitleLeft ? TITLE_SPACE : 0;
+  const padR = yTitleRight ? TITLE_SPACE : 0;
+  const padT = xTitleTop ? TITLE_SPACE : 0;
+  const padB = xTitleBottom ? TITLE_SPACE : 0;
   const leftLabels = horizontal ? categories : yTicks.map((t) => t.label);
   const hasLeftAxis = horizontal || yAxis === 'left' || yAxis === 'both';
   const widest = (fn) => Math.max(...leftLabels.map((l) => measure(fn(l))), 0);
   // gutter fits the longest label, capped at 21% of the width — but never narrower than the shortened labels
   const leftGutter =
     leftGutterProp ??
-    Math.ceil(Math.max(AXIS_GUTTER, Math.min(widest(String) + 13, Math.max(width * 0.21, widest(truncateMiddle) + 13))));
+    Math.ceil(Math.max(yTitleLeft ? 0 : AXIS_GUTTER, Math.min(widest(String) + 13, Math.max(width * 0.21, widest(truncateMiddle) + 13))));
+  // right axis: with a title the gutter hugs the labels, so the title stays 16px clear of them whatever their width
+  const rightLabels = (yLabelRight || yTicks || []).map((t) => t.label);
+  const rightGutter = yTitleRight ? Math.ceil(13 + Math.max(...rightLabels.map((l) => measure(String(l))), 0)) : AXIS_GUTTER;
   const yAvailable = leftGutter - 13;
-  const xColumnWidth = horizontal ? 0 : (width - (hasLeftAxis ? leftGutter : 0) - (yAxis === 'right' || yAxis === 'both' ? AXIS_GUTTER : 0)) / Math.max(categories.length, 1);
+  const xColumnWidth = horizontal ? 0 : (width - (hasLeftAxis ? leftGutter : 0) - (yAxis === 'right' || yAxis === 'both' ? rightGutter : 0)) / Math.max(categories.length, 1);
   const xAvailable = Math.max(xColumnWidth * 0.834 - 8, 24); // label box = column minus Figma's 9.4% / 7.3% insets and 4px padding
   const xRows = horizontal ? [] : categories.map((c) => wrapXLabel(c, xAvailable));
   const maxRows = Math.max(1, ...xRows.map((r) => r.length));
@@ -106,10 +124,10 @@ export const ChartAxes = ({
   if (orientation === 'horizontal') {
     const top = xAxis === 'top';
     const plot = {
-      left: leftGutter,
-      right: width - 8,
-      top: top ? bottomGutter : 8,
-      bottom: top ? height - 8 : height - bottomGutter,
+      left: padL + leftGutter,
+      right: width - 8 - padR,
+      top: (top ? bottomGutter : 8) + padT,
+      bottom: (top ? height - 8 : height - bottomGutter) - padB,
     };
     const [v0, v1] = xDomain || [xTicks[0].value, xTicks[xTicks.length - 1].value];
     const x = linearScale([v0, v1], [plot.left, plot.right]);
@@ -155,7 +173,7 @@ export const ChartAxes = ({
 
         {showYLabels &&
           categories.map((c, i) => (
-            <text key={`yl${i}`} x={leftGutter - 13} y={y(i)} textAnchor="end" dominantBaseline="central" style={labelStyle}>
+            <text key={`yl${i}`} x={padL + leftGutter - 13} y={y(i)} textAnchor="end" dominantBaseline="central" style={labelStyle}>
               <title>{c}</title>
               {fitYLabel(c, yAvailable)}
             </text>
@@ -166,6 +184,17 @@ export const ChartAxes = ({
               {t.label}
             </text>
           ))}
+
+        {yTitle && (
+          <AxisTitle orientation={yTitleRight ? 'right' : 'left'} cx={yTitleRight ? width - 8 : 8} cy={(plot.top + plot.bottom) / 2}>
+            {yTitle}
+          </AxisTitle>
+        )}
+        {xTitle && (
+          <AxisTitle orientation={xTitleTop ? 'top' : 'bottom'} cx={(plot.left + plot.right) / 2} cy={xTitleTop ? 8 : height - 8}>
+            {xTitle}
+          </AxisTitle>
+        )}
       </svg>
     );
   }
@@ -173,10 +202,10 @@ export const ChartAxes = ({
   const hasRight = yAxis === 'right' || yAxis === 'both';
   const top = xAxis === 'top';
   const plot = {
-    left: hasLeft ? leftGutter : 0,
-    right: width - (hasRight ? AXIS_GUTTER : 0),
-    top: top ? bottomGutter : 8,
-    bottom: top ? height - 8 : height - bottomGutter,
+    left: (hasLeft ? leftGutter : 0) + padL,
+    right: width - (hasRight ? rightGutter : 0) - padR,
+    top: (top ? bottomGutter : 8) + padT,
+    bottom: (top ? height - 8 : height - bottomGutter) - padB,
   };
   const [d0, d1] = yDomain || [yTicks[0].value, yTicks[yTicks.length - 1].value];
   const y = linearScale([d0, d1], [plot.bottom, plot.top]);
@@ -232,7 +261,7 @@ export const ChartAxes = ({
         yTicks.map((t, i) => (
           <g key={`l${t.value}`}>
             {hasLeft && (
-              <text x={leftGutter - 13} y={y(t.value)} textAnchor="end" dominantBaseline="central" style={labelStyle}>
+              <text x={padL + leftGutter - 13} y={y(t.value)} textAnchor="end" dominantBaseline="central" style={labelStyle}>
                 <title>{t.label}</title>
                 {fitYLabel(t.label, yAvailable)}
               </text>
@@ -257,6 +286,22 @@ export const ChartAxes = ({
             </text>
           );
         })}
+
+      {yTitleLeft && (
+        <AxisTitle orientation="left" cx={8} cy={(plot.top + plot.bottom) / 2}>
+          {yTitle}
+        </AxisTitle>
+      )}
+      {yTitleRight && (
+        <AxisTitle orientation="right" cx={width - 8} cy={(plot.top + plot.bottom) / 2}>
+          {legacyRight ? yTitle : yTitleRightProp}
+        </AxisTitle>
+      )}
+      {xTitle && (
+        <AxisTitle orientation={xTitleTop ? 'top' : 'bottom'} cx={(plot.left + plot.right) / 2} cy={xTitleTop ? 8 : height - 8}>
+          {xTitle}
+        </AxisTitle>
+      )}
     </svg>
   );
 };

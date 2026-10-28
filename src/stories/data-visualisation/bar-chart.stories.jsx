@@ -1,40 +1,13 @@
 import React from 'react';
-import { BarChart, datavisVar } from '../../components/DataVis/BarChart';
-import { fontFamily } from '../../tokens/typography';
+import { BarChart } from '../../components/DataVis/BarChart';
+import { Page, Heading, Sub, Body, Card, LiveDemo, LegendDemo } from './chartDocs';
 
 const meta = {
-  title: 'Data Visualisation/Chart types/Bar Chart',
+  title: 'Data Visualisation/Chart types/Bar',
   parameters: { layout: 'padded' },
 };
 
 export default meta;
-
-const Page = ({ children }) => (
-  <div style={{ padding: 32, background: 'var(--color-beige-bg-primary, #f9f8f6)', maxWidth: 1100, fontFamily, color: 'var(--color-text-primary, #222)' }}>
-    {children}
-  </div>
-);
-const Heading = ({ children }) => (
-  <h2 style={{ fontSize: 32, lineHeight: '40px', fontWeight: 700, margin: '0 0 16px' }}>{children}</h2>
-);
-const Sub = ({ children }) => (
-  <h3 style={{ fontSize: 20, lineHeight: '28px', fontWeight: 600, margin: '32px 0 12px' }}>{children}</h3>
-);
-const Body = ({ children }) => (
-  <p style={{ fontSize: 14, lineHeight: '20px', fontWeight: 500, maxWidth: 621, margin: '0 0 8px' }}>{children}</p>
-);
-const Caption = ({ children }) => (
-  <div style={{ fontSize: 12, lineHeight: '16px', color: 'var(--color-text-secondary, #474747)', marginTop: 8 }}>{children}</div>
-);
-const Card = ({ children, caption }) => (
-  <div>
-    <div style={{ background: 'var(--color-core-bg-secondary, #fff)', borderRadius: 8, padding: 16, display: 'inline-block' }}>{children}</div>
-    {caption && <Caption>{caption}</Caption>}
-  </div>
-);
-const Grid = ({ children }) => (
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24 }}>{children}</div>
-);
 
 const simple = [
   { label: 'Item A', value: 48 }, { label: 'Item B', value: 38 }, { label: 'Item C', value: 18 },
@@ -59,7 +32,7 @@ const seriesNames = [{ name: 'Bar 1' }, { name: 'Bar 2' }, { name: 'Bar 3' }];
 
 const Variant = ({ caption, ...props }) => (
   <Card caption={caption}>
-    <BarChart series={seriesNames} {...props} />
+    <BarChart series={seriesNames} width={480} height={280} {...props} />
   </Card>
 );
 
@@ -98,9 +71,6 @@ export const DocsPage = { name: 'Docs', render: () => <DocsOverview /> };
 
 /* ---------- Chart pages (from Figma) ---------- */
 
-const W = 700; // Figma frame width
-const H = 320;
-const label = (n) => Array.from({ length: n }, () => 'label');
 const rows = (labels, values) => labels.map((l, i) => ({ label: l, value: values[i] }));
 const cols = (valuesPerColumn, names) => valuesPerColumn.map((values, i) => ({ label: names[i], values }));
 const items = (n) => Array.from({ length: n }, (_, i) => `Item ${String.fromCharCode(65 + i)}`);
@@ -111,8 +81,8 @@ const groupedSix = [
   [40, 60, 50, 90, 60, 79], [70, 50, 70, 60, 67, 77], [60, 30, 40, 67, 81, 73],
   [70, 50, 60, 80, 80, 75], [80, 70, 49, 43, 61, 77],
 ];
-// series order = colour order (stone first); the stack draws the last series at the baseline
-const stackedThree = [[7, 8, 35], [27, 25, 8], [42, 13, 35], [20, 50, 10], [10, 22, 8]];
+// series order = colour order (earth first); the stack draws the last series at the baseline
+const stackedThree = [[7, 8, 35], [27, 25, 8], [42, 13, 35], [28, 52, 10], [10, 22, 8]];
 const stackedSix = [
   [3, 3, 37, 3, 2, 2], [27, 6, 10, 6, 6, 5], [23, 12, 10, 23, 12, 10],
   [14, 16, 12, 13, 13, 12], [4, 22, 4, 4, 3, 3],
@@ -120,40 +90,96 @@ const stackedSix = [
 const barSeries = (n) => Array.from({ length: n }, (_, i) => ({ name: `Bar ${i + 1}` }));
 const stackSeries = (n) => Array.from({ length: n }, (_, i) => ({ name: `Item ${i + 1}` }));
 
-const ChartPage = ({ title, charts }) => (
+const SpecList = ({ title, lines }) => (
+  <div style={{ margin: '0 0 8px' }}>
+    <div style={{ fontSize: 14, lineHeight: '20px', fontWeight: 600 }}>{title}</div>
+    <ul style={{ fontSize: 14, lineHeight: '20px', margin: '4px 0 0', paddingLeft: 20 }}>
+      {lines.map((l) => <li key={l}>{l}</li>)}
+    </ul>
+  </div>
+);
+
+// Fluid chart: fills the box, which follows the page width; the corner handle drags width and height.
+const AXIS_TITLES = { yTitle: 'Y-axis title', xTitle: 'X-axis title' };
+const axisTitlesArgType = { control: 'boolean', name: 'Show axis titles', description: 'Y-axis and X-axis titles' };
+
+const ChartPage = ({ title, spec, sections, showValues, showLegend, benchmark, showAxisTitles }) => (
   <Page>
     <Heading>{title}</Heading>
+    <SpecList title={spec.title} lines={spec.lines} />
+    <Sub>Responsive demo</Sub>
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      {charts.map(({ caption, ...props }) => (
-        <Card key={caption} caption={caption}>
-          <BarChart width={W} height={H} tickStep={10} {...props} />
-        </Card>
+      {sections.map(({ title: sectionTitle, props }) => (
+        <section key={sectionTitle}>
+          <h4 style={{ fontSize: 16, lineHeight: '24px', fontWeight: 600, margin: '0 0 8px' }}>{sectionTitle}</h4>
+          {showLegend === undefined ? (
+            <LiveDemo>
+              <BarChart
+                tickStep={10}
+                {...props}
+                {...(showValues !== undefined ? { showValues } : {})}
+                {...(benchmark ? { benchmark } : {})}
+                {...(showAxisTitles ? AXIS_TITLES : {})}
+              />
+            </LiveDemo>
+          ) : (
+            <LegendDemo showLegend={showLegend} seriesNames={props.series.map((x) => x.name)}>
+              {(hiddenSeries, highlighted) => (
+                <BarChart tickStep={10} {...props} hiddenSeries={hiddenSeries} highlightedSeries={highlighted} {...(showValues !== undefined ? { showValues } : {})} {...(benchmark ? { benchmark } : {})} {...(showAxisTitles ? AXIS_TITLES : {})} />
+              )}
+            </LegendDemo>
+          )}
+        </section>
       ))}
     </div>
   </Page>
 );
 
+const columnSpec = {
+  title: 'Bar column',
+  lines: ['Max. width: 32px', 'Left padding: 8px', 'Right padding: 8px'],
+};
+
 export const VerticalSimple = {
   name: 'Vertical simple bar chart',
-  render: () => (
+  args: { showValues: false, showBenchmark: false, showAxisTitles: false },
+  argTypes: {
+    showAxisTitles: axisTitlesArgType,
+    showValues: { control: 'boolean', name: 'Show data', description: 'Leading data on the bars' },
+    showBenchmark: { control: 'boolean', name: 'Show benchmark', description: 'Reference line with its value and label' },
+  },
+  render: ({ showValues, showBenchmark, showAxisTitles }) => (
     <ChartPage
       title="Vertical simple bar chart"
-      charts={[
-        { caption: 'Without leading data', data: rows(items(7), simpleValues) },
-        { caption: 'With leading data', data: rows(items(7), simpleValues), showValues: true },
-      ]}
+      spec={{ ...columnSpec, lines: [...columnSpec.lines, 'Data, benchmark and axis titles can be toggled in Controls'] }}
+      showValues={showValues}
+      showAxisTitles={showAxisTitles}
+      benchmark={showBenchmark ? { value: 40, label: 'Benchmark', valueText: '40%' } : undefined}
+      sections={[{ title: 'Simple bars', props: { data: rows(items(7), simpleValues) } }]}
     />
   ),
 };
 
 export const VerticalGrouped = {
   name: 'Vertical grouped bar chart',
-  render: () => (
+  args: { showValues: false, showLegend: false, showBenchmark: false, showAxisTitles: false },
+  argTypes: {
+    showAxisTitles: axisTitlesArgType,
+    showValues: { control: 'boolean', name: 'Show data', description: 'Leading data on the bars' },
+    showBenchmark: { control: 'boolean', name: 'Show benchmark', description: 'Reference line with its value and label' },
+    showLegend: { control: 'boolean', name: 'Show legend', description: 'Selectable legend: click an item to hide or show that series' },
+  },
+  render: ({ showValues, showLegend, showBenchmark, showAxisTitles }) => (
     <ChartPage
       title="Vertical grouped bar chart"
-      charts={[
-        { caption: 'Three bars on each column', variant: 'grouped', data: cols(groupedThree, items(5)), series: barSeries(3) },
-        { caption: 'More bars on each column', variant: 'grouped', data: cols(groupedSix, items(5)), series: barSeries(6) },
+      showValues={showValues}
+      showAxisTitles={showAxisTitles}
+      showLegend={showLegend}
+      benchmark={showBenchmark ? { value: 40, label: 'Benchmark', valueText: '40%' } : undefined}
+      spec={{ title: 'Bar column', lines: ['Max. width: 80px', 'Left padding: 8px', 'Right padding: 8px', 'Individual bar: 1px left and right padding', 'Data (toggle in Controls): 4px above each bar', 'Legend, benchmark and axis titles can be toggled in Controls'] }}
+      sections={[
+        { title: 'Common use case', props: { variant: 'grouped', data: cols(groupedThree, items(5)), series: barSeries(3) } },
+        { title: 'Edge case', props: { variant: 'grouped', data: cols(groupedSix, items(5)), series: barSeries(6) } },
       ]}
     />
   ),
@@ -161,12 +187,22 @@ export const VerticalGrouped = {
 
 export const VerticalStacked = {
   name: 'Vertical stacked bar chart',
-  render: () => (
+  args: { showValues: false, showLegend: false, showAxisTitles: false },
+  argTypes: {
+    showAxisTitles: axisTitlesArgType,
+    showValues: { control: 'boolean', name: 'Show data', description: 'Leading data on the bars' },
+    showLegend: { control: 'boolean', name: 'Show legend', description: 'Selectable legend: click an item to hide or show that series' },
+  },
+  render: ({ showValues, showLegend, showAxisTitles }) => (
     <ChartPage
       title="Vertical stacked bar chart"
-      charts={[
-        { caption: 'Three items on each column', variant: 'stacked', data: cols(stackedThree, items(5)), series: stackSeries(3) },
-        { caption: 'More items on each column', variant: 'stacked', data: cols(stackedSix, items(5)), series: stackSeries(6) },
+      showValues={showValues}
+      showAxisTitles={showAxisTitles}
+      showLegend={showLegend}
+      spec={{ ...columnSpec, lines: [...columnSpec.lines, 'Data (toggle in Controls): inside the bar, 4px from the top of each segment', 'Legend and axis titles can be toggled in Controls'] }}
+      sections={[
+        { title: 'Common use case', props: { variant: 'stacked', data: cols(stackedThree, items(5)), series: stackSeries(3) } },
+        { title: 'Edge case', props: { variant: 'stacked', data: cols(stackedSix, items(5)), series: stackSeries(6) } },
       ]}
     />
   ),
@@ -174,13 +210,20 @@ export const VerticalStacked = {
 
 export const HorizontalSimple = {
   name: 'Horizontal simple bar chart',
-  render: () => (
+  args: { showValues: false, showBenchmark: false, showAxisTitles: false },
+  argTypes: {
+    showAxisTitles: axisTitlesArgType,
+    showValues: { control: 'boolean', name: 'Show data', description: 'Leading data on the bars' },
+    showBenchmark: { control: 'boolean', name: 'Show benchmark', description: 'Reference line with its value and label' },
+  },
+  render: ({ showValues, showBenchmark, showAxisTitles }) => (
     <ChartPage
       title="Horizontal simple bar chart"
-      charts={[
-        { caption: 'Without leading data', orientation: 'horizontal', data: rows(items(6), [53, 38, 61, 30, 69, 45]) },
-        { caption: 'With leading data', orientation: 'horizontal', showValues: true, data: rows(items(6), [70, 50, 80, 40, 90, 60]) },
-      ]}
+      spec={{ title: 'Bar row', lines: ['Max. height: 32px', 'Top padding: 8px', 'Bottom padding: 8px', 'Data, benchmark and axis titles can be toggled in Controls'] }}
+      showValues={showValues}
+      showAxisTitles={showAxisTitles}
+      benchmark={showBenchmark ? { value: 40, label: 'Benchmark', valueText: '40%' } : undefined}
+      sections={[{ title: 'Simple bars', props: { orientation: 'horizontal', tickStep: 20, data: rows(items(6), [60, 43, 90, 30, 20, 60]) } }]}
     />
   ),
 };

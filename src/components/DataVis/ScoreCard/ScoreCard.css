@@ -1,0 +1,79 @@
+/* Score card — Figma "Score card" (nodes 575:17975, 579:28967): at least 160px wide, 12px padding, 1px layout border, 4px radius.
+   Hover darkens the border and reveals the AI and info buttons on the label line. The card keeps the width it has without them, so a long
+   label is truncated to make room (Figma "Edge case"). */
+.ds-score-card {
+  box-sizing: border-box;
+  min-width: 160px;
+  width: fit-content; /* grows past 160 so a wide mini-chart always stays inside the padding */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 8px);
+  padding: var(--spacing-md, 12px);
+  background: var(--color-core-bg-secondary, #fff);
+  border: 1px solid var(--color-border-layout, #d1d1d1);
+  border-radius: var(--radius-sm, 4px);
+  font-family: var(--font-family, 'Inter', sans-serif);
+  color: var(--color-text-primary, #222);
+}
+
+.ds-score-card:hover,
+.ds-score-card:focus-within { border-color: var(--color-border-layout-hover, #a1a1a1); }
+
+.ds-score-card__head,
+.ds-score-card__row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm, 8px);
+  min-width: 0;
+}
+
+.ds-score-card__head { justify-content: space-between; min-height: 20px; }
+
+/* The label always shows. The buttons sit over the right end of the label line (out of the card's width calculation), and on hover the label
+   is capped so it truncates before them: --ds-score-actions is the width of the buttons plus the 8px gap. */
+.ds-score-card__head { position: relative; justify-content: flex-start; }
+
+.ds-score-card__label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px; /* Body/regular */
+  line-height: 20px;
+  color: var(--color-text-placeholder, #545454);
+}
+
+.ds-score-card__actions {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: var(--spacing-xs, 4px);
+}
+
+.ds-score-card__actions .ds-button { width: 20px; height: 20px; padding: var(--spacing-xxs, 2px); border-radius: var(--radius-sm, 4px); }
+
+.ds-score-card:hover .ds-score-card__actions,
+.ds-score-card:focus-within .ds-score-card__actions { display: inline-flex; }
+
+.ds-score-card:hover .ds-score-card__label,
+.ds-score-card:focus-within .ds-score-card__label { max-width: calc(100% - var(--ds-score-actions, 0px)); }
+
+.ds-score-card__row { justify-content: space-between; }
+
+.ds-score-card__value {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.ds-score-card__chart { display: flex; align-items: center; flex: none; }
+
+/* Bottom label: chart on top, then the value, then the label. */
+.ds-score-card--bottom { gap: var(--spacing-sm, 8px); }
+.ds-score-card--bottom .ds-score-card__head { align-items: flex-start; }
+.ds-score-card--bottom .ds-score-card__chart { min-height: 32px; }

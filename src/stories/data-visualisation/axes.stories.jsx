@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ChartAxes } from '../../components/DataVis/ChartAxes';
 import { seriesColour } from '../../components/DataVis/chartTheme';
+import { BenchmarkLine } from '../../components/DataVis/BenchmarkLine';
 import { Page, Heading, Body, Section, Specimen, Row, SubHeading, Bullets } from './chartDesignDocs';
 
-export default {
+const meta = {
   title: 'Data Visualisation/Chart design/Axes and label',
   parameters: { layout: 'padded' },
 };
+
+export default meta;
 
 const W = 540;
 const H = 320;
@@ -15,9 +18,9 @@ const seven = Array.from({ length: 7 }, () => L);
 const rows = (n = 6) => Array.from({ length: n + 1 }, (_, i) => ({ value: i, label: L }));
 const yRows = rows(6);
 
-const Example = ({ caption, width = W, height = H, ...props }) => (
+const Example = ({ caption, width = W, height = H, children, ...props }) => (
   <Specimen caption={caption} style={{ padding: 16, background: 'var(--color-core-bg-secondary, #fff)' }}>
-    <ChartAxes width={width - 32} height={height - 32} yTicks={yRows} categories={seven} {...props} />
+    <ChartAxes width={width - 32} height={height - 32} yTicks={yRows} categories={seven} {...props}>{children}</ChartAxes>
   </Specimen>
 );
 
@@ -106,6 +109,32 @@ export const Docs = () => (
     </Section>
 
     <Section>
+      <Heading>Axes title</Heading>
+      <Body>
+        Axes title prevent user misinterpretation by explicitly stating units, scales, and data definitions. Include
+        Units Clearly: Always state measurement units (such as Temperature (°C) or Revenue ($K)) directly in the axis
+        title or label so users do not have to guess.
+      </Body>
+      <Body>
+        Remove Redundant Labels: Delete repetitive or unnecessary axis labels if direct data labels on the bars or
+        clean subtitles make the axes redundant.
+      </Body>
+      <Body>Axes titles are placed 16px away from the axis labels, on the left or right of the y-axis and below or above the x-axis.</Body>
+      <Row>
+        <Fig caption="Y-axis title (left)">
+          <Specimen style={{ padding: 0, background: 'var(--color-core-bg-secondary, #fff)' }}>
+            <ChartAxes width={556} height={336} yTicks={yRows} categories={seven} yTitle="Axes title" xTitle="Axes title" showGridlines={false} showXGridlines />
+          </Specimen>
+        </Fig>
+        <Fig caption="Y-axis title (right)">
+          <Specimen style={{ padding: 0, background: 'var(--color-core-bg-secondary, #fff)' }}>
+            <ChartAxes width={556} height={336} yAxis="right" yTicks={yRows} categories={seven} yTitle="Axes title" xTitle="Axes title" showGridlines={false} showXGridlines />
+          </Specimen>
+        </Fig>
+      </Row>
+    </Section>
+
+    <Section>
       <Heading>Tick mark</Heading>
       <Body>Tick marks are small scale lines along chart axes that establish value positions and anchor labels.</Body>
       <Body>Continuous vs. Categorical Alignment:</Body>
@@ -127,6 +156,34 @@ export const Docs = () => (
             yDomain={[0, 7]}
             yTicks={[1, 2, 3, 4, 5, 6, 7].map((v, i) => ({ value: v, label: ['Jan', '', '', 'Feb', '', '', 'Mar'][i] }))}
           />
+        </Fig>
+      </Row>
+    </Section>
+
+    <Section>
+      <Heading>Benchmark line</Heading>
+      <Body>
+        A benchmark line marks a reference value, such as a target or an average, across the plot. It is drawn in
+        divider/primary with its value and label next to the line. Use a horizontal line against the y-axis and a
+        vertical line against the x-axis.
+      </Body>
+      <Row>
+        <Fig caption="Left Y-axis + benchmark">
+          <Example showGridlines={false} showXGridlines>
+            {({ plot, y }) => <BenchmarkLine orientation="right" y={y(2)} x1={plot.left} x2={plot.right} value="100K" label="Benchmark" />}
+          </Example>
+        </Fig>
+        <Fig caption="Right Y-axis + benchmark">
+          <Example yAxis="right" showGridlines={false} showXGridlines>
+            {({ plot, y }) => <BenchmarkLine orientation="left" y={y(2)} x1={plot.left} x2={plot.right} value="100K" label="Benchmark" />}
+          </Example>
+        </Fig>
+        <Fig caption="X-axis + benchmark">
+          <Example>
+            {({ plot, bandWidth }) => (
+              <BenchmarkLine type="vertical" orientation="top" x={plot.left + bandWidth * 2} y1={plot.top} y2={plot.bottom} value="100K" label="Benchmark" />
+            )}
+          </Example>
         </Fig>
       </Row>
     </Section>
@@ -200,7 +257,8 @@ const useWidth = () => {
   return [ref, width];
 };
 
-const PlaygroundDemo = ({ axis, xPosition, yPosition, showTicks, showXGuideline, showYGuideline }) => {
+const PlaygroundDemo = ({ axis, xPosition, yPosition, showTicks, showXGuideline, showYGuideline, showXTitle, showYTitle }) => {
+  const titles = { xTitle: showXTitle ? 'Axes title' : undefined, yTitle: showYTitle ? 'Axes title' : undefined };
   const xAxis = xPosition === 'Top' ? 'top' : 'bottom';
   const yAxis = yPosition === 'Right' ? 'right' : yPosition === 'Left + right' ? 'both' : 'left';
   const [ref, width] = useWidth();
@@ -218,11 +276,11 @@ const PlaygroundDemo = ({ axis, xPosition, yPosition, showTicks, showXGuideline,
         }}
       >
         {axis === 'X-axis labels' ? (
-          <ChartAxes width={w} height={300} yTicks={pctTicks} categories={DATE_LABELS} xAxis={xAxis} yAxis={yAxis} showTicks={showTicks} showGridlines={showYGuideline} showXGridlines={showXGuideline} />
+          <ChartAxes width={w} height={300} yTicks={pctTicks} categories={DATE_LABELS} xAxis={xAxis} yAxis={yAxis} showTicks={showTicks} showGridlines={showYGuideline} showXGridlines={showXGuideline} {...titles} />
         ) : (
           <ChartAxes
             width={w} height={300} orientation="horizontal" xAxis={xAxis} xDomain={[0, 80]} categories={JOB_LABELS} xTicks={jobTicks}
-            showTicks={showTicks} showGridlines={showXGuideline} showXGridlines={showYGuideline}
+            showTicks={showTicks} showGridlines={showXGuideline} showXGridlines={showYGuideline} {...titles}
           />
         )}
       </div>
@@ -232,7 +290,7 @@ const PlaygroundDemo = ({ axis, xPosition, yPosition, showTicks, showXGuideline,
 
 export const Playground = {
   parameters: { layout: 'padded' },
-  args: { axis: 'X-axis labels', xPosition: 'Bottom', yPosition: 'Left', showTicks: false, showXGuideline: false, showYGuideline: true },
+  args: { axis: 'X-axis labels', xPosition: 'Bottom', yPosition: 'Left', showTicks: false, showXGuideline: false, showYGuideline: true, showXTitle: false, showYTitle: false },
   argTypes: {
     axis: { control: 'inline-radio', options: ['X-axis labels', 'Y-axis labels'], description: 'X: labels wrap to a second row when the column is narrow. Y: long labels are truncated to the first 7 + last 5 characters when the gutter is narrow.' },
     xPosition: { control: 'inline-radio', options: ['Bottom', 'Top'], name: 'X-axis position' },
@@ -240,6 +298,76 @@ export const Playground = {
     showTicks: { control: 'boolean' },
     showXGuideline: { control: 'boolean', name: 'X-axis guideline (vertical)' },
     showYGuideline: { control: 'boolean', name: 'Y-axis guideline (horizontal)' },
+    showXTitle: { control: 'boolean', name: 'X-axis title', description: 'Axes title below (or above) the X-axis labels' },
+    showYTitle: { control: 'boolean', name: 'Y-axis title', description: 'Axes title beside the Y-axis labels (on the right when the Y-axis is on the right)' },
   },
   render: (args) => <PlaygroundDemo {...args} />,
+};
+
+// ── Mixed X-axis ──────────────────────────────────────────────────────────────
+// Every column keeps its tick (and guideline); only the columns you name get a label.
+const mixedCategories = ['Jan', '', '', 'Feb', '', '', 'Mar'];
+
+export const MixedXAxis = {
+  name: 'Mixed X-axis',
+  parameters: { layout: 'padded' },
+  render: () => (
+    <Page>
+      <Section>
+        <Heading>Mixed X-axis</Heading>
+        <Body>
+          Not every column needs a label. You can choose which X-axis columns carry one and leave the rest blank, while every column keeps
+          its tick. The ticks mark where each data point sits, so people can still tell how the data is spread without the labels
+          crowding the axis.
+        </Body>
+        <Bullets>
+          <li style={{ marginBottom: 12 }}><b>Label the columns that help people orient themselves.</b><br />For a time series that is usually the start of each month, quarter or year.</li>
+          <li style={{ marginBottom: 12 }}><b>Keep a tick on every column.</b><br />Turn on the ticks (and the X-axis guideline) so the unlabelled columns are still visible.</li>
+          <li><b>Pass an empty label for the columns you want to leave blank.</b></li>
+        </Bullets>
+        <Example caption="Labels on Jan, Feb and Mar only; every column keeps its tick and guideline" showTicks showGridlines={false} showXGridlines yTicks={rows(3)} categories={mixedCategories} />
+      </Section>
+    </Page>
+  ),
+};
+
+// ── Benchmark line playground ─────────────────────────────────────────────────
+const BENCH_ORIENTATIONS = {
+  'Horizontal - label right': { type: 'horizontal', orientation: 'right' },
+  'Horizontal - label left': { type: 'horizontal', orientation: 'left' },
+  'Vertical - label top': { type: 'vertical', orientation: 'top' },
+  'Vertical - label bottom': { type: 'vertical', orientation: 'bottom' },
+};
+
+export const BenchmarkPlayground = {
+  name: 'Benchmark line playground',
+  parameters: { layout: 'padded' },
+  args: { orientation: 'Horizontal - label right', showText: true, showIcon: false },
+  argTypes: {
+    orientation: { control: 'select', options: Object.keys(BENCH_ORIENTATIONS) },
+    showText: { control: 'boolean', name: 'Value + label', description: 'Shows or hides the value and benchmark label together' },
+    showIcon: { control: 'boolean', name: 'Icon', description: 'Optional icon before the label (only shown with the label)' },
+  },
+  render: ({ orientation, showText, showIcon }) => {
+    const cfg = BENCH_ORIENTATIONS[orientation];
+    const horizontal = cfg.type === 'horizontal';
+    const common = showText
+      ? { value: '100K', label: 'Benchmark', icon: showIcon ? 'arrow-top-right' : undefined }
+      : {};
+    return (
+      <Example
+        yAxis={horizontal && cfg.orientation === 'left' ? 'right' : 'left'}
+        showGridlines={!horizontal}
+        showXGridlines={horizontal}
+      >
+        {({ plot, y, bandWidth }) =>
+          horizontal ? (
+            <BenchmarkLine {...cfg} y={y(2)} x1={plot.left} x2={plot.right} {...common} />
+          ) : (
+            <BenchmarkLine {...cfg} x={plot.left + bandWidth * 2} y1={plot.top} y2={plot.bottom} {...common} />
+          )
+        }
+      </Example>
+    );
+  },
 };
