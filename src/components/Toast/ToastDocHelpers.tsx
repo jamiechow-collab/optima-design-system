@@ -182,7 +182,7 @@ export const AnatomyExample = () => {
       <div ref={toastRef} style={{ flexShrink: 0 }}>
         <Toast
           icon={<Icon name="placeholder" size="sm" />}
-          actions={<Button variant="secondary" size="sm">Action</Button>}
+          actions={<Button variant="secondary" size="xs">Action</Button>}
           onClose={() => {}}
         >
           {MESSAGE}

@@ -3,7 +3,7 @@
    Previous/Next: reuses Button (secondary, sm) — border/layout #D1D1D1,
    bg white, hover core-bg/secondary-hover #F9F8F6, pressed
    core-bg/secondary-selected #EDE9E3
-   Page number: 40x40, radius/md 8, Text sm/Medium 14/20 (-0.2px tracking)
+   Page number: 40x40, radius/sm 4, Text sm/Medium 14/20 (-0.2px tracking)
    Default bg white, text/primary #050505 · Hover bg #F9F8F6 · Pressed
    bg #EDE9E3 · Active (current page) bg core-bg/primary #050505,
    text/invert white · Disabled text/disabled #9E9E9E · Focused bg #EDE9E3
@@ -36,7 +36,7 @@
   height: 40px;
   box-sizing: border-box;
   border: none;
-  border-radius: var(--radius-md, 8px); /* radius/md */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
   background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
   font-family: inherit;
   font-size: var(--font-size-sm, 14px);

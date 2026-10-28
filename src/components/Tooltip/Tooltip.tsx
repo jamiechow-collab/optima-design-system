@@ -7,7 +7,7 @@ export type TooltipAlign = 'start' | 'center' | 'end';
 
 export interface TooltipProps {
   /** The element that triggers the tooltip on hover/focus — must accept a ref */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   /** primary (dark, default) or secondary (light) */
   variant?: TooltipVariant;
   /** Which side of the trigger the tooltip opens on — 'auto' (default) picks

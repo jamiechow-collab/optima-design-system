@@ -72,7 +72,7 @@ export const DateField = ({
   };
 
   const handleSegment =
-    (setter: (v: string) => void, maxLen: number, next?: React.RefObject<HTMLInputElement>) =>
+    (setter: (v: string) => void, maxLen: number, next?: React.RefObject<HTMLInputElement | null>) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const digits = digitsOnly(e.target.value).slice(0, maxLen);
       setter(digits);
@@ -85,7 +85,7 @@ export const DateField = ({
     };
 
   const handleKeyDown =
-    (current: string, prev?: React.RefObject<HTMLInputElement>, next?: React.RefObject<HTMLInputElement>) =>
+    (current: string, prev?: React.RefObject<HTMLInputElement | null>, next?: React.RefObject<HTMLInputElement | null>) =>
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Backspace' && current === '' && prev?.current) {
         e.preventDefault();

@@ -53,8 +53,8 @@ export const Default: StoryObj<PlaygroundArgs> = {
       actions={
         showActions ? (
           <>
-            <Button variant="primary">Action</Button>
-            <Button variant="secondary">Action</Button>
+            <Button variant="primary" size="xs">Action</Button>
+            <Button variant="secondary" size="xs">Action</Button>
           </>
         ) : undefined
       }
@@ -111,8 +111,8 @@ export const WithActionButtons: Story = {
       icon={<Icon name="placeholder" />}
       actions={
         <>
-          <Button variant="primary">Action</Button>
-          <Button variant="secondary">Action</Button>
+          <Button variant="primary" size="xs">Action</Button>
+          <Button variant="secondary" size="xs">Action</Button>
         </>
       }
     />

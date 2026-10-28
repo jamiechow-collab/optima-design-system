@@ -91,7 +91,7 @@
 }
 
 /* ── Status dot ─────────────────────────────────
-   online alert/positive #448537 · busy alert/negative #CF3321 · away alert/warning #DD7F03
+   online alert/positive · busy alert/negative · away alert/warning
    Dot per avatar size: xs 6 · sm 8 · md 10 · lg 12 · xl 14 · 2xl 16
    ──────────────────────────────────────────── */
 
@@ -109,7 +109,7 @@
   right: 0;
 }
 
-.ds-status-dot--online { background: var(--color-alert-positive, #448537); }
+.ds-status-dot--online { background: var(--color-alert-positive); }
 .ds-status-dot--busy { background: var(--color-alert-negative, #cf3321); }
 .ds-status-dot--away { background: var(--color-alert-warning, #dd7f03); }
 

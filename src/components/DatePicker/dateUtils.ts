@@ -104,3 +104,11 @@ export const parseDate = (value: string): Date | null => {
   if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
   return date;
 };
+
+/** The same day `amount` months earlier/later, clamped to the end of a shorter month (31 Aug − 6 months → 28 Feb). */
+export const shiftMonths = (date: Date, amount: number) => {
+  const d = new Date(date.getFullYear(), date.getMonth() + amount, 1);
+  const last = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+  d.setDate(Math.min(date.getDate(), last));
+  return d;
+};

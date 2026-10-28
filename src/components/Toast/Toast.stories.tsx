@@ -52,7 +52,7 @@ export const Message: StoryObj<MessageArgs> = {
     <Toast
       type={type}
       icon={showIcon && type === 'default' ? <Icon name="placeholder" size="sm" /> : undefined}
-      actions={showAction ? <Button variant="secondary" size="sm">Action</Button> : undefined}
+      actions={showAction ? <Button variant="secondary" size="xs">Action</Button> : undefined}
       onClose={showClose ? () => {} : undefined}
     >
       {children}

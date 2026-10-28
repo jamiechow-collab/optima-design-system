@@ -1,6 +1,6 @@
 import { Meta, Title, Subtitle, Canvas, Controls, Unstyled } from '@storybook/addon-docs/blocks';
 import * as DatePickerStories from './DatePicker.stories';
-import { AnatomyExample, TypesExample, StatesExample } from './DatePickerDocHelpers';
+import { AnatomyExample, VariantsExample, TypesExample, StatesExample } from './DatePickerDocHelpers';
 
 <Meta of={DatePickerStories} />
 
@@ -40,6 +40,28 @@ jump-to menus), a **Week number** column (optional), the date grid itself, and a
   between months.
 - Days outside the currently-viewed month are shown muted, matching the Disabled visual style.
 - Today is marked with a small dot under its number.
+
+## Variants
+
+There are two types of Date Picker:
+
+1. Standard Date Picker
+2. Date Picker with pre-set
+
+<Unstyled>
+  <VariantsExample />
+</Unstyled>
+
+For Date Picker with pre-set, one year is selected by default. Users can select custom date range.
+Once users select a date, the pre-set button will be deselected.
+
+```tsx
+<DatePicker mode="range" presets value={range} onChange={setRange} label="Field title" />
+```
+
+Pass `presets` as `true` for the default list (One year, Last 6 months, Last 3 months, Last 30
+days), or give your own list of `{ key, label, range: (today) => [start, end] }`. It works in
+`range` mode, and the popover shows two calendars side by side with Cancel / Apply at the foot.
 
 ## Types
 

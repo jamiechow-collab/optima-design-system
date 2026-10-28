@@ -37,7 +37,7 @@ const VARIANTS: { variant: ButtonVariant; name: string }[] = [
   { variant: 'secondary', name: 'Secondary' },
   { variant: 'tertiary', name: 'Tertiary' },
   { variant: 'ghost', name: 'Ghost' },
-  { variant: 'text', name: 'Text' },
+  { variant: 'inline', name: 'Inline' },
   { variant: 'disruptive', name: 'Disruptive' },
 ];
 
@@ -64,6 +64,7 @@ export const TypesExample = () => (
 );
 
 const SIZES: { size: ButtonSize; name: string }[] = [
+  { size: 'xs', name: 'Extra small' },
   { size: 'sm', name: 'Small' },
   { size: 'md', name: 'Medium' },
   { size: 'lg', name: 'Large' },
@@ -114,7 +115,7 @@ const emphasisCard: React.CSSProperties = {
 export const EmphasisExample = () => (
   <div style={{ display: 'flex', gap: 48 }}>
     <div>
-      <div style={{ ...label, color: '#519E42', marginBottom: 8 }}>Do</div>
+      <div style={{ ...label, color: 'var(--color-alert-positive-stressed)', marginBottom: 8 }}>Do</div>
       <div style={emphasisCard}>
         <Button variant="secondary">Button label</Button>
         <Button variant="primary">Button label</Button>

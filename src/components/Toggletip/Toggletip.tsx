@@ -7,7 +7,7 @@ export type ToggletipVariant = 'primary' | 'secondary';
 export interface ToggletipProps {
   /** The element that opens the toggletip on click — must be a real interactive
       element (e.g. a button) so Enter/Space activation works natively */
-  children: React.ReactElement;
+  children: React.ReactElement<any>;
   title: React.ReactNode;
   description: React.ReactNode;
   /** Action button label — omit to hide the button */

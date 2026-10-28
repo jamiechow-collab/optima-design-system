@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Menu, MenuItem, MenuDivider, MenuItemProps, MenuItemSize } from './Menu';
+import { Menu, MenuItem, MenuItemProps, MenuItemSize } from './Menu';
+import { Divider } from '../Divider/Divider';
 import { Icon } from '../Icon/Icon';
 
 const meta: Meta<typeof Menu> = {
@@ -164,10 +165,10 @@ export const WithDividers: StoryObj<ListArgs> = {
     <Menu>
       <MenuItem size={size} label="Item 1" />
       <MenuItem size={size} label="Item 2" />
-      <MenuDivider />
+      <Divider />
       <MenuItem size={size} label="Item 3" />
       <MenuItem size={size} label="Item 4" />
-      <MenuDivider />
+      <Divider />
       <MenuItem size={size} label="Item 5" />
     </Menu>
   ),
@@ -180,7 +181,7 @@ export const WithAlertItem: StoryObj<ListArgs> = {
     <Menu>
       <MenuItem size={size} label="Duplicate" />
       <MenuItem size={size} label="Rename" />
-      <MenuDivider />
+      <Divider />
       <MenuItem size={size} label="Delete" alert />
     </Menu>
   ),

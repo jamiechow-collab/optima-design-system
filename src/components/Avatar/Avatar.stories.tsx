@@ -82,6 +82,13 @@ interface GroupArgs {
   size: 'xs' | 'sm' | 'md';
   disabledAvatar: string;
   focusedAvatar: string;
+  // inherited Avatar props, hidden from the controls table
+  status?: string;
+  disabled?: boolean;
+  focused?: boolean;
+  initials?: string;
+  src?: string;
+  alt?: string;
 }
 
 export const Group: StoryObj<GroupArgs> = {
@@ -125,6 +132,10 @@ interface WithDetailsArgs {
   status?: 'online' | 'busy' | 'away';
   disabled: boolean;
   focused: boolean;
+  // inherited Avatar props, hidden from the controls table
+  initials?: string;
+  src?: string;
+  alt?: string;
 }
 
 export const WithDetails: StoryObj<WithDetailsArgs> = {

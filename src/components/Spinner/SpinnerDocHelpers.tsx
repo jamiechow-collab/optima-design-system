@@ -61,7 +61,7 @@ export const InButtonExample = () => (
     <Button variant="ghost" loading>
       Loading...
     </Button>
-    <Button variant="text" loading>
+    <Button variant="inline" loading>
       Loading...
     </Button>
   </div>

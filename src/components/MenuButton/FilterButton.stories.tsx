@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { FilterMenuButton } from './MenuButton';
-import { Menu, MenuItem, MenuDivider } from '../Menu/Menu';
+import { Menu, MenuItem } from '../Menu/Menu';
+import { Divider } from '../Divider/Divider';
 import { Icon } from '../Icon/Icon';
 import { ToggleButtonSize } from '../ToggleButton/ToggleButton';
 
@@ -26,7 +27,7 @@ const SampleMenu = () => (
     <MenuItem label="Item A" />
     <MenuItem label="Item B" />
     <MenuItem label="Item C" />
-    <MenuDivider />
+    <Divider />
     <MenuItem label="Item E" />
     <MenuItem label="Item F" />
   </Menu>
@@ -45,7 +46,6 @@ const Interactive = ({ size, label, active, disabled, showLeadingIcon, showBadge
       disabled={disabled}
       icon={showLeadingIcon ? <Icon name="funnel" /> : undefined}
       badge={showBadge ? 3 : undefined}
-      onClick={() => setIsActive((prev) => !prev)}
     >
       <SampleMenu />
     </FilterMenuButton>

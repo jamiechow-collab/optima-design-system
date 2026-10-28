@@ -1,11 +1,11 @@
 /* ─────────────────────────────────────────────
    Calendar — design tokens: src/tokens/colors.js, typography.js
    Container: auto-width, radius/lg 12, shadow-xl 0px 24px 48px -12px rgba(16,24,40,0.18)
-   Content padding 8px (spacing/sm)
+   Content padding 8 top, 12 sides and bottom; header (40px icon buttons) directly above the grid
    Header: prev/next chevron icon buttons (Button ghost iconOnly), month/year
-   pills (auto height, p8, radius/md 8, Label/medium 14/20)
+   pills (auto height, p8, radius/sm 4, Label/medium 14/20)
    Grid: week-number column (border-right border/layout #D1D1D1) + dates column,
-   0 gap between them and between week rows — cells sit flush edge-to-edge
+   0 gap between them, 4px between week rows
    Weekday/week-no labels: Caption/medium 12/16 text/placeholder #858585
    Day cell: 32x32 circle (radius/full). Default text/primary #050505.
    Hover/selected/range-band bg core-bg/secondary-selected #EDE9E3. Active
@@ -30,8 +30,8 @@
 .ds-calendar__content {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-sm, 8px); /* spacing/sm */
-  gap: 8px;
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 12px) var(--spacing-md, 12px); /* 8 top, 12 sides and bottom */
+  gap: 0; /* the header sits right on the grid */
   box-sizing: border-box;
 }
 
@@ -59,7 +59,7 @@
   align-items: center;
   padding: var(--spacing-sm, 8px);
   border: none;
-  border-radius: var(--radius-md, 8px); /* radius/md */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
   background: transparent;
   font-family: inherit;
   font-size: var(--font-size-sm, 14px);
@@ -106,7 +106,8 @@
 .ds-calendar__week-numbers {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--spacing-xs, 4px); /* same 4px between rows as the dates */
+  padding-right: 3px; /* with the 1px border this is the 4px the column is padded by */
   border-right: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
 }
 
@@ -126,7 +127,7 @@
 .ds-calendar__dates {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--spacing-xs, 4px); /* 4px between week rows */
   flex: 1;
 }
 
@@ -287,4 +288,17 @@
 
 .ds-calendar__footer .ds-button {
   flex: 1;
+}
+
+/* ── Bare: no popover chrome, for calendars that sit inside another panel ── */
+
+.ds-calendar--bare {
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* Days from the neighbouring months sit outside the range band (the range shows on the month it belongs to) */
+.ds-calendar--bare .ds-calendar__day--muted:not(.ds-calendar__day--range-start):not(.ds-calendar__day--range-end) {
+  background: transparent;
 }

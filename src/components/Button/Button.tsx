@@ -2,22 +2,22 @@ import React from 'react';
 import { Spinner } from '../Spinner/Spinner';
 import './Button.css';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'text' | 'disruptive';
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost' | 'inline' | 'disruptive';
+export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /** Primary is the principal CTA (one per page); secondary pairs with it for
-      negative actions; tertiary/ghost are low emphasis; text is label-only;
+      negative actions; tertiary/ghost are low emphasis; inline is a borderless label-only link-style button;
       disruptive is for destructive actions. */
   variant?: ButtonVariant;
-  /** sm 40 · md 44 · lg 48 — sm is the default and most commonly used */
+  /** xs 32 · sm 40 · md 44 · lg 48 — sm is the default and most commonly used */
   size?: ButtonSize;
   /** Icon before the label (16px at sm/md, 20px at lg) */
   leadingIcon?: React.ReactNode;
   /** Icon after the label */
   trailingIcon?: React.ReactNode;
   /** Square button showing only an icon — pass the icon as children.
-      Supported for primary / secondary / tertiary / ghost. */
+      Supported for primary / secondary / tertiary / ghost / inline. */
   iconOnly?: boolean;
   /** Replaces the leading icon with a spinner and blocks interaction */
   loading?: boolean;

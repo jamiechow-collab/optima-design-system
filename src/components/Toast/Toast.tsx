@@ -12,7 +12,7 @@ const DEFAULT_ICON: Record<ToastType, IconName | null> = {
   warning: 'info-with-circle',
 };
 
-export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToastProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /** default (dark) · positive · negative · warning — colour, only used by the "message" variant */
   type?: ToastType;
   /** message (single line, coloured) · details (white, icon + title + body + buttons) · push (white, icon + title + body + timestamp) */

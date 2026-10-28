@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Menu, MenuItem, MenuDivider, MenuSectionTitle } from './Menu';
+import { Menu, MenuItem, MenuSectionTitle } from './Menu';
+import { Divider } from '../Divider/Divider';
 
 const meta: Meta<typeof Menu> = {
   title: 'Components/Menu/Menu with Sections',
@@ -21,7 +22,7 @@ export const Default: Story = {
       <MenuSectionTitle>File</MenuSectionTitle>
       <MenuItem label="New" shortcut="⌘N" />
       <MenuItem label="Open" shortcut="⌘O" />
-      <MenuDivider />
+      <Divider />
       <MenuSectionTitle>Edit</MenuSectionTitle>
       <MenuItem label="Cut" shortcut="⌘X" />
       <MenuItem label="Copy" shortcut="⌘C" />

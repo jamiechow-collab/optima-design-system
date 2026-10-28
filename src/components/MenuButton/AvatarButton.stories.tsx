@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { AvatarMenuButton } from './MenuButton';
-import { Menu, MenuItem, MenuDivider } from '../Menu/Menu';
+import { Menu, MenuItem } from '../Menu/Menu';
+import { Divider } from '../Divider/Divider';
 import { AvatarSize } from '../Avatar/Avatar';
 
 const meta: Meta = {
@@ -21,7 +22,7 @@ const SampleMenu = () => (
   <Menu>
     <MenuItem label="Profile" />
     <MenuItem label="Settings" />
-    <MenuDivider />
+    <Divider />
     <MenuItem label="Log out" alert />
   </Menu>
 );

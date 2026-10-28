@@ -1,6 +1,7 @@
 import React from 'react';
 import { FilterMenuButton, InlineMenuButton, IconMenuButton, AvatarMenuButton } from './MenuButton';
-import { Menu, MenuItem, MenuDivider } from '../Menu/Menu';
+import { Menu, MenuItem } from '../Menu/Menu';
+import { Divider } from '../Divider/Divider';
 import { Icon } from '../Icon/Icon';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -39,7 +40,7 @@ const SampleMenu = () => (
     <MenuItem label="Item A" />
     <MenuItem label="Item B" />
     <MenuItem label="Item C" />
-    <MenuDivider />
+    <Divider />
     <MenuItem label="Item E" />
     <MenuItem label="Item F" />
   </Menu>

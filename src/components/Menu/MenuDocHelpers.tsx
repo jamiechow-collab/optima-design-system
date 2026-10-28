@@ -1,5 +1,6 @@
 import React from 'react';
-import { Menu, MenuItem, MenuDivider, MenuSectionTitle } from './Menu';
+import { Menu, MenuItem, MenuSectionTitle } from './Menu';
+import { Divider } from '../Divider/Divider';
 import { Icon } from '../Icon/Icon';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -42,7 +43,7 @@ export const OverviewExample = () => (
     <Menu>
       <MenuItem label="Item 1" />
       <MenuItem label="Item 2" />
-      <MenuDivider />
+      <Divider />
       <MenuSectionTitle>Section title</MenuSectionTitle>
       <MenuItem label="Item 3" />
       <MenuItem label="Item 4" checked hasSubmenu />
@@ -199,7 +200,7 @@ export const SectionsExample = () => (
       <MenuItem label="Item A" shortcut="⌘K" />
       <MenuItem label="Item B" />
       <MenuItem label="Item C" hasSubmenu />
-      <MenuDivider />
+      <Divider />
       <MenuItem label="Item E" />
       <MenuItem label="Item F" />
     </Menu>
@@ -207,7 +208,7 @@ export const SectionsExample = () => (
       <MenuSectionTitle>File</MenuSectionTitle>
       <MenuItem label="New" />
       <MenuItem label="Open" />
-      <MenuDivider />
+      <Divider />
       <MenuSectionTitle>Edit</MenuSectionTitle>
       <MenuItem label="Cut" shortcut="⌘X" />
       <MenuItem label="Copy" shortcut="⌘C" />

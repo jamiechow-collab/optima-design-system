@@ -34,6 +34,8 @@ export interface CalendarProps {
   onApply?: () => void;
   minDate?: Date;
   maxDate?: Date;
+  /** Month shown first (defaults to the month of the selected date, or today) */
+  defaultMonth?: Date;
   className?: string;
 }
 
@@ -49,13 +51,14 @@ export const Calendar = ({
   onApply,
   minDate,
   maxDate,
+  defaultMonth,
   className,
 }: CalendarProps) => {
   const today = useMemo(() => startOfDay(new Date()), []);
   const [start, end] = mode === 'range' && Array.isArray(value) ? value : [null, null];
   const singleValue = mode === 'single' && !Array.isArray(value) ? value : null;
 
-  const initialView = singleValue || start || today;
+  const initialView = defaultMonth || singleValue || start || today;
   const [viewDate, setViewDate] = useState(new Date(initialView.getFullYear(), initialView.getMonth(), 1));
   const [hoveredDate, setHoveredDate] = useState<Date | null>(null);
   const [focusedDate, setFocusedDate] = useState(singleValue || start || today);
@@ -329,10 +332,10 @@ export const Calendar = ({
       </div>
       {showFooter && (
         <div className="ds-calendar__footer">
-          <Button variant="secondary" size="sm" onClick={onCancel}>
+          <Button variant="secondary" size="xs" onClick={onCancel}>
             Cancel
           </Button>
-          <Button variant="primary" size="sm" onClick={onApply}>
+          <Button variant="primary" size="xs" onClick={onApply}>
             Apply
           </Button>
         </div>

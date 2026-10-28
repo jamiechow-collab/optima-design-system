@@ -142,8 +142,8 @@ export const AnatomyExample = () => {
           description={MESSAGE}
           actions={
             <>
-              <Button variant="primary">Action</Button>
-              <Button variant="secondary">Action</Button>
+              <Button variant="primary" size="xs">Action</Button>
+              <Button variant="secondary" size="xs">Action</Button>
             </>
           }
         >
@@ -321,8 +321,8 @@ export const VariantsExample = () => (
       description={MESSAGE}
       actions={
         <>
-          <Button variant="primary">Action</Button>
-          <Button variant="secondary">Action</Button>
+          <Button variant="primary" size="xs">Action</Button>
+          <Button variant="secondary" size="xs">Action</Button>
         </>
       }
     >

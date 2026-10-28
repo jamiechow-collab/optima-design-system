@@ -3,7 +3,7 @@
    Caption/medium 12/16 · pill shape (Radius/full)
    Variants (bg / text): info core-bg/tertiary #EBEBEB / text/primary #050505
    message sea-blue-20 #DCF0F7 / stressed #00678A
-   positive green-20 #E5F3E2 / stressed #35692B
+   positive background / stressed (alert/positive-*)
    negative red-20 #FCEFED / stressed #912417
    warning amber-20 #FFF4E6 / stressed #AB6202
    ───────────────────────────────────────────── */
@@ -64,8 +64,8 @@
 }
 
 .ds-badge--positive {
-  background: var(--color-alert-positive-background, #e5f3e2);
-  color: var(--color-alert-positive-stressed, #35692b);
+  background: var(--color-alert-positive-background);
+  color: var(--color-alert-positive-stressed);
 }
 
 .ds-badge--negative {

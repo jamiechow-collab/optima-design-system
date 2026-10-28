@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
    Sidenav Nav Item — design tokens: src/tokens/colors.js, typography.js
-   Icon box: 40×40 · Radius/md 8 · bg beige-bg/secondary #EDE9E3 ·
+   Icon box: 40×40 · Radius/sm 4 · bg beige-bg/secondary #EDE9E3 ·
    hover beige-bg/secondary-hover #E5DED5 · active (selected)
    beige-bg/secondary-selected #D2C6B7 · focus ring rgba(0,42,168,0.6)
    Label: Caption/medium 12/16 text/primary #050505 · gap4 (spacing/xs)
@@ -24,7 +24,7 @@
   width: 40px;
   height: 40px;
   box-sizing: border-box;
-  border-radius: var(--radius-md, 8px); /* radius/md */
+  border-radius: var(--radius-sm, 4px); /* radius/sm */
   background: var(--color-beige-bg-secondary, #ede9e3); /* beige-bg/secondary */
   color: var(--color-text-primary, #050505); /* text/primary */
   transition: background-color 0.15s ease, box-shadow 0.15s ease;

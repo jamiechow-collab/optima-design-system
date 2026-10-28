@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import { InlineMenuButton } from './MenuButton';
-import { Menu, MenuItem, MenuDivider } from '../Menu/Menu';
+import { Menu, MenuItem } from '../Menu/Menu';
+import { Divider } from '../Divider/Divider';
 import { Icon } from '../Icon/Icon';
 
 const meta: Meta = {
@@ -23,7 +24,7 @@ const SampleMenu = () => (
     <MenuItem label="Item A" />
     <MenuItem label="Item B" />
     <MenuItem label="Item C" />
-    <MenuDivider />
+    <Divider />
     <MenuItem label="Item E" />
     <MenuItem label="Item F" />
   </Menu>

@@ -60,7 +60,7 @@ export const Pagination = ({
       <nav className={classes} aria-label="Pagination">
         <Button
           variant="secondary"
-          size="sm"
+          size="xs"
           iconOnly
           aria-label="Previous page"
           disabled={disabled || isFirstPage}
@@ -73,7 +73,7 @@ export const Pagination = ({
         </span>
         <Button
           variant="secondary"
-          size="sm"
+          size="xs"
           iconOnly
           aria-label="Next page"
           disabled={disabled || isLastPage}
@@ -91,7 +91,7 @@ export const Pagination = ({
     <nav className={classes} aria-label="Pagination">
       <Button
         variant="secondary"
-        size="sm"
+        size="xs"
         leadingIcon={<Icon name="arrow-left" size="sm" />}
         disabled={disabled || isFirstPage}
         onClick={goToPrevious}
@@ -123,7 +123,7 @@ export const Pagination = ({
       </ul>
       <Button
         variant="secondary"
-        size="sm"
+        size="xs"
         trailingIcon={<Icon name="arrow-right" size="sm" />}
         disabled={disabled || isLastPage}
         onClick={goToNext}

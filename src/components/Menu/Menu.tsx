@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Icon } from '../Icon/Icon';
+import { DividerListContext } from '../Divider/Divider';
 import './Menu.css';
-
-// ── MenuDivider ─────────────────────────────────────────────────────────────
-
-export const MenuDivider = () => <li role="separator" className="ds-menu-divider" aria-hidden="true" />;
 
 // ── MenuSectionTitle ──────────────────────────────────────────────────────────
 
@@ -41,6 +38,8 @@ export interface MenuItemProps extends Omit<React.LiHTMLAttributes<HTMLLIElement
   hasSubmenu?: boolean;
   /** Submenu content — automatically shows the chevron and opens on click/hover/Enter/→ */
   submenu?: React.ReactNode;
+  /** Which side the submenu opens on. It also flips to the left by itself when it would run off the right of the screen */
+  submenuPlacement?: 'right' | 'left';
   /** When true, Space/Enter toggles an internal checked state */
   selectable?: boolean;
   disabled?: boolean;
@@ -61,6 +60,7 @@ export const MenuItem = ({
   checked: checkedProp,
   hasSubmenu,
   submenu,
+  submenuPlacement = 'right',
   selectable = false,
   disabled = false,
   alert = false,
@@ -73,6 +73,7 @@ export const MenuItem = ({
   ...rest
 }: MenuItemProps) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [flipped, setFlipped] = useState(false);
   const [internalChecked, setInternalChecked] = useState(checkedProp ?? false);
   const itemRef = useRef<HTMLLIElement>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
@@ -116,6 +117,16 @@ export const MenuItem = ({
     }
     externalOnKeyDown?.(e);
   };
+
+  // Open on the left when the submenu would run off the right of the screen
+  useLayoutEffect(() => {
+    if (!submenuOpen) {
+      setFlipped(false);
+      return;
+    }
+    const el = submenuRef.current;
+    if (el && submenuPlacement === 'right' && el.getBoundingClientRect().right > window.innerWidth) setFlipped(true);
+  }, [submenuOpen, submenuPlacement]);
 
   // Focus the first item in the submenu when it opens
   useEffect(() => {
@@ -197,7 +208,7 @@ export const MenuItem = ({
         </span>
       )}
       {submenu && submenuOpen && (
-        <Menu ref={submenuRef} className="ds-menu-item__submenu">
+        <Menu ref={submenuRef} className={`ds-menu-item__submenu ${submenuPlacement === 'left' || flipped ? 'ds-menu-item__submenu--left' : ''}`.trim()}>
           {submenu}
         </Menu>
       )}
@@ -259,7 +270,7 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
         onKeyDown={handleKeyDown}
         {...rest}
       >
-        {children}
+        <DividerListContext.Provider value>{children}</DividerListContext.Provider>
       </ul>
     );
   }

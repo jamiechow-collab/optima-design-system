@@ -72,6 +72,15 @@ const GROUPS = [
       { name: 'Medium', style: typography.caption.medium },
     ],
   },
+  {
+    title: 'Data',
+    note: 'Sora. Only for data (numbers).',
+    variants: [
+      { name: 'Regular-1', style: typography.data['regular-1'] },
+      { name: 'Regular-2', style: typography.data['regular-2'] },
+      { name: 'Regular-3', style: typography.data['regular-3'] },
+    ],
+  },
 ];
 
 const COLS = { font: 2.2, weight: 1, size: 1.3, line: 1.3, space: 1 };
@@ -95,6 +104,7 @@ const Table = ({ group }) => (
     <h2 style={{ fontSize: 24, fontWeight: 700, lineHeight: '32px', margin: '0 0 16px', color: '#050505' }}>
       {group.title}
     </h2>
+    {group.note && <p style={{ fontSize: 14, lineHeight: '20px', color: '#6B7280', margin: '-8px 0 16px' }}>{group.note}</p>}
     <div style={{ background: '#F9F8F6', borderRadius: 16, overflow: 'hidden' }}>
       {/* Header row */}
       <div style={{ display: 'flex', gap: 24, padding: '20px 48px' }}>

@@ -41,6 +41,22 @@ export const DateRange: StoryObj = {
   },
 };
 
+export const DateRangeWithPresets: StoryObj = {
+  name: 'Date Picker — Range with pre-set',
+  parameters: { layout: 'padded' },
+  render: () => {
+    const Demo = () => {
+      const [value, setValue] = useState<DatePickerValue>([null, null]);
+      return (
+        <div style={{ width: 320, minHeight: 460 }}>
+          <DatePicker mode="range" presets value={value} onChange={setValue} label="Field title" />
+        </div>
+      );
+    };
+    return <Demo />;
+  },
+};
+
 export const DatePickerDisabled: StoryObj = {
   render: () => (
     <div style={{ width: 320 }}>

@@ -91,6 +91,9 @@ export interface TableProps<Row> {
   /** Fired on drop with the dragged row's new sibling order (as row keys)
       and the parentKey of that sibling group (null for top-level). */
   onRowOrderChange?: (orderedKeys: string[], parentKey: string | null) => void;
+  /** Stretches the table to the width of its container. Column widths then act as proportions
+      (with the pixel width as a minimum), so there is no need to add them up by hand. */
+  fill?: boolean;
   className?: string;
 }
 
@@ -233,6 +236,7 @@ export function Table<Row>({
   reorderableColumns = false,
   reorderableRows = false,
   onRowOrderChange,
+  fill = false,
   className,
 }: TableProps<Row>) {
   const [widths, setWidths] = useState<Record<string, number>>(() =>
@@ -499,11 +503,14 @@ export function Table<Row>({
 
   const gridTemplateColumns = [
     selectable ? '48px' : null,
-    ...orderedColumns.map((c) => `${widths[c.key] ?? DEFAULT_WIDTH}px`),
+    ...orderedColumns.map((c) => {
+      const w = widths[c.key] ?? DEFAULT_WIDTH;
+      return fill ? `minmax(${w}px, ${w}fr)` : `${w}px`;
+    }),
   ]
     .filter(Boolean)
     .join(' ');
-  const classes = ['ds-table', `ds-table--${size}`, className].filter(Boolean).join(' ');
+  const classes = ['ds-table', `ds-table--${size}`, fill ? 'ds-table--fill' : '', className].filter(Boolean).join(' ');
 
   // Wraps a leading element (the selection checkbox) in a sticky positioner
   // when stickyFirstColumn is on; otherwise renders it unchanged.

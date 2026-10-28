@@ -2,7 +2,7 @@
    Toast — design tokens: src/tokens/colors.js, shadow.js, typography.js
    Wraps its content (inline-flex) — never stretches to the container's full width.
    Message variant (single line): solid colour, white text, shadow-md
-   default core-bg/primary #050505 · positive alert/positive #448537
+   default core-bg/primary #050505 · positive alert/positive
    negative alert/negative #CF3321 · warning alert/warning #DD7F03
    Details/push variant (auto height, white bg): shadow-lg, text/primary title,
    text/secondary body, 44px avatar bubble with a 24px icon
@@ -13,7 +13,7 @@
   gap: var(--spacing-md, 12px);
   box-sizing: border-box;
   border: 0.5px solid #e5e7eb;
-  border-radius: var(--radius-md, 8px); /* Radius/md */
+  border-radius: var(--radius-sm, 4px); /* Radius/sm */
   font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
 }
 
@@ -27,7 +27,7 @@
 }
 
 .ds-toast--default { background: var(--color-core-bg-primary, #050505); }
-.ds-toast--positive { background: var(--color-alert-positive, #448537); }
+.ds-toast--positive { background: var(--color-alert-positive); }
 .ds-toast--negative { background: var(--color-alert-negative, #cf3321); }
 .ds-toast--warning { background: var(--color-alert-warning, #dd7f03); }
 

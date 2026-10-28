@@ -10,8 +10,8 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg'],
-      description: 'sm 40 · md 44 · lg 48',
+      options: ['xs', 'sm', 'md', 'lg'],
+      description: 'xs 32 · sm 40 · md 44 · lg 48',
     },
     disabled: { control: 'boolean' },
     loading: { control: 'boolean' },
@@ -33,7 +33,7 @@ type Story = StoryObj<typeof Button>;
 
 interface PlaygroundArgs {
   variant: ButtonVariant;
-  size: 'sm' | 'md' | 'lg';
+  size: 'xs' | 'sm' | 'md' | 'lg';
   children: string;
   disabled: boolean;
   loading: boolean;
@@ -95,9 +95,9 @@ export const Ghost: StoryObj<PlaygroundArgs> = {
   render: renderPlayground,
 };
 
-export const Text: StoryObj<PlaygroundArgs> = {
+export const Inline: StoryObj<PlaygroundArgs> = {
   argTypes: iconToggleArgTypes,
-  args: playgroundArgs('text'),
+  args: playgroundArgs('inline'),
   render: renderPlayground,
 };
 
@@ -111,8 +111,8 @@ export const IconOnly: Story = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'tertiary', 'ghost'],
-      description: 'Icon-only supports primary / secondary / tertiary / ghost',
+      options: ['primary', 'secondary', 'tertiary', 'ghost', 'inline'],
+      description: 'Icon-only supports primary / secondary / tertiary / ghost / inline',
       table: { disable: false },
     },
     children: { table: { disable: true } },

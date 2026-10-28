@@ -124,3 +124,30 @@ export const StatesExample = () => (
     </div>
   </div>
 );
+
+const VariantsDemo = () => {
+  const [standard, setStandard] = useState<DatePickerValue>([null, null]);
+  const [preset, setPreset] = useState<DatePickerValue>([null, null]);
+  return (
+    <>
+      <div style={example}>
+        <span style={exampleLabel}>Standard Date Picker</span>
+        <div style={{ width: 320 }}>
+          <DatePicker mode="range" value={standard} onChange={setStandard} label="Field title" />
+        </div>
+      </div>
+      <div style={example}>
+        <span style={exampleLabel}>Date Picker with pre-set</span>
+        <div style={{ width: 320 }}>
+          <DatePicker mode="range" presets value={preset} onChange={setPreset} label="Field title" />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export const VariantsExample = () => (
+  <div style={{ ...card, minHeight: 540 }}>
+    <VariantsDemo />
+  </div>
+);
