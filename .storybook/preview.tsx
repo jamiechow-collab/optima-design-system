@@ -40,6 +40,7 @@ const preview: Preview = {
               'Default', 'Indeterminate',
             ],
             'Date Picker',
+            'Divider',
             'Dropdown',
             'Input',
             'Text Area',
@@ -75,10 +76,14 @@ const preview: Preview = {
             'Pagination',
             'Progress bar',
             'Radio Button',
+            'Search',
             'Sidenav',
             'Sliders',
             'Spinners',
-            'Tabs',
+            'Stepper',
+            'Tabs', [
+              'Docs', 'Nav-tab', 'Ui-tab',
+            ],
             'Toast', [
               'Message', 'With Details', 'With Timestamp',
             ],
@@ -87,6 +92,9 @@ const preview: Preview = {
             'Toggletips',
           ],
           'Pattern', [
+            'Modal', [
+              'Docs', 'Default', 'Alert modal', 'Scrollable modal', 'Wizard modal',
+            ],
             'Table', [
               'Default', 'Selectable', 'Expandable', 'Medium',
             ],
@@ -94,13 +102,55 @@ const preview: Preview = {
           'Data Visualisation', [
             'Chart design', [
               'Color-datavis', 'Chart Anatomy', 'Axes and label',
-              'Tooltips', 'Legend', 'Datavis container',
+              'Tooltips', 'Legend',
             ],
             'Chart types', [
-              'Bar Chart', [
+              'Bar', [
                 'Docs', 'Vertical simple bar chart', 'Vertical grouped bar chart',
                 'Vertical stacked bar chart', 'Horizontal simple bar chart',
               ],
+              'Line', [
+                'Docs', 'Straight line chart', 'Curve line chart',
+              ],
+              'Area', [
+                'Docs', 'Straight area chart', 'Curve area chart',
+              ],
+              'Combo', [
+                'Docs', 'Combo charts',
+              ],
+              'Donut', [
+                'Docs', 'Donut chart',
+              ],
+              'Pie', [
+                'Docs', 'Pie chart',
+              ],
+              'Gauge', [
+                'Docs', 'Gauge chart',
+              ],
+              'Venn diagram', [
+                'Docs', 'Venn diagram',
+              ],
+              'Sankey diagram', [
+                'Docs', 'Sankey diagram',
+              ],
+              'Heatmap', [
+                'Docs', 'Heatmap',
+              ],
+            ],
+            'Mini-charts', [
+              'Docs', 'Usage examples',
+              'Sparkline', ['Docs', 'Sparkline'],
+              'Star review', ['Docs', 'Star review'],
+              'Linear gauge', ['Docs', 'Linear gauge'],
+              'Circular gauge', ['Docs', 'Circular gauge'],
+              'Bar chart', ['Docs', 'Bar chart'],
+              'Heatmap', ['Docs', 'Heatmap'],
+            ],
+            'Score cards', [
+              'Docs', 'Score card',
+            ],
+            'Widget', [
+              'Docs', 'Standard widget', 'Advanced widget', 'Swap the chart',
             ],
           ],
         ],

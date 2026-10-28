@@ -1,5 +1,5 @@
 {
-  "name": "my-design-system",
+  "name": "optima-design-system",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,17 +14,10 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "tokens": "node scripts/generate-tokens-css.mjs",
-    "prestart": "npm run tokens",
-    "start": "react-scripts start",
-    "prebuild": "npm run tokens",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "prestorybook": "npm run tokens",
     "storybook": "storybook dev -p 6006",
     "prebuild-storybook": "npm run tokens",
@@ -53,13 +46,13 @@
   "devDependencies": {
     "@storybook/addon-a11y": "10.4.1",
     "@storybook/addon-docs": "10.4.1",
-    "@storybook/addon-onboarding": "10.4.1",
     "@storybook/preset-create-react-app": "10.4.1",
     "@storybook/react-webpack5": "10.4.1",
     "chromatic": "^18.0.1",
     "eslint-plugin-storybook": "10.4.1",
     "prop-types": "^15.8.1",
     "storybook": "10.4.1",
+    "typescript": "^5.9.3",
     "webpack": "^5.107.1"
   }
 }
