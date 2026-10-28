@@ -2,11 +2,14 @@
 //  Design Tokens — Typography
 //  Sourced from Figma · Shared UI Design · Typography variables
 //  Names mirror the Figma variable collections exactly
-//  (Display/bold-1..3, Heading/*, Label/*, Body/*, Caption/*).
+//  (Display/bold-1..3, Heading/*, Label/*, Body/*, Caption/*, Data/regular-1..3).
 // ─────────────────────────────────────────────
 
 // Family/family
 export const fontFamily = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+
+// Family/family-brand — Sora, used only for data (numbers)
+export const fontFamilyBrand = "'Sora', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
 
 // Weight/*
 export const fontWeight = {
@@ -29,8 +32,8 @@ export const fontSize = {
 
 // Composed type styles. Line heights reference Figma Spacing tokens:
 // Spacing/lg=16 · Spacing/xl=20 · Spacing/2xl=24 · Spacing/section-xs=32 · Spacing/section-sm=40
-const style = (weight, size, lineHeight) => ({
-  fontFamily,
+const style = (weight, size, lineHeight, family = fontFamily) => ({
+  fontFamily: family,
   fontWeight: weight,
   fontSize: size,
   lineHeight,
@@ -39,6 +42,7 @@ const style = (weight, size, lineHeight) => ({
 
 const typography = {
   fontFamily,
+  fontFamilyBrand,
   fontWeight,
   fontSize,
 
@@ -72,6 +76,13 @@ const typography = {
   caption: {
     regular: style(fontWeight.regular, fontSize.xs, 16),
     medium: style(fontWeight.medium, fontSize.xs, 16),
+  },
+
+  // Sora — only for data (numbers), e.g. the total in a donut chart
+  data: {
+    'regular-1': style(fontWeight.regular, fontSize.md, 24, fontFamilyBrand), // Data/regular-1
+    'regular-2': style(fontWeight.regular, fontSize.lg, 24, fontFamilyBrand), // Data/regular-2
+    'regular-3': style(fontWeight.regular, fontSize.xl, 24, fontFamilyBrand), // Data/regular-3
   },
 };
 

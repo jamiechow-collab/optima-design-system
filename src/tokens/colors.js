@@ -21,6 +21,7 @@ export const primitives = {
     950: '#151313',
   },
   grey: {
+    20: '#D5DAE2',
     50: '#D5DAE2',
     100: '#BDC5D1',
     200: '#A5B0C0',
@@ -96,9 +97,9 @@ export const primitives = {
     500: '#6DBC5D',
     600: '#60B64E',
     700: '#57A946',
-    800: '#519E42',
+    800: '#57B645',
     900: '#448537',
-    950: '#35692B',
+    950: '#3A7A2E',
   },
   red: {
     20: '#FCEFED',
@@ -201,7 +202,7 @@ const colors = {
       secondaryHover: primitives.beige[50],
       secondarySelected: primitives.beige[200],
       secondarySelectedHover: primitives.beige[300],
-      secondaryDisabled: primitives.black[50],
+      secondaryDisabled: primitives.grey[20],
 
       tertiary: primitives.black[50],
       tertiaryHover: primitives.black[100],
@@ -231,7 +232,7 @@ const colors = {
       background: primitives.seaBlue[20],
     },
     positive: {
-      color: primitives.green[900],
+      color: primitives.green[800],
       stressed: primitives.green[950],
       selected: primitives.green[50],
       selectedHover: primitives.green[200],

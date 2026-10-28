@@ -6,57 +6,67 @@
 // a group — the sequence is curated for contrast between neighbours.
 
 const states = ['default', 'hover', 'selected', 'dismissed'];
+const DISMISSED_ALPHA = '33'; // 20% opacity
 
-const entry = (name, hexes) => ({
+// Pass [default, hover, selected] hexes and their sequential-palette steps (e.g. tide 300).
+// `dismissed` is the selected colour at 20% opacity (same step), so overlapping areas stay
+// readable; `gradient-end` is the same colour at 0% — area/trend fills run top to bottom from
+// `dismissed` to `gradient-end`.
+const entry = (name, [def, hover, selected], [defStep, hoverStep, selectedStep]) => ({
   name,
-  ...Object.fromEntries(states.map((s, i) => [s, hexes[i]])),
+  default: def,
+  hover,
+  selected,
+  dismissed: `${selected}${DISMISSED_ALPHA}`,
+  steps: { default: defStep, hover: hoverStep, selected: selectedStep, dismissed: `${selectedStep} (20%)` },
+  'gradient-end': `${selected}00`,
 });
 
 const datavisCategorical = {
   group1: [
-    entry('tide', ['#015989', '#015989', '#026aa1', '#3a92c1']),
-    entry('charcoal', ['#3b3b3b', '#222222', '#4d4d4d', '#eeeeee']),
-    entry('acorn', ['#816b50', '#65543e', '#977d5e', '#dbcfc1']),
+    entry('tide', ['#015989', '#013f60', '#01659d'], [500, 700, 300]),
+    entry('charcoal', ['#3b3b3b', '#222222', '#4d4d4d'], [700, 900, 500]),
+    entry('acorn', ['#8a7356', '#746148', '#a58d6e'], [400, 600, 200]),
   ],
   group2: [
-    entry('stone', ['#83aab4', '#4c8e9e', '#b4cad0', '#e4eaec']),
-    entry('lagoon', ['#00678a', '#002e3d', '#229ac2', '#8dbdcd']),
-    entry('meadow', ['#b8a54c', '#7c7031', '#c2b266', '#d7d2bc']),
-    entry('cedar', ['#7e5344', '#523023', '#a97766', '#bfa59b']),
-    entry('clay', ['#d17d5c', '#ba5026', '#e1ad99', '#f0ddd5']),
-    entry('iris', ['#8967ad', '#623c8b', '#af9ac6', '#d6cddf']),
-    entry('olive', ['#868958', '#5e6232', '#a9ab82', '#c5c6b3']),
+    entry('earth', ['#9f8438', '#6e591f', '#c6ab63'], [500, 700, 300]),
+    entry('lagoon', ['#00678a', '#004d66', '#0086b2'], [500, 700, 300]),
+    entry('plum', ['#82235a', '#6c1d4b', '#99296a'], [500, 700, 300]),
+    entry('sapphire', ['#599c99', '#477b79', '#7ab3b1'], [500, 700, 300]),
+    entry('clay', ['#a35c38', '#895034', '#ba734f'], [500, 700, 300]),
+    entry('violet', ['#6e55b9', '#5b43a3', '#816bc2'], [500, 700, 300]),
+    entry('olive', ['#868958', '#5e6232', '#a9ab82'], [500, 700, 300]),
   ],
   group3: [
-    entry('slate', ['#687b82', '#3e5760', '#93a0a5', '#e0e3e3']),
-    entry('sapphire', ['#67a3a8', '#3d8085', '#99bfc2', '#eef4f5']),
-    entry('earth', ['#937a34', '#614e1a', '#c0a354', '#ece4d0']),
-    entry('driftwood', ['#a99c8e', '#917659', '#c9c2ba', '#f9f9f8']),
-    entry('cherry', ['#973b3b', '#661e1e', '#be6060', '#f2e3e3']),
-    entry('lavender', ['#bb9ee0', '#915ad8', '#e4d9f2', '#fbf9fd']),
-    entry('lime', ['#becc00', '#778000', '#dae633', '#e0e1d4']),
+    entry('slate', ['#687b82', '#3e5760', '#93a0a5'], [500, 700, 300]),
+    entry('mulberry', ['#8b3776', '#5a1c4a', '#b856a0'], [500, 700, 300]),
+    entry('moss', ['#415f28', '#31481e', '#597740'], [500, 700, 300]),
+    entry('driftwood', ['#a49079', '#7b5d3d', '#b4a99c'], [500, 700, 300]),
+    entry('nightshade', ['#461976', '#371362', '#6b29b3'], [500, 700, 300]),
+    entry('bluebell', ['#7685d0', '#334cc7', '#b0b9e3'], [500, 700, 300]),
+    entry('raspberry', ['#a0375f', '#812c4d', '#bf4574'], [500, 700, 300]),
   ],
   group4: [
-    entry('bluebell', ['#7685d0', '#334cc7', '#b0b9e3', '#dfe7ef']),
-    entry('sky', ['#9ab8ef', '#4e86ef', '#dce6f9', '#eef3fb']),
-    entry('dune', ['#ccb371', '#bc9834', '#dfd1aa', '#f6f4eb']),
-    entry('rose', ['#a06e6e', '#7f4343', '#bd9e9e', '#eee8e8']),
-    entry('mulberry', ['#8b3776', '#5a1c4a', '#b856a0', '#e4ccde']),
-    entry('orchid', ['#a766b2', '#853a92', '#c39bca', '#eae1eb']),
-    entry('sage', ['#c0c397', '#aeb35b', '#dddec9', '#eeeee6']),
+    entry('indigo', ['#4b3c9b', '#3c307d', '#604fbb'], [500, 700, 300]),
+    entry('forest', ['#767b09', '#585c05', '#b8c011'], [500, 700, 300]),
+    entry('walnut', ['#5f4600', '#523c00', '#805e00'], [500, 700, 300]),
+    entry('rose', ['#a06e6e', '#7f4343', '#bd9e9e'], [500, 700, 300]),
+    entry('cherry', ['#aa2626', '#661e1e', '#bb3e3e'], [500, 700, 300]),
+    entry('orchid', ['#a766b2', '#853a92', '#c39bca'], [500, 700, 300]),
+    entry('camellia', ['#eb5a96', '#e2186c', '#ed82ae'], [500, 700, 300]),
   ],
   group5: [
-    entry('ocean', ['#004480', '#001b33', '#026dca', '#80bff6']),
-    entry('hyacinth', ['#685cb2', '#40348d', '#9992c9', '#e5e3ee']),
-    entry('honey', ['#ceb71c', '#93810b', '#e5d252', '#f4efd1']),
-    entry('chestnut', ['#7b4609', '#371e01', '#c06e11', '#edc89c']),
-    entry('beetroot', ['#860e40', '#44031e', '#c91861', '#ea9dbd']),
-    entry('nightshade', ['#461976', '#20083a', '#6b29b3', '#d6c1ec']),
-    entry('forest', ['#767b09', '#343701', '#b8c011', '#f2f6b0']),
+    entry('ocean', ['#004480', '#002e57', '#026dca'], [500, 700, 300]),
+    entry('gold', ['#b98719', '#a27616', '#d3991d'], [500, 700, 300]),
+    entry('chestnut', ['#8a550b', '#371e01', '#af6c0d'], [500, 700, 300]),
+    entry('lavender', ['#915ad8', '#5b12ba', '#bb9ee0'], [500, 700, 300]),
+    entry('beetroot', ['#860e40', '#530425', '#c91861'], [500, 700, 300]),
+    entry('heather', ['#c36eaf', '#b7529f', '#ce88bd'], [500, 700, 300]),
+    entry('cobalt', ['#216ecb', '#1b5ba7', '#66a0e6'], [500, 700, 300]),
   ],
 };
 
-// Sequential (monochromatic) palettes, darkest (950) to lightest (50).
+// Sequential (monochromatic) palettes, darkest (950) to lightest.
 const datavisSequential = {
   charcoal: {
     950: '#151313',
@@ -70,19 +80,21 @@ const datavisSequential = {
     200: '#878787',
     100: '#a1a1a1',
     50: '#d1d1d1',
+    20: '#dadada',
   },
   tide: {
     950: '#001d2d',
     900: '#00273b',
-    800: '#00304a',
-    700: '#003552',
-    600: '#003a59',
-    500: '#004367',
-    400: '#014d76',
-    300: '#015989',
-    200: '#026092',
-    100: '#026aa1',
-    50: '#0676b2',
+    800: '#013551',
+    700: '#013f60',
+    600: '#014c74',
+    500: '#015989',
+    400: '#015f93',
+    300: '#01659d',
+    200: '#016ca7',
+    100: '#388ab6',
+    50: '#7eabc3',
+    20: '#c4d7e1',
   },
   acorn: {
     950: '#262017',
@@ -95,7 +107,8 @@ const datavisSequential = {
     300: '#977d5e',
     200: '#a58d6e',
     100: '#af997e',
-    50: '#bba891',
+    50: '#bfaf9d',
+    20: '#d4cdc5',
   },
 };
 
