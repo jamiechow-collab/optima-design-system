@@ -33,7 +33,7 @@ export const ChartTooltip = ({ header, headerValue, items, total, totalValue, wi
     role="tooltip"
     style={{
       width: width ?? 'max-content', minWidth: 116, maxWidth: 240, boxSizing: 'border-box', padding: 8, display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-start',
-      background: 'var(--color-core-bg-secondary, #fff)', borderRadius: 'var(--radius-sm, 4px)',
+      background: 'var(--color-core-bg-secondary, #fff)', borderRadius: 'var(--radius-md, 8px)',
       boxShadow: 'var(--shadow-lg, 0px 4px 6px -2px rgba(16, 24, 40, 0.03), 0px 12px 16px -4px rgba(16, 24, 40, 0.08))',
       fontFamily: chartText.fontFamily, ...style,
     }}

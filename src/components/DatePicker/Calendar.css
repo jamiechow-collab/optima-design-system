@@ -3,7 +3,7 @@
    Container: auto-width, radius/lg 12, shadow-xl 0px 24px 48px -12px rgba(16,24,40,0.18)
    Content padding 8 top, 12 sides and bottom; header (40px icon buttons) directly above the grid
    Header: prev/next chevron icon buttons (Button ghost iconOnly), month/year
-   pills (auto height, p8, radius/sm 4, Label/medium 14/20)
+   pills (auto height, p8, radius/md 8, Label/medium 14/20)
    Grid: week-number column (border-right border/layout #D1D1D1) + dates column,
    0 gap between them, 4px between week rows
    Weekday/week-no labels: Caption/medium 12/16 text/placeholder #858585
@@ -59,7 +59,7 @@
   align-items: center;
   padding: var(--spacing-sm, 8px);
   border: none;
-  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  border-radius: var(--radius-md, 8px); /* radius/md */
   background: transparent;
   font-family: inherit;
   font-size: var(--font-size-sm, 14px);

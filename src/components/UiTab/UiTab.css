@@ -2,7 +2,7 @@
    Ui-tab — a compact segmented switcher that lives inside a component
    (e.g. a chart card). For navigating between views of a page use Nav-tab.
    Container: beige-bg/primary #F9F8F6, p4, gap4, radius/full
-   Tab: px8 py4 gap4, Caption/medium (12/16), radius/sm
+   Tab: px8 py4 gap4, Caption/medium (12/16), radius/md
    Default: text/secondary · Hover: white bg, radius/full, no shadow · Active: core-bg/secondary white, text/primary,
    shadow-xs, radius/full · Icon 16
    ───────────────────────────────────────────── */
@@ -24,7 +24,7 @@
   gap: var(--spacing-xs, 4px);
   padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
   border: none;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-md, 8px);
   background: transparent;
   cursor: pointer;
   font-family: inherit;

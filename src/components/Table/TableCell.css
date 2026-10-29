@@ -76,7 +76,7 @@
   justify-content: center;
   padding: 0;
   border: none;
-  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  border-radius: var(--radius-md, 8px); /* radius/md */
   background: transparent;
   color: var(--color-text-primary, #050505); /* text/primary */
   cursor: grab;

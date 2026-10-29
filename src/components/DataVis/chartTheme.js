@@ -12,7 +12,7 @@ export const chartTheme = {
     fontWeight: 400,
   },
   axisTitle: { fill: 'var(--color-text-secondary, #474747)', fontSize: 12, fontWeight: 500 },
-  barRadius: 4, // radius/sm
+  barRadius: 8, // radius/md
   surface: 'var(--color-beige-bg-primary, #f9f8f6)',
 };
 

@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
    Sidenav Action Button — design tokens: src/tokens/colors.js
-   40×40 · Radius/sm 4 · bg core-bg/primary #050505 · icon white ·
+   40×40 · Radius/md 8 · bg core-bg/primary #050505 · icon white ·
    hover core-bg/primary-hover #383838 · focus ring rgba(0,42,168,0.6) ·
    disabled bg core-bg/secondary-disabled #EBEBEB, icon text/disabled #9E9E9E
    ───────────────────────────────────────────── */
@@ -14,7 +14,7 @@
   height: 40px;
   padding: 0;
   border: none;
-  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  border-radius: var(--radius-md, 8px); /* radius/md */
   background: var(--color-core-bg-primary, #050505); /* core-bg/primary */
   color: var(--color-text-invert, #fff);
   cursor: pointer;

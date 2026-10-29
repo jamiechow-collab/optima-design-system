@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
    Button — design tokens: src/tokens/colors.js, typography.js
-   Sizes: xs 32 · sm 40 · md 44 · lg 48 · Radius/sm 4
+   Sizes: xs 32 · sm 40 · md 44 · lg 48 · Radius/md 8
    Types: primary · secondary · tertiary · ghost · inline · disruptive
    ───────────────────────────────────────────── */
 
@@ -10,7 +10,7 @@
   justify-content: center;
   box-sizing: border-box;
   border: none;
-  border-radius: var(--radius-sm, 4px); /* Radius/sm */
+  border-radius: var(--radius-md, 8px); /* Radius/md */
   background: transparent;
   font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   cursor: pointer;
@@ -223,7 +223,7 @@
 
 /* Inline icon-only — same states and radius as ghost, but hugs the icon with
    2px around it: xs/sm 20 (16 icon) · md/lg 24 (20 icon) */
-.ds-button--icon-only.ds-button--inline { padding: 0; border-radius: var(--radius-sm, 4px); }
+.ds-button--icon-only.ds-button--inline { padding: 0; border-radius: var(--radius-md, 8px); }
 
 .ds-button--icon-only.ds-button--inline:hover:not(:disabled),
 .ds-button--icon-only.ds-button--inline.is-hover,

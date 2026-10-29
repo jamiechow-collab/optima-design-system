@@ -35,7 +35,7 @@
   flex-direction: column;
   min-width: 0;
   border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
-  border-radius: var(--radius-sm, 4px); /* radius/sm */
+  border-radius: var(--radius-md, 8px); /* radius/md */
   overflow: hidden;
 }
 

@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────
    Checkbox — design tokens: src/tokens/colors.js, typography.js
-   Sizes: sm 16px (default) · md 20px — Radius/sm 4px, gap 12px to the label
+   Sizes: sm 16px (default) · md 20px — Radius/md 8px, gap 12px to the label
    States (deselected): white bg, border/layout #D1D1D1 · hover/focus darken
    the border to border/ui-active #050505 · disabled border/ui-disabled #D1D1D1
    States (checked/indeterminate): core-bg/primary #050505 fill, white tick/dash ·
@@ -32,7 +32,7 @@
   appearance: none;
   margin: 0;
   box-sizing: border-box;
-  border-radius: var(--radius-sm, 4px); /* Radius/sm */
+  border-radius: var(--radius-md, 8px); /* Radius/md */
   border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
   background: var(--color-core-bg-secondary, #fff);
   cursor: pointer;

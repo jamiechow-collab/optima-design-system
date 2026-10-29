@@ -1,4 +1,4 @@
-/* Widget — Figma "Widget" (node 593:76243): 16px padding, 1px layout border, 4px radius.
+/* Widget — Figma "Widget" (node 593:76243): 16px padding, 1px layout border, 8px radius.
    Header (title + actions, optional description and tabs) over Content, 16px apart. Hover darkens the border. */
 .ds-widget {
   position: relative;
@@ -10,7 +10,7 @@
   padding: var(--spacing-lg, 16px);
   background: var(--color-core-bg-secondary, #fff);
   border: 1px solid var(--color-border-layout, #d1d1d1);
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-md, 8px);
   font-family: var(--font-family, 'Inter', sans-serif);
   color: var(--color-text-primary, #222);
 }
