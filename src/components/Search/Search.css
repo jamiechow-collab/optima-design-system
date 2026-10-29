@@ -4,7 +4,7 @@
    (spacing/lg, spacing/sm) · leading search icon 16px · trailing clear
    button (close icon 16px) shown only once the field is filled
    Vertical rhythm between title/field/helper: gap4 (spacing/xs)
-   Default border ui-inactive · hover/active/focused border ui-active ·
+   Default border border/layout · hover/active/focused border ui-active ·
    disabled bg core-bg/secondary-disabled, border ui-disabled ·
    read-only bg core-bg/secondary-hover, borderless
    Focus ring Focus - Default rgba(0,42,168,0.6)
@@ -51,7 +51,7 @@
   box-sizing: border-box;
   padding: 0 var(--spacing-lg, 16px); /* spacing/lg */
   border-radius: var(--radius-full, 100px); /* radius/full */
-  border: 1px solid var(--color-border-ui-inactive, #9e9e9e); /* border/ui-inactive */
+  border: 1px solid var(--color-border-layout, #d1d1d1); /* border/layout */
   background: var(--color-core-bg-secondary, #fff); /* core-bg/secondary */
   transition: border-color 0.15s ease, border-width 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;

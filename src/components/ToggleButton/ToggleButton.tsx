@@ -2,10 +2,10 @@ import React from 'react';
 import { Badge } from '../Badge/Badge';
 import './ToggleButton.css';
 
-export type ToggleButtonSize = 'sm' | 'md' | 'lg';
+export type ToggleButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 export interface ToggleButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  /** sm 40px (default) · md 44px · lg 48px */
+  /** xs 32px · sm 40px (default) · md 44px · lg 48px */
   size?: ToggleButtonSize;
   /** Whether the filter/toggle is currently on */
   active?: boolean;

@@ -35,7 +35,7 @@ const exampleLabel: React.CSSProperties = {
 export const OverviewExample = () => (
   <div style={{ ...card, width: 'fit-content' }}>
     <div style={{ width: 320 }}>
-      <Search size="sm" placeholder="placeholder text" />
+      <Search size="sm" placeholder="Search" />
     </div>
   </div>
 );
@@ -44,11 +44,11 @@ export const SizeExample = () => (
   <div style={card}>
     <div style={example}>
       <span style={exampleLabel}>Small</span>
-      <Search size="sm" placeholder="placeholder text" />
+      <Search size="sm" placeholder="Search" />
     </div>
     <div style={example}>
       <span style={exampleLabel}>Medium</span>
-      <Search size="md" placeholder="placeholder text" />
+      <Search size="md" placeholder="Search" />
     </div>
   </div>
 );
@@ -73,7 +73,7 @@ const StateGroup = ({ filled }: { filled: boolean }) => {
           <span style={{ ...exampleLabel, width: 70, flexShrink: 0 }}>{row.name}</span>
           <div style={{ width: 280 }}>
             <Search
-              placeholder="placeholder text"
+              placeholder="Search"
               defaultValue={filled ? 'Filled text' : undefined}
               className={row.cls}
               disabled={row.disabled}

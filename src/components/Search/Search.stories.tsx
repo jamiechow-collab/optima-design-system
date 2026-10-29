@@ -33,7 +33,7 @@ export const Default: StoryObj<PlaygroundArgs> = {
   args: {
     size: 'md',
     label: '',
-    placeholder: 'placeholder text',
+    placeholder: 'Search',
     helperText: '',
     showTooltip: false,
     disabled: false,

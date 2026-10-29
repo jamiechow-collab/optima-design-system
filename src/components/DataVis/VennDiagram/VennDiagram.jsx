@@ -131,10 +131,15 @@ export const VennDiagram = ({
     const [owner, factor] = n === 2 ? ['A', 0.45] : OWNER[z];
     return dismissed ? lighten(hexOf(idxOf(owner)), 0.5) : darken(hexOf(idxOf(owner)), factor);
   };
-  const colourOf = (z) => zoneColour(z, hover !== null && hover !== z);
+  // Hovering a circle's own zone lights up the whole circle (its overlaps too) in that circle's colour; hovering an
+  // overlap lights up just that overlap.
+  const wholeCircle = hover !== null && hover.length === 1;
+  const lit = (z) => hover !== null && (wholeCircle ? z.includes(hover) : z === hover);
+  const colourOf = (z) => (wholeCircle && lit(z) ? zoneColour(hover, false) : zoneColour(z, hover !== null && !lit(z)));
   // hex of the zone as drawn, to pick readable percentage text
   const zoneHex = (z) => {
-    const dismissed = hover !== null && hover !== z;
+    const dismissed = hover !== null && !lit(z);
+    if (wholeCircle && lit(z)) z = hover;
     if (z.length === 1) return datavisCategorical[GROUP][colourIdx[SLOT_LETTERS.indexOf(z)] % datavisCategorical[GROUP].length][dismissed ? 'dismissed' : 'default'];
     if (z === 'ABC') return dismissed ? lighten(CENTRE, 0.5) : CENTRE;
     const [owner, factor] = n === 2 ? ['A', 0.45] : OWNER[z];

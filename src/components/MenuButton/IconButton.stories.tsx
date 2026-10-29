@@ -13,7 +13,7 @@ const meta: Meta = {
 export default meta;
 
 interface PlaygroundArgs {
-  size: 'sm' | 'md' | 'lg';
+  size: 'xs' | 'sm' | 'md' | 'lg';
   disabled: boolean;
 }
 
@@ -30,7 +30,7 @@ const SampleMenu = () => (
 
 export const Default: StoryObj<PlaygroundArgs> = {
   argTypes: {
-    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+    size: { control: 'select', options: ['xs', 'sm', 'md', 'lg'] },
     disabled: { control: 'boolean' },
   },
   args: {
@@ -48,6 +48,9 @@ export const Sizes: StoryObj = {
   parameters: { controls: { disable: true } },
   render: () => (
     <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+      <IconMenuButton icon={<Icon name="more" />} aria-label="More options" size="xs">
+        <SampleMenu />
+      </IconMenuButton>
       <IconMenuButton icon={<Icon name="more" />} aria-label="More options" size="sm">
         <SampleMenu />
       </IconMenuButton>

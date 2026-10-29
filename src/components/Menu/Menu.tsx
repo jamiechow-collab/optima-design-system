@@ -77,6 +77,7 @@ export const MenuItem = ({
   const [internalChecked, setInternalChecked] = useState(checkedProp ?? false);
   const itemRef = useRef<HTMLLIElement>(null);
   const submenuRef = useRef<HTMLUListElement>(null);
+  const focusOnOpen = useRef(false);
 
   const isChecked = selectable ? internalChecked : checkedProp;
   const hasSubmenuContent = !!submenu || hasSubmenu;
@@ -99,12 +100,14 @@ export const MenuItem = ({
     if ((e.key === 'Enter' || e.key === ' ') && e.currentTarget === e.target) {
       e.preventDefault();
       if (submenu) {
+        focusOnOpen.current = true;
         setSubmenuOpen((prev) => !prev);
       } else if (selectable) {
         setInternalChecked((prev) => !prev);
       }
     } else if (e.key === 'ArrowRight' && submenu) {
       e.preventDefault();
+      focusOnOpen.current = true;
       openSubmenu();
     } else if (e.key === 'ArrowLeft' && submenuOpen) {
       e.preventDefault();
@@ -128,14 +131,19 @@ export const MenuItem = ({
     if (el && submenuPlacement === 'right' && el.getBoundingClientRect().right > window.innerWidth) setFlipped(true);
   }, [submenuOpen, submenuPlacement]);
 
-  // Focus the first item in the submenu when it opens
+  // Focus the first item in the submenu when it opens by keyboard (not on hover or click)
   useEffect(() => {
-    if (submenuOpen && submenuRef.current) {
+    if (!submenuOpen) {
+      focusOnOpen.current = false;
+      return;
+    }
+    if (focusOnOpen.current && submenuRef.current) {
       const firstItem = submenuRef.current.querySelector<HTMLElement>(
         '[role="menuitem"]:not([aria-disabled="true"])'
       );
       firstItem?.focus();
     }
+    focusOnOpen.current = false;
   }, [submenuOpen]);
 
   // Close the submenu on outside click

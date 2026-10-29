@@ -2,7 +2,7 @@
    Toggle Button — design tokens: src/tokens/colors.js, typography.js
    Follows Button as its base, but shaped as a pill (Radius/full) with an
    on/off (active) state instead of colour variants.
-   Sizes: sm 40 · md 44 · lg 48 (matches Button's scale)
+   Sizes: xs 32 · sm 40 · md 44 · lg 48 (matches Button's scale)
    Inactive: core-bg/secondary white, border/layout #D1D1D1, text/primary
    Active: core-bg/primary #050505 fill, white text — same as Button primary
    ───────────────────────────────────────────── */
@@ -26,6 +26,14 @@
 }
 
 /* ── Sizes — matches Button's sm/md/lg scale ──── */
+
+.ds-toggle-button--xs {
+  height: var(--spacing-section-xs, 32px);
+  padding: 0 var(--spacing-md, 12px) 0 var(--spacing-lg, 16px);
+  font-size: var(--font-size-sm, 14px);
+  line-height: var(--spacing-xl, 20px);
+  font-weight: var(--font-weight-medium, 500);
+}
 
 .ds-toggle-button--sm {
   height: var(--spacing-section-sm, 40px);
@@ -57,6 +65,7 @@
   flex-shrink: 0;
 }
 
+.ds-toggle-button--xs .ds-toggle-button__icon svg,
 .ds-toggle-button--sm .ds-toggle-button__icon svg,
 .ds-toggle-button--md .ds-toggle-button__icon svg {
   width: 16px;

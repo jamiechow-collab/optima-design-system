@@ -54,7 +54,7 @@ const Interactive = ({ size, label, active, disabled, showLeadingIcon, showBadge
 
 export const Default: StoryObj<PlaygroundArgs> = {
   argTypes: {
-    size: { control: 'select', options: ['sm', 'md', 'lg'] },
+    size: { control: 'select', options: ['xs', 'sm', 'md', 'lg'] },
     label: { control: 'text' },
     active: { control: 'boolean' },
     disabled: { control: 'boolean' },

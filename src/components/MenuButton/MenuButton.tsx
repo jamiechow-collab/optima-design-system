@@ -163,7 +163,7 @@ export const InlineMenuButton = ({
 export interface IconMenuButtonProps {
   icon: React.ReactNode;
   'aria-label': string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   disabled?: boolean;
   position?: MenuButtonPosition;
   children: React.ReactNode;
